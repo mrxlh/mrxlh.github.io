@@ -1,9 +1,9 @@
 # Site settings
-title: 辉辉
+title: by blog
 SEOTitle: 辉辉的博客 | BY Blog
 header-img: img/post-bg-desk.jpg
 email: mrxuliui@foxmail.com
-description: "Every failure is leading towards success."
+description: "If you have a better suggestion,Please share out,Let's do better."
 keyword: "辉辉的博客, xulihui, 徐力辉, java, javaweb, spring,spring for all"
 url: "http://xulihui.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
