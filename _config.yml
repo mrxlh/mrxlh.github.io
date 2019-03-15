@@ -59,8 +59,8 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: cb950d0f1610e2fedb41                            #生成的clientID
-  clientSecret: 60289051ab658585ebe3873309b190f8e9aa5f48    #生成的clientSecret
+  clientID: f16f7ee45c91993ecb69                            #生成的clientID
+  clientSecret: 4481f8e63f0b96c8b2bc660b1de945fdd33aef74    #生成的clientSecret
   repo: mrxlh.github.io    #仓库名称
   owner: mrxlh    #github用户名
   admin: mrxuliui@foxmail.com
