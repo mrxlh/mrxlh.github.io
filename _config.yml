@@ -53,8 +53,8 @@ kramdown:
 
 
 # 评论系统
-# Disqus（https://disqus.com/）
-# disqus_username: define
+ Disqus（https://disqus.com/）
+ disqus_username: define
 
 # Gitalk
 gitalk:
@@ -96,8 +96,8 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "WY",
-        href: "http://zhengwuyang.com"
+        title: "新浪微博",
+        href: "https://weibo.com/3194451320/profile"
     },{
         title: "简书·BY",
         href: "http://www.jianshu.com/u/e71990ada2fd"
