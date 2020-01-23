@@ -4,7 +4,7 @@
 
 有个帅哥名字叫“Shay Banon”，对就是这位。这是他2013年在dotScale大会上分享Elasticsearch的照片。[youtube上的分享视频](https://link.jianshu.com/?t=https://www.youtube.com/watch?v=fEsmydn747c)
 
-![img](D:/BaiduNetdiskDownload/2019-11-22-%E8%89%BE%E7%BC%96%E7%A8%8B-%E4%BA%92%E8%81%94%E7%BD%91%E5%88%86%E5%B8%83%E5%BC%8F%E6%8A%80%E6%9C%AF-Es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/%E7%AC%94%E8%AE%B0/assets/2201553-ac0f2ba844e9d639.webp)
+![img](http://image.uczzd.cn/8622803757556180222.jpg)
 
 **Elasticsearch的诞生历史**
 
