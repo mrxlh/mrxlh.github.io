@@ -66,7 +66,7 @@ elasticsearch 在Windows下的安装与启动
 
    7. 下载和解压缩Kibana安装包，使用里面的开发界面
 
-   8. 启动Kibana kibana.bat
+   8. 启动Kibana kibana.bat  <http://localhost:5801>
 
    9. 进入Dev Tools界面
 
