@@ -5,9 +5,9 @@
   <subtitle>[object Object]</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.collmall.com/"/>
+  <link href="https://blog.collmall.com/"/>
   <updated>2019-04-19T08:50:20.232Z</updated>
-  <id>http://blog.collmall.com/</id>
+  <id>https://blog.collmall.com/</id>
   
   <author>
     <name>John Doe</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>2019-09-20-Typora For Markdown 语法</title>
-    <link href="http://blog.collmall.com/2020/ck91etulk000hdgta9v1j1pso/"/>
-    <id>http://blog.collmall.com/2020/ck91etulk000hdgta9v1j1pso/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsmn000iggtab2wjg4yy/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsmn000iggtab2wjg4yy/</id>
     <published>2020-04-15T10:32:04.074Z</published>
     <updated>2019-04-19T08:50:20.232Z</updated>
     
@@ -40,8 +40,8 @@
   
   <entry>
     <title>2019-02-27-idea下的配置springboot的热加载</title>
-    <link href="http://blog.collmall.com/2020/ck91etulh000ddgta03lkh5nv/"/>
-    <id>http://blog.collmall.com/2020/ck91etulh000ddgta03lkh5nv/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsmg0008ggtae6d65rea/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsmg0008ggtae6d65rea/</id>
     <published>2020-04-15T10:32:04.067Z</published>
     <updated>2019-03-04T06:48:09.729Z</updated>
     
@@ -62,8 +62,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://blog.collmall.com/2020/ck91etunj006ddgta6j8jer45/"/>
-    <id>http://blog.collmall.com/2020/ck91etunj006ddgta6j8jer45/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsox006dggta20ei26ly/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsox006dggta20ei26ly/</id>
     <published>2020-04-15T09:05:27.263Z</published>
     <updated>2020-04-14T15:53:19.223Z</updated>
     
@@ -84,8 +84,8 @@
   
   <entry>
     <title>Markdown测试</title>
-    <link href="http://blog.collmall.com/2020/ck91etuno006rdgta1e5y70ls/"/>
-    <id>http://blog.collmall.com/2020/ck91etuno006rdgta1e5y70ls/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsp4006vggtadxp516bb/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsp4006vggtadxp516bb/</id>
     <published>2020-04-05T09:07:11.000Z</published>
     <updated>2020-04-15T13:07:10.637Z</updated>
     
@@ -101,17 +101,17 @@
     </summary>
     
     
-      <category term="测试" scheme="http://blog.collmall.com/categories/%E6%B5%8B%E8%AF%95/"/>
+      <category term="测试" scheme="https://blog.collmall.com/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="测试" scheme="http://blog.collmall.com/tags/%E6%B5%8B%E8%AF%95/"/>
+      <category term="测试" scheme="https://blog.collmall.com/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>基于Java对员工信息进行聚合分析</title>
-    <link href="http://blog.collmall.com/2020/ck91etunj006adgta4lni5fn0/"/>
-    <id>http://blog.collmall.com/2020/ck91etunj006adgta4lni5fn0/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsow006aggtafo9j7kcw/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsow006aggtafo9j7kcw/</id>
     <published>2020-03-07T09:07:11.000Z</published>
     <updated>2020-04-15T13:31:28.919Z</updated>
     
@@ -127,17 +127,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>基于Java对员工信息进行复杂的搜索操作</title>
-    <link href="http://blog.collmall.com/2020/ck91etuni0067dgtagc2q5tev/"/>
-    <id>http://blog.collmall.com/2020/ck91etuni0067dgtagc2q5tev/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsou0061ggta5hvogegp/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsou0061ggta5hvogegp/</id>
     <published>2020-03-06T09:07:11.000Z</published>
     <updated>2020-04-15T13:30:57.379Z</updated>
     
@@ -153,17 +153,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>基于Java实现员工信息的增删改查</title>
-    <link href="http://blog.collmall.com/2020/ck91etung0061dgta5yxkc79e/"/>
-    <id>http://blog.collmall.com/2020/ck91etung0061dgta5yxkc79e/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsow0067ggta9tsh2miw/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsow0067ggta9tsh2miw/</id>
     <published>2020-03-05T09:07:11.000Z</published>
     <updated>2020-04-15T13:30:21.998Z</updated>
     
@@ -179,17 +179,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>写入流程实现海量磁盘文件合并（segment merge，optimize）</title>
-    <link href="http://blog.collmall.com/2020/ck91etunf005vdgta6107gj59/"/>
-    <id>http://blog.collmall.com/2020/ck91etunf005vdgta6107gj59/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsov0064ggtagouc63ss/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsov0064ggtagouc63ss/</id>
     <published>2020-03-04T09:07:11.000Z</published>
     <updated>2020-04-15T13:29:53.313Z</updated>
     
@@ -205,17 +205,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>实现durability可靠存储（translog，flush）</title>
-    <link href="http://blog.collmall.com/2020/ck91etund005pdgtahjyagr1e/"/>
-    <id>http://blog.collmall.com/2020/ck91etund005pdgtahjyagr1e/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsos005vggtag0i20sn9/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsos005vggtag0i20sn9/</id>
     <published>2020-03-03T09:07:11.000Z</published>
     <updated>2020-04-15T13:29:34.185Z</updated>
     
@@ -231,17 +231,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>优化写入流程实现NRT近实时（filesystem cache，refresh）</title>
-    <link href="http://blog.collmall.com/2020/ck91etunh0064dgtabqer7kx3/"/>
-    <id>http://blog.collmall.com/2020/ck91etunh0064dgtabqer7kx3/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsos005sggta9b827g7l/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsos005sggta9b827g7l/</id>
     <published>2020-03-02T09:07:11.000Z</published>
     <updated>2020-04-15T13:28:53.186Z</updated>
     
@@ -257,17 +257,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>剖析document写入原理（buffer，segment，commit）</title>
-    <link href="http://blog.collmall.com/2020/ck91etune005sdgtadjlma79y/"/>
-    <id>http://blog.collmall.com/2020/ck91etune005sdgtadjlma79y/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsor005pggta26j043sv/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsor005pggta26j043sv/</id>
     <published>2020-03-01T09:07:11.000Z</published>
     <updated>2020-04-15T13:28:34.198Z</updated>
     
@@ -283,17 +283,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>倒排索引组成结构以及其索引不可变原因</title>
-    <link href="http://blog.collmall.com/2020/ck91etunc005mdgtadmck0lyp/"/>
-    <id>http://blog.collmall.com/2020/ck91etunc005mdgtadmck0lyp/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsot005yggtady701nfe/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsot005yggtady701nfe/</id>
     <published>2020-02-29T09:07:11.000Z</published>
     <updated>2020-04-15T13:27:49.248Z</updated>
     
@@ -309,17 +309,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>基于scoll+bulk+索引别名实现零停机重建索引</title>
-    <link href="http://blog.collmall.com/2020/ck91etung005ydgta6owzf5bj/"/>
-    <id>http://blog.collmall.com/2020/ck91etung005ydgta6owzf5bj/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsoq005mggta95zd674e/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsoq005mggta95zd674e/</id>
     <published>2020-02-28T09:07:11.000Z</published>
     <updated>2020-04-15T13:27:25.001Z</updated>
     
@@ -335,17 +335,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>自定义dynamic mapping策略</title>
-    <link href="http://blog.collmall.com/2020/ck91etun80057dgtaek7d5hk6/"/>
-    <id>http://blog.collmall.com/2020/ck91etun80057dgtaek7d5hk6/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsop005jggtaavsp0kgf/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsop005jggtaavsp0kgf/</id>
     <published>2020-02-27T09:07:11.000Z</published>
     <updated>2020-04-15T13:26:56.983Z</updated>
     
@@ -361,17 +361,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>mapping root object深入剖析</title>
-    <link href="http://blog.collmall.com/2020/ck91etunc005jdgta6u6phjpm/"/>
-    <id>http://blog.collmall.com/2020/ck91etunc005jdgta6u6phjpm/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsop005gggtaetp4fe91/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsop005gggtaetp4fe91/</id>
     <published>2020-02-26T09:07:11.000Z</published>
     <updated>2020-04-15T13:26:28.530Z</updated>
     
@@ -387,17 +387,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>type的底层数据结构</title>
-    <link href="http://blog.collmall.com/2020/ck91etunb005gdgtabo5k8pvf/"/>
-    <id>http://blog.collmall.com/2020/ck91etunb005gdgtabo5k8pvf/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsoo005dggtahrnj44eu/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsoo005dggtahrnj44eu/</id>
     <published>2020-02-25T09:07:11.000Z</published>
     <updated>2020-04-15T13:26:02.056Z</updated>
     
@@ -413,17 +413,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>修改分词器以及自定义分词器</title>
-    <link href="http://blog.collmall.com/2020/ck91etuna005ddgta2iue9d2r/"/>
-    <id>http://blog.collmall.com/2020/ck91etuna005ddgta2iue9d2r/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcson005aggta5a4qeg1r/"/>
+    <id>https://blog.collmall.com/2020/ck91gcson005aggta5a4qeg1r/</id>
     <published>2020-02-24T09:07:11.000Z</published>
     <updated>2020-04-15T13:25:32.239Z</updated>
     
@@ -439,17 +439,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>创建、修改以及删除索引</title>
-    <link href="http://blog.collmall.com/2020/ck91etun9005adgta056g3k2u/"/>
-    <id>http://blog.collmall.com/2020/ck91etun9005adgta056g3k2u/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsom0057ggta79y0exka/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsom0057ggta79y0exka/</id>
     <published>2020-02-23T09:07:11.000Z</published>
     <updated>2020-04-15T13:24:59.809Z</updated>
     
@@ -465,17 +465,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>bouncing results问题解决方案</title>
-    <link href="http://blog.collmall.com/2020/ck91etun6004ydgta3h2sfq3w/"/>
-    <id>http://blog.collmall.com/2020/ck91etun6004ydgta3h2sfq3w/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsol0051ggta4tpl07vy/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsol0051ggta4tpl07vy/</id>
     <published>2020-02-21T09:07:11.000Z</published>
     <updated>2020-04-15T13:24:11.120Z</updated>
     
@@ -491,17 +491,17 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title>scoll滚动搜索</title>
-    <link href="http://blog.collmall.com/2020/ck91etun70051dgta5fud5qiu/"/>
-    <id>http://blog.collmall.com/2020/ck91etun70051dgta5fud5qiu/</id>
+    <link href="https://blog.collmall.com/2020/ck91gcsom0054ggta72ri41jk/"/>
+    <id>https://blog.collmall.com/2020/ck91gcsom0054ggta72ri41jk/</id>
     <published>2020-02-21T09:07:11.000Z</published>
     <updated>2020-04-15T13:24:34.614Z</updated>
     
@@ -517,10 +517,10 @@
     </summary>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/categories/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/categories/Elasticsearch/"/>
     
     
-      <category term="Elasticsearch" scheme="http://blog.collmall.com/tags/Elasticsearch/"/>
+      <category term="Elasticsearch" scheme="https://blog.collmall.com/tags/Elasticsearch/"/>
     
   </entry>
   
