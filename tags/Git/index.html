@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Tag: Git |  辉
+    Tag: git |  辉
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -21,6 +21,8 @@
   
 <link rel="stylesheet" href="/css/custom.css">
 
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
   
   
 
@@ -38,7 +40,7 @@
   <article class="articles">
     
     
-    <h1 class="page-type-title">#&nbspGit</h1>
+    <h1 class="page-type-title">#&nbspgit</h1>
     
     
   
@@ -49,20 +51,20 @@
   
   <div class="archives-wrap">
     <div class="archive-year-wrap">
-      <a href="/archives/2017" class="archive-year">2017</a>
+      <a href="/archives/2019" class="archive-year">2019</a>
     </div>
     <div class="archives">
       
       <article class="archive-article archive-type-post">
   <div class="archive-article-inner">
     <header class="archive-article-header">
-      <a href="/2017/ck91dnm120002w8ta0b1yg62n/" class="archive-article-date">
-  <time datetime="2017-02-21T16:00:00.000Z" itemprop="datePublished">02/22</time>
+      <a href="/2019/ck91etull000idgta4b02624g/" class="archive-article-date">
+  <time datetime="2019-03-15T09:07:11.000Z" itemprop="datePublished">03/15</time>
 </a>
        
 <h2 itemprop="name">
-  <a class="archive-article-title" href="/2017/ck91dnm120002w8ta0b1yg62n/"
-    >使用 .gitignore 忽略 Git 仓库中的文件</a> 
+  <a class="archive-article-title" href="/2019/ck91etull000idgta4b02624g/"
+    >在Github上创建项目的Issues</a> 
 </h2>
  
 
@@ -70,57 +72,7 @@
     
     
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%88%E7%AB%AF/" rel="tag">终端</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/ck91dnm160005w8ta9w72ergb/" class="archive-article-date">
-  <time datetime="2017-02-15T16:00:00.000Z" itemprop="datePublished">02/16</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2017/ck91dnm160005w8ta9w72ergb/"
-    >Git 代码回滚</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%88%E7%AB%AF/" rel="tag">终端</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/ck91dnm0u0000w8ta2zi3cbay/" class="archive-article-date">
-  <time datetime="2017-02-14T16:00:00.000Z" itemprop="datePublished">02/15</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2017/ck91dnm0u0000w8ta2zi3cbay/"
-    >Git指令整理</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%88%E7%AB%AF/" rel="tag">终端</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
 
     
   </div>
@@ -386,6 +338,70 @@
         $imgArr.forEach(($em, i) => {
             $em.onclick = () => {
                 // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+  
+<script src="/js/clickLove.js"></script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=518895142&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>r展开状态
                 // todo: 这样不好，后面改成状态
                 if (document.querySelector('.left-col.show')) return
                 let items = []
