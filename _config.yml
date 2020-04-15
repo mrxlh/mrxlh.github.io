@@ -1,105 +1,198 @@
-# Site settings
-title: 首页
-SEOTitle: 徐立辉的博客 | BY Blog
-header-img: img/post-bg-desk.jpg
-email: mrxuliui@foxmail.com
-description: "If you have a better suggestion,Please share out,Let's do better."
-keyword: "辉辉的博客, xulihui, 徐立辉, java, javaweb, spring,spring for all"
-url: "http://xulihui.github.io"          # your host, for absolute URL
-baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/mrxlh/mrxlh.github.io.git" # you code repository
+# 侧边栏菜单
+menu:
+  主页: /
+  归档: /archives
+  分类: /categories
+  标签: /tags
+  CSDN: https://blog.csdn.net/xu990128638
+  GitHub: https://github.com/mrxlh
+  关于我: /about
 
-# Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Goals determine what you going to be!"
-sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+# 站点次标题和打字动效
+# https://github.com/mattboldt/typed.js
+title: 辉
+subtitle:
+  enable: true  # 是否开启动效
+  text: 无法忘却的，终将成为过往  # 显示的文字
+  text2: 愿你一生努力，一生被爱   # 滚动播放，如果不需要可以留空
+  text3: 想要的都拥有，得不到的都释怀  # 最多支持三段文字
+  startDelay: 0   # 延迟时间
+  typeSpeed: 200  # 打字速度
+  loop: true  # 是否循环
+  backSpeed: 100  # 回退速度
+  showCursor: true  # 是否显示光标
+  author: xulihui
+  email: mrxuliui@foxmail.com
+  keywords: "思考,代码,博客"
+  language: zh-CN
+  timezone: Asia/Shanghai
 
+# 网站图标和侧边栏logo
+favicon: /favicon.ico
+logo: /images/ayer-side.svg
 
+# 封面配置
+# enable-是否启用封面；path-封面背景图；logo-封面logo
+cover:
+  enable: true
+  path: /images/cover1.jpg  # /source/images目录下附送多张精美壁纸，可任意更换
+  logo: /images/ayer.svg  # 如果不要直接设置成false
 
-# SNS settings
-RSS: false
-weibo_username:     潇凝子潇
-zhihu_username:     xulihui
-github_username:    mrxlh
+# 页面顶部进度条  
+progressBar: true
 
+# 网易云音乐插件
+music:
+  enable: true
+  # 播放器尺寸类型(1：小尺寸、2：大尺寸)
+  type: 1
+  id: 518895142  # 网易云分享的音乐ID(更换音乐请更改此配置项)
+  autoPlay: true  # 是否开启自动播放
 
+# 文章配置
+# 文章太长，截断按钮文字(在需要截断的行增加此标记：<!--more-->)
+excerpt_link: 阅读更多...
+# 如果你嫌每篇文章手动加more标记比较麻烦，又不想在首页全文显示，可以把excerpt_all设置成true，这样首页只会显示文章归档
+excerpt_all: true
 
+# 是否开启文章分享按钮
+share_enable: true
+# 国内的社交平台(If you are not in China, maybe you prefer to set:false)
+share_china: true
+# 文章分享文字
+share_text: 分享
 
-# Build settings
-# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
-permalink: pretty
-paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
-anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+search_text: 搜索
+# 分页文字
+nav_text:
+  page_prev: 上一页
+  page_next: 下一页
+  post_prev: 上一篇
+  post_next: 下一篇
 
+# 文章页是否显示目录
+toc: true
 
+# 文章中的图片是否支持点击放大
+image_viewer: true
 
-# Gems
-# from PR#40, to support local preview for Jekyll 3.0
-gems: [jekyll-paginate]
+# https://github.com/willin/hexo-wordcount
+# 是否开启字数统计(关闭请设置enable为false)
+# 也可以单独在md文件里Front-matter设置`no_word_count: true`属性，来自定义关闭字数统计
+word_count:
+  enable: true
+  # 只在文章详情显示(不在首页显示)
+  only_article_visit: true
 
+# 打赏
+# 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-默认开启所有文章均有打赏，如果有些文章你不需要，请在文章对应的md文件里设置no_reward:true
+reward_type: 2
+# 打赏wording
+reward_wording: '你若扫码,我便安好~'
+# 支付宝二维码图片地址，跟你设置logo的方式一样。比如：/images/alipay.jpg
+alipay: /images/alipay.jpg
+# 微信二维码图片地址
+weixin: /images/wechat.jpg
 
+theme: ayer
 
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+#url: https://mrxlh.gitee.io/
+#root: /
+permalink: :year/:month/:day/:title/:id/
+permalink_defaults:
 
-# Markdown settings
-# replace redcarpet to kramdown,
-# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
-# document: http://jekyllrb.com/docs/configuration/#kramdown
-markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM                            # use Github Flavored Markdown !important
+deploy:
+    type: git
+    repository: https://gitee.com/mrxlh/mrxlh.git
+    branch: master
 
+# 版权声明
+# 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明
+copyright_type: 2
 
+# 是否启用搜索
+search: true
 
-# 评论系统
-# Disqus（https://disqus.com/）
-# disqus_username: define
+# RSS订阅(先安装hexo-generator-feed插件，再去博客根目录config进行配置)
+# rss: /atom.xml
 
-# Gitalk
+# 是否启用黑夜模式开关
+darkmode: true
+
+# 页面点击小红心(开启请设置为true)
+clickLove: true
+
+# 页面宽度自定义（不建议修改，可能造成布局混乱），article_width文章宽度，sidebar_width侧边栏宽度
+layout:
+  article_width: 80rem
+  sidebar_width: 8rem
+  
+# 评论：1、Valine(推荐)；2、Gitalk
+
+# 1、Valine[一款快速、简洁且高效的无后端评论系统](https://github.com/xCss/Valine)
+# 启用Valine必须先创建leancloud应用， 注册账号后获取 id|key 填入即可
+leancloud:  
+  enable: true
+  app_id: #
+  app_key: #
+# Valine配置(如果有些文章你想关闭评论，请在文章对应的md文件里设置no_valine:true)
+valine:
+  enable: true # 是否启用
+  verify: false # 是否开启防垃圾评论验证
+  notify: false # 是否开启邮件提醒(https://valine.js.org/notify.html)
+  avatar: mp # 头像样式(https://valine.js.org/avatar.html)
+  placeholder: 给我的文章加点评论吧~ # placeholder
+
+# 2、Gitalk(https://github.com/gitalk/gitalk)
 gitalk:
-  enable: true    #是否开启Gitalk评论
-  clientID: f16f7ee45c91993ecb69                            #生成的clientID
-  clientSecret: 4481f8e63f0b96c8b2bc660b1de945fdd33aef74    #生成的clientSecret
-  repo: mrxlh.github.io    #仓库名称
-  owner: mrxlh    #github用户名
-  admin: mrxuliui@foxmail.com
-  distractionFreeMode: true #是否启用类似FB的阴影遮罩
+  enable: false # true
+  clientID: # GitHub Application Client ID
+  clientSecret: # Client Secret
+  repo: # Repository name
+  owner: # GitHub ID
+  admin: # GitHub ID
+  
+# GitHub Ribbons-封面右上角的forkme
+github: 
+  # (关闭请设置为false)
+  url: https://github.com/mrxlh
 
+# fancybox(仅用于相册展示，若需要可配置albums)
+fancybox: true
 
-# 统计
+# 访问量统计(不蒜子)
+busuanzi:
+  enable: true
 
-# Analytics settings
-# Baidu Analytics
-#ba_track_id: b50bf2b12b5338a1845e33832976fd68
+# 友盟cnzz统计(url填js代码src链接)
+cnzz:
+  enable: true
+  url: #
 
 # Google Analytics
-ga_track_id: 'UA-131926961-1'            # Format: UA-xxxxxx-xx
-ga_domain: xulihui.com               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+google_analytics: ''
+# 百度统计
+baidu_analytics: 469d9076b824c76d0543cd86b22017ee
 
+# Mathjax数学公式
+mathjax: true
 
+# Katex数学公式(allpost设置为false时只有头部设置math:true的文章才开启)
+katex:
+  enable: false # true
+  allpost: true
+  copy_tex: false
 
+# 网站成立年份(默认为 2019，若填入年份小于当前年份，则显示为 2018-2019 类似的格式)
+since: 2020
 
+#是否显示页脚信息(建议保留，有助于本主题的推广)
+pageFooter: true
 
-# Featured Tags
-featured-tags: true                     # 是否使用首页标签
-featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
-
-
-
-# Progressive Web Apps
-chrome-tab-theme-color: "#000000"
-service-worker: true
-
-
-
-# Friends
-friends: [
-    {
-        title: "新浪微博",
-        href: "https://weibo.com/3194451320/profile"
-    },{
-        title: "简书·BY",
-        href: "http://www.jianshu.com/u/e71990ada2fd"
-    }
-]
+#ICP备案信息尾部显示
+#icp:
+#  enable: false
+#  url: 'http://www.beian.miit.gov.cn/' # 备案链接
+#  text: '浙ICP备88888888' # 备案信息
