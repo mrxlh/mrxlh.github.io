@@ -98,7 +98,7 @@ theme: ayer
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://mrxlh.github.io/
+url: http://blog.collmall.com/
 root: /
 permalink: :year/:id/
 permalink_defaults:
@@ -139,7 +139,7 @@ leancloud:
   app_key: #
 # Valine配置(如果有些文章你想关闭评论，请在文章对应的md文件里设置no_valine:true)
 valine:
-  enable: true # 是否启用
+  enable: false # 是否启用
   verify: false # 是否开启防垃圾评论验证
   notify: false # 是否开启邮件提醒(https://valine.js.org/notify.html)
   avatar: mp # 头像样式(https://valine.js.org/avatar.html)
@@ -147,12 +147,12 @@ valine:
 
 # 2、Gitalk(https://github.com/gitalk/gitalk)
 gitalk:
-  enable: false # true
-  clientID: # GitHub Application Client ID
-  clientSecret: # Client Secret
-  repo: # Repository name
-  owner: # GitHub ID
-  admin: # GitHub ID
+  enable: true # true
+  clientID: 8eedeb9b7bded7020945 # GitHub Application Client ID
+  clientSecret: 93b43b10a85574520757cca37bf7f210109bfa1f # Client Secret
+  repo: mrxlh.github.io # Repository name
+  owner: mrxlh # GitHub ID
+  admin: mrxlh # GitHub ID
   
 # GitHub Ribbons-封面右上角的forkme
 github: 
