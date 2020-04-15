@@ -1,40 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Git 代码回滚</title>
-    <url>/2017/ck91i43l10000ssta2n151u54/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>并不适合阅读的个人文档。</p>
-</blockquote>
-<h1 id="git-revert-和-git-reset-的区别"><a href="#git-revert-和-git-reset-的区别" class="headerlink" title="git revert 和 git reset 的区别"></a><strong>git revert</strong> 和 <strong>git reset</strong> 的区别</h1><p> 先看图：</p>
-<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1fcr9tu6vdjj30t30ez0y8.jpg" alt=""></p>
-<p><strong>sourceTree</strong> 中 <strong>revert</strong> 译为<strong><code>提交回滚</code></strong>，作用为忽略你指定的版本，然后提交一个新的版本。新的版本中已近删除了你所指定的版本。</p>
-<p><strong>reset</strong> 为 <strong>重置到这次提交</strong>，将内容重置到指定的版本。<code>git reset</code> 命令后面是需要加2种参数的：<code>–-hard</code> 和 <code>–-soft</code>。这条命令默认情况下是 <code>-–soft</code>。</p>
-<p>执行上述命令时，这该条commit号之 后（时间作为参考点）的所有commit的修改都会退回到git缓冲区中。使用<code>git status</code> 命令可以在缓冲区中看到这些修改。而如果加上<code>-–hard</code>参数，则缓冲区中不会存储这些修改，git会直接丢弃这部分内容。可以使用 <code>git push origin HEAD --force</code> 强制将分区内容推送到远程服务器。</p>
-<h4 id="代码回退"><a href="#代码回退" class="headerlink" title="代码回退"></a>代码回退</h4><p>默认参数 <code>-soft</code>,所有commit的修改都会退回到git缓冲区<br>参数<code>--hard</code>，所有commit的修改直接丢弃</p>
-<pre><code>$ git reset --hard HEAD^         回退到上个版本
-$ git reset --hard commit_id    退到/进到 指定commit_id</code></pre><p>推送到远程    </p>
-<pre><code>$ git push origin HEAD --force</code></pre><p>​    </p>
-<h4 id="可以吃的后悔药-gt-版本穿梭"><a href="#可以吃的后悔药-gt-版本穿梭" class="headerlink" title="可以吃的后悔药-&gt;版本穿梭"></a>可以吃的后悔药-&gt;版本穿梭</h4><p>当你回滚之后，又后悔了，想恢复到新的版本怎么办？</p>
-<p>用<code>git reflog</code>打印你记录你的每一次操作记录</p>
-<pre><code>$ git reflog
+    <title>为博客添加 Gitalk 评论插件</title>
+    <url>/2017/ck91iwbxn0000t8ta98l554r8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于 <strong>Disqus</strong> 对于国内网路的支持十分糟糕，很多人反映 Disqus 评论插件一直加载不出来。而我一直是处于翻墙状态的~（话说你们做程序员的都不翻墙用Google的吗😅，哈哈，吐嘈下）</p>
+<p>针对这个问题，我添加了<a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">Gitalk</a> 评论插件。在此，非常感谢 <a href="https://github.com/FeDemo" target="_blank" rel="noopener">@FeDemo</a> 的推荐 。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="Gitalk-评论插件"><a href="#Gitalk-评论插件" class="headerlink" title="Gitalk 评论插件"></a>Gitalk 评论插件</h3><p>首先来看看 Gitalk 的界面和功能：</p>
+<p><a href="https://gitalk.github.io/" target="_blank" rel="noopener"><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm4u3j0lmj30nk0kl40i.jpg" alt=""></a></p>
+<p>gitalk 使用 Github 帐号登录，界面干净整洁，最喜欢的一点是支持 <code>MarkDown语法</code>。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Gitalk 是一个利用 Github API,基于 Github issue 和 Preact 开发的评论插件，在 Gitalk 之前还有一个 <a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">gitment</a> 插件也是基于这个原理开发的,不过 gitment 已经很久没人维护了。</p>
+<p>可以看到在 gitalk 的评论框进行评论时，其实就是在对应的 issue 上提问题。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm5916av1j30i209rab7.jpg" alt="gitalk评论框"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm596ggkfj30mx0gfjuk.jpg" alt="Github issue"></p>
+<h3 id="集成-Gitalk"><a href="#集成-Gitalk" class="headerlink" title="集成 Gitalk"></a>集成 Gitalk</h3><p>到这里，你应该对 Gitalk 有个大致的了解了，现在，开始集成 gitalk 插件吧。</p>
+<p>将这段代码插入到你的网站：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!-- Gitalk 评论 start  --&gt;</span><br><span class="line">&#123;% <span class="keyword">if</span> site.gitalk.enable %&#125;</span><br><span class="line">&lt;!-- Link Gitalk 的支持文件  --&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.css"</span>&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://unpkg.com/gitalk@latest/dist/gitalk.min.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;div id="gitalk-container"&gt;&lt;/</span>div&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// gitalk的主要参数</span></span><br><span class="line">		clientID: <span class="string">`Github Application clientID`</span>,</span><br><span class="line">		clientSecret: <span class="string">`Github Application clientSecret`</span>,</span><br><span class="line">		repo: <span class="string">`存储你评论 issue 的 Github 仓库名`</span>,</span><br><span class="line">		owner: <span class="string">'Github 用户名'</span>,</span><br><span class="line">		admin: [<span class="string">'Github 用户名'</span>],</span><br><span class="line">		id: <span class="string">'页面的唯一标识，gitalk会根据这个标识自动创建的issue的标签'</span>,</span><br><span class="line">    </span><br><span class="line">    &#125;);</span><br><span class="line">    gitalk.render(<span class="string">'gitalk-container'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp">&lt;!-- Gitalk end --&gt;</span></span><br></pre></td></tr></table></figure>
 
-输出：
-c7edbfe HEAD@{0}: reset: moving to c7edbfefab1bdbef6cb60d2a7bb97aa80f022687
-470e9c2 HEAD@{1}: reset: moving to 470e9c2
-b45959e HEAD@{2}: revert: Revert &quot;add img&quot;
-470e9c2 HEAD@{3}: reset: moving to 470e9c2
-2c26183 HEAD@{4}: reset: moving to 2c26183
-0f67bb7 HEAD@{5}: revert: Revert &quot;add img&quot;</code></pre><p>找到你操作的id如：<code>b45959e</code>，就可以回退到这个版本<br>​<br>    $ git reset –hard b45959e</p>
+<p>我们需要关心的就是配置下面几个参数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">clientID: <span class="string">`Github Application clientID`</span>,</span><br><span class="line">clientSecret: <span class="string">`Github Application clientSecret`</span>,</span><br><span class="line">repo: <span class="string">`Github 仓库名`</span>,<span class="comment">//存储你评论 issue 的 Github 仓库名（建议直接用 GitHub Page 的仓库名）</span></span><br><span class="line">owner: <span class="string">'Github 用户名'</span>,</span><br><span class="line">admin: [<span class="string">'Github 用户名'</span>], <span class="comment">//这个仓库的管理员，可以有多个，用数组表示，一般写自己,</span></span><br><span class="line">id: <span class="string">'window.location.pathname'</span>, <span class="comment">//页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识</span></span><br></pre></td></tr></table></figure>
+<p>当然，还有其他很多参数，有兴趣的话可以 <a href="https://github.com/gitalk/gitalk#options" target="_blank" rel="noopener"> 点这里</a>。</p>
+<p>比如我就增加了这个全屏遮罩的参数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">distractionFreeMode: true,</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-Github-Application"><a href="#创建-Github-Application" class="headerlink" title="创建 Github Application"></a>创建 Github Application</h3><p>Gitalk 需要一个 <strong>Github Application</strong>，<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">点击这里申请</a>。</p>
+<p>填写下面参数：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jaib6fj30jo0gaacs.jpg" alt=""></p>
+<p>点击创建</p>
+<p>获取 <code>Client ID</code> 和 <code>Client Secret</code> 填入你的我们 Gitalk 参数中</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jrzff6j30lc0budhp.jpg" alt=""></p>
+<p>当你参数都设置好，将代码推送到 Github 仓库后，没什么问题的话，当你点击进入你的博客页面后就会出现评论框了。</p>
+<p>当你用 github 帐号登录（管理员），并且第一次加载该会比较慢，因为第一次加载会自动在你 <code>repo</code> 的仓库下创建对应 issue。</p>
+<p>比如说这样：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fmm867n88cj30l809mjse.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm8a0i0jkj30rr0ct42t.jpg" alt=""></p>
+<p>当然，你也可以手动创建issue作为 gitalk评论容器。只要有 <code>Gitalk</code> 标签 和 <code>id</code> 对应标签就可以。比我我自己创建的 <a href="https://github.com/qiubaiying/qiubaiying.github.io/issues/38" target="_blank" rel="noopener">About issue</a> 。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>最后说几句吐嘈几句， Gitalk 需要你点开每篇文章的页面才会创建对应的 issue,对我来说真是个糟糕的体验（文章有点多~）。</p>
+<p>当然，也有解决办法，这篇 <a href="https://draveness.me/git-comments-initialize" target="_blank" rel="noopener">自动初始化 Gitalk 和 Gitment 评论</a>，就解决了这个问题。</p>
+<p>最后，<a href="https://github.com/qiubaiying/qiubaiying.github.io" target="_blank" rel="noopener">给个 star 吧</a>~</p>
 ]]></content>
       <tags>
-        <tag>终端</tag>
-        <tag>Git</tag>
+        <tag>Blog</tag>
       </tags>
   </entry>
   <entry>
     <title>Git指令整理</title>
-    <url>/2017/ck91i43l80002sstahiwz1rmi/</url>
+    <url>/2017/ck91iwbxu0002t8ta38cc5txk/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>随便整理的一些自用的Git指令</p>
 </blockquote>
@@ -260,7 +270,7 @@ $ git archives</code></pre>]]></content>
   </entry>
   <entry>
     <title>2019-02-27-idea下的配置springboot的热加载</title>
-    <url>/2020/ck91i43lc0005ssta428iguv5/</url>
+    <url>/2020/ck91iwbxx0005t8ta2qrx0ajr/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="idea下配置springboot热加载"><a href="#idea下配置springboot热加载" class="headerlink" title="idea下配置springboot热加载"></a>idea下配置springboot热加载</h2><h4 id="1-添加pom依赖"><a href="#1-添加pom依赖" class="headerlink" title="1.添加pom依赖"></a>1.添加pom依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- SpringBoot自带热加载开发工具 --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="2-添加配置"><a href="#2-添加配置" class="headerlink" title="2. 添加配置"></a>2. 添加配置</h4><p>打开 File –&gt; Settings –&gt; Build-Execution-Deployment –&gt; Compiler<code>，将</code>Build project automatically.勾上。</p>
@@ -271,8 +281,40 @@ $ git archives</code></pre>]]></content>
 ]]></content>
   </entry>
   <entry>
+    <title>Git 代码回滚</title>
+    <url>/2017/ck91iwbxy0006t8ta3p5g0kts/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>并不适合阅读的个人文档。</p>
+</blockquote>
+<h1 id="git-revert-和-git-reset-的区别"><a href="#git-revert-和-git-reset-的区别" class="headerlink" title="git revert 和 git reset 的区别"></a><strong>git revert</strong> 和 <strong>git reset</strong> 的区别</h1><p> 先看图：</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1fcr9tu6vdjj30t30ez0y8.jpg" alt=""></p>
+<p><strong>sourceTree</strong> 中 <strong>revert</strong> 译为<strong><code>提交回滚</code></strong>，作用为忽略你指定的版本，然后提交一个新的版本。新的版本中已近删除了你所指定的版本。</p>
+<p><strong>reset</strong> 为 <strong>重置到这次提交</strong>，将内容重置到指定的版本。<code>git reset</code> 命令后面是需要加2种参数的：<code>–-hard</code> 和 <code>–-soft</code>。这条命令默认情况下是 <code>-–soft</code>。</p>
+<p>执行上述命令时，这该条commit号之 后（时间作为参考点）的所有commit的修改都会退回到git缓冲区中。使用<code>git status</code> 命令可以在缓冲区中看到这些修改。而如果加上<code>-–hard</code>参数，则缓冲区中不会存储这些修改，git会直接丢弃这部分内容。可以使用 <code>git push origin HEAD --force</code> 强制将分区内容推送到远程服务器。</p>
+<h4 id="代码回退"><a href="#代码回退" class="headerlink" title="代码回退"></a>代码回退</h4><p>默认参数 <code>-soft</code>,所有commit的修改都会退回到git缓冲区<br>参数<code>--hard</code>，所有commit的修改直接丢弃</p>
+<pre><code>$ git reset --hard HEAD^         回退到上个版本
+$ git reset --hard commit_id    退到/进到 指定commit_id</code></pre><p>推送到远程    </p>
+<pre><code>$ git push origin HEAD --force</code></pre><p>​    </p>
+<h4 id="可以吃的后悔药-gt-版本穿梭"><a href="#可以吃的后悔药-gt-版本穿梭" class="headerlink" title="可以吃的后悔药-&gt;版本穿梭"></a>可以吃的后悔药-&gt;版本穿梭</h4><p>当你回滚之后，又后悔了，想恢复到新的版本怎么办？</p>
+<p>用<code>git reflog</code>打印你记录你的每一次操作记录</p>
+<pre><code>$ git reflog
+
+输出：
+c7edbfe HEAD@{0}: reset: moving to c7edbfefab1bdbef6cb60d2a7bb97aa80f022687
+470e9c2 HEAD@{1}: reset: moving to 470e9c2
+b45959e HEAD@{2}: revert: Revert &quot;add img&quot;
+470e9c2 HEAD@{3}: reset: moving to 470e9c2
+2c26183 HEAD@{4}: reset: moving to 2c26183
+0f67bb7 HEAD@{5}: revert: Revert &quot;add img&quot;</code></pre><p>找到你操作的id如：<code>b45959e</code>，就可以回退到这个版本<br>​<br>    $ git reset –hard b45959e</p>
+]]></content>
+      <tags>
+        <tag>终端</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用 .gitignore 忽略 Git 仓库中的文件</title>
-    <url>/2017/ck91i43ld0007sstadkaz5hfi/</url>
+    <url>/2017/ck91iwbxz0007t8tahtpv4i7d/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>使用 <code>.gitignore</code> 文件忽略指定文件</p>
 </blockquote>
@@ -307,8 +349,85 @@ $ git archives</code></pre>]]></content>
       </tags>
   </entry>
   <entry>
+    <title>在Github上创建项目的Issues</title>
+    <url>/2019/ck91iwby0000at8ta6hx2fgrv/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="在Github上创建项目的Issues"><a href="#在Github上创建项目的Issues" class="headerlink" title="在Github上创建项目的Issues"></a>在Github上创建项目的Issues</h2><ol>
+<li><p>选择一个项目</p>
+<p><img src="https://img-blog.csdnimg.cn/20190315163526648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70%22%E8%BF%99%E6%98%AFCSDN%E7%9A%84%E5%9B%BE%E6%A0%87%22" alt="1"></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>找到 Settings</p>
+<p><img src="https://img-blog.csdnimg.cn/20190315163746580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70%22%E8%BF%99%E6%98%AFCSDN%E7%9A%84%E5%9B%BE%E6%A0%87%22" alt="2"></p>
+</li>
+</ol>
+<ol start="3">
+<li><p>可 设置 Set up templates  模板</p>
+<p><img src="https://img-blog.csdnimg.cn/20190315164050446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70%22%E8%BF%99%E6%98%AFCSDN%E7%9A%84%E5%9B%BE%E6%A0%87%22" alt="1"></p>
+<p>Add template 并 提交 Commit changes</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>创建自己的第一个Issues<img src="https://img-blog.csdnimg.cn/201903151643358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70,%22%E8%BF%99%E6%98%AFCSDN%E7%9A%84%E5%9B%BE%E7%89%87%22" alt="1"></p>
+<p><img src="https://img-blog.csdnimg.cn/2019031516450112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="1"></p>
+</li>
+</ol>
+<pre><code>5. 提交Issues
+
+   ![6](https://img-blog.csdnimg.cn/201903151646002.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70,&quot;这是CSDN的图片&quot;)</code></pre>]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Elasticsearch的功能、适用场景以及特点介绍</title>
+    <url>/2019/ck91iwby1000bt8ta8nk502xh/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Elasticsearch的功能、适用场景以及特点介绍"><a href="#Elasticsearch的功能、适用场景以及特点介绍" class="headerlink" title="Elasticsearch的功能、适用场景以及特点介绍"></a>Elasticsearch的功能、适用场景以及特点介绍</h2><ol>
+<li><p>Elasticsearch 功能</p>
+<p>1&gt;.分布式的搜索引擎和数据分析引擎</p>
+<p>​     搜索：百度， 网站的站内搜索</p>
+<p>​     数据分析：eg: 冠寓，北京地区近7天出租率排名前10家的店铺有哪些?</p>
+<p>2&gt;.全文检索，结构化检索，数据分析</p>
+<p>​    全文检索: 搜索门店名称中包含‘北京’门店  select * from  projects  where project_name like “%北京%”；</p>
+<p>​    结构化检索：搜索工单类型为报修的工单都有哪些，select * from work_order where type=’id’;</p>
+<p>​    部分匹配、自动完成、搜索纠错、搜索推荐<br>​    数据分析：分析工单类型下有多少个工单数量，select  type,count(*) from wor_order group by type;</p>
+<p>3&gt;.对海量数据进行近实时的处理</p>
+<p>   分布式：ES自动可以将海量数据分散到多台服务器上去存储和检索</p>
+<p>  海量数据的处理：分布式以后，可以采用大量的服务器去存储和检索数据，自然而然的就可以实现海量数据的处理</p>
+<p>近实时：在秒级对数据进行搜索和分析</p>
+<p>离线批处理（batch-processing）：比如 检索某个数据需要花费1小时</p>
+</li>
+<li><p>Elasticsearch 适用场景</p>
+<p>1、2013年初，GitHub抛弃了Solr，采取ElasticSearch 来做PB级的搜索。 “GitHub使用ElasticSearch搜索20TB 的数据，包括13亿文件和1300亿行代码”</p>
+<p>2、维基百科：启动以elasticsearch为基础的核心搜索架构</p>
+<p>3、SoundCloud：“SoundCloud使用ElasticSearch为1.8亿用户提供即时而精准的音乐搜索服务”</p>
+<p>4、百度：百度目前广泛使用ElasticSearch作为文本数据分析，采集百度所有服务器上的各类指标数据及用户自定义数据，通过对各种数据进行多维分析展示，辅助定位分析实例异常或业务层面异常。目前覆盖百度内部20多个业务线（包括casio、云分析、网盟、预测、文库、直达号、钱包、风控等），单集群最大100台机器，200个ES节点，每天导入30TB+数据</p>
+<p>5、新浪使用ES 分析处理32亿条实时日志</p>
+<p>6、阿里使用ES 构建挖财自己的日志采集和分析体系</p>
+<p>7 、日志数据分析，logstash采集日志，ES进行复杂的数据分析（ELK技术，elasticsearch+logstash+kibana）</p>
+<p>8、BI系统，商业智能，Business Intelligence。比如说有个大型商场集团，BI，分析一下某某区域最近3年的用户消费金额的趋势以及用户群体的组成构成，产出相关的数张报表，**区，最近3年，每年消费金额呈现100%的增长，而且用户群体85%是高级白领，开一个新商场。ES执行数据分析和挖掘，Kibana进行数据可视化</p>
+</li>
+<li><p>Elasticsearch特点</p>
+<p>1&gt;.可以作为一个大型分布式集群（数百台服务器）技术，处理PB级数据，服务大公司；也可以运行在单机上，服务小公司</p>
+<p>2&gt;.Elasticsearch不是什么新技术，主要是将全文检索、数据分析以及分布式技术，合并在了一起，才形成了独一无二的ES；lucene（全文检索），商用的数据分析软件，分布式数据库（mycat）</p>
+<p>3&gt;.对用户而言，是开箱即用的</p>
+<p>4&gt;. 数据库的功能面对很多领域是不够用的（还有各种联机事务型的操作）；特殊的功能，比如全文检索，同义词处理，相关度排名，复杂数据分析，海量数据的近实时处理；Elasticsearch作为传统数据库的一个补充，提供了数据库所不不能提供的很多功能</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2019-09-20-Typora For Markdown 语法</title>
-    <url>/2020/ck91i43le0008ssta721sg9ox/</url>
+    <url>/2020/ck91iwby3000et8ta8kle3yma/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>#Typora For Markdown 语法</p>
 <p>[TOC]</p>
 <p>###数学表达式</p>
@@ -461,84 +580,88 @@ Typroa 推荐使用两个*号。
 ]]></content>
   </entry>
   <entry>
-    <title>为博客添加 Gitalk 评论插件</title>
-    <url>/2017/ck91i43lg000assta5j7pdfna/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于 <strong>Disqus</strong> 对于国内网路的支持十分糟糕，很多人反映 Disqus 评论插件一直加载不出来。而我一直是处于翻墙状态的~（话说你们做程序员的都不翻墙用Google的吗😅，哈哈，吐嘈下）</p>
-<p>针对这个问题，我添加了<a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">Gitalk</a> 评论插件。在此，非常感谢 <a href="https://github.com/FeDemo" target="_blank" rel="noopener">@FeDemo</a> 的推荐 。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="Gitalk-评论插件"><a href="#Gitalk-评论插件" class="headerlink" title="Gitalk 评论插件"></a>Gitalk 评论插件</h3><p>首先来看看 Gitalk 的界面和功能：</p>
-<p><a href="https://gitalk.github.io/" target="_blank" rel="noopener"><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm4u3j0lmj30nk0kl40i.jpg" alt=""></a></p>
-<p>gitalk 使用 Github 帐号登录，界面干净整洁，最喜欢的一点是支持 <code>MarkDown语法</code>。</p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Gitalk 是一个利用 Github API,基于 Github issue 和 Preact 开发的评论插件，在 Gitalk 之前还有一个 <a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">gitment</a> 插件也是基于这个原理开发的,不过 gitment 已经很久没人维护了。</p>
-<p>可以看到在 gitalk 的评论框进行评论时，其实就是在对应的 issue 上提问题。</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm5916av1j30i209rab7.jpg" alt="gitalk评论框"></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm596ggkfj30mx0gfjuk.jpg" alt="Github issue"></p>
-<h3 id="集成-Gitalk"><a href="#集成-Gitalk" class="headerlink" title="集成 Gitalk"></a>集成 Gitalk</h3><p>到这里，你应该对 Gitalk 有个大致的了解了，现在，开始集成 gitalk 插件吧。</p>
-<p>将这段代码插入到你的网站：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!-- Gitalk 评论 start  --&gt;</span><br><span class="line">&#123;% <span class="keyword">if</span> site.gitalk.enable %&#125;</span><br><span class="line">&lt;!-- Link Gitalk 的支持文件  --&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.css"</span>&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://unpkg.com/gitalk@latest/dist/gitalk.min.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;div id="gitalk-container"&gt;&lt;/</span>div&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// gitalk的主要参数</span></span><br><span class="line">		clientID: <span class="string">`Github Application clientID`</span>,</span><br><span class="line">		clientSecret: <span class="string">`Github Application clientSecret`</span>,</span><br><span class="line">		repo: <span class="string">`存储你评论 issue 的 Github 仓库名`</span>,</span><br><span class="line">		owner: <span class="string">'Github 用户名'</span>,</span><br><span class="line">		admin: [<span class="string">'Github 用户名'</span>],</span><br><span class="line">		id: <span class="string">'页面的唯一标识，gitalk会根据这个标识自动创建的issue的标签'</span>,</span><br><span class="line">    </span><br><span class="line">    &#125;);</span><br><span class="line">    gitalk.render(<span class="string">'gitalk-container'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp">&lt;!-- Gitalk end --&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>我们需要关心的就是配置下面几个参数：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">clientID: <span class="string">`Github Application clientID`</span>,</span><br><span class="line">clientSecret: <span class="string">`Github Application clientSecret`</span>,</span><br><span class="line">repo: <span class="string">`Github 仓库名`</span>,<span class="comment">//存储你评论 issue 的 Github 仓库名（建议直接用 GitHub Page 的仓库名）</span></span><br><span class="line">owner: <span class="string">'Github 用户名'</span>,</span><br><span class="line">admin: [<span class="string">'Github 用户名'</span>], <span class="comment">//这个仓库的管理员，可以有多个，用数组表示，一般写自己,</span></span><br><span class="line">id: <span class="string">'window.location.pathname'</span>, <span class="comment">//页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识</span></span><br></pre></td></tr></table></figure>
-<p>当然，还有其他很多参数，有兴趣的话可以 <a href="https://github.com/gitalk/gitalk#options" target="_blank" rel="noopener"> 点这里</a>。</p>
-<p>比如我就增加了这个全屏遮罩的参数。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">distractionFreeMode: true,</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建-Github-Application"><a href="#创建-Github-Application" class="headerlink" title="创建 Github Application"></a>创建 Github Application</h3><p>Gitalk 需要一个 <strong>Github Application</strong>，<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">点击这里申请</a>。</p>
-<p>填写下面参数：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jaib6fj30jo0gaacs.jpg" alt=""></p>
-<p>点击创建</p>
-<p>获取 <code>Client ID</code> 和 <code>Client Secret</code> 填入你的我们 Gitalk 参数中</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jrzff6j30lc0budhp.jpg" alt=""></p>
-<p>当你参数都设置好，将代码推送到 Github 仓库后，没什么问题的话，当你点击进入你的博客页面后就会出现评论框了。</p>
-<p>当你用 github 帐号登录（管理员），并且第一次加载该会比较慢，因为第一次加载会自动在你 <code>repo</code> 的仓库下创建对应 issue。</p>
-<p>比如说这样：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fmm867n88cj30l809mjse.jpg" alt=""></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm8a0i0jkj30rr0ct42t.jpg" alt=""></p>
-<p>当然，你也可以手动创建issue作为 gitalk评论容器。只要有 <code>Gitalk</code> 标签 和 <code>id</code> 对应标签就可以。比我我自己创建的 <a href="https://github.com/qiubaiying/qiubaiying.github.io/issues/38" target="_blank" rel="noopener">About issue</a> 。</p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>最后说几句吐嘈几句， Gitalk 需要你点开每篇文章的页面才会创建对应的 issue,对我来说真是个糟糕的体验（文章有点多~）。</p>
-<p>当然，也有解决办法，这篇 <a href="https://draveness.me/git-comments-initialize" target="_blank" rel="noopener">自动初始化 Gitalk 和 Gitment 评论</a>，就解决了这个问题。</p>
-<p>最后，<a href="https://github.com/qiubaiying/qiubaiying.github.io" target="_blank" rel="noopener">给个 star 吧</a>~</p>
+    <title>Elasticsearch的核心概念</title>
+    <url>/2019/ck91iwby4000ft8ta2iyq780t/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Elasticsearch的核心概念</p>
+<p>1.lucene和elasticsearch的前世今生</p>
+<p>​       lucene，最先进、功能最强大的搜索库，直接基于lucene开发，非常复杂，api复杂（实现一些简单的功能，写大量的java代码），需要深入理解原理（各种索引结构）</p>
+<p>elasticsearch，基于lucene，隐藏复杂性，提供简单易用的restful api接口、java api接口（还有其他语言的api接口）<br>（1）分布式的文档存储引擎<br>（2）分布式的搜索引擎和分析引擎<br>（3）分布式，支持PB级数据</p>
+<p>开箱即用，优秀的默认参数，不需要任何额外设置，完全开源</p>
+<p>2、elasticsearch的核心概念</p>
+<p>​      （1）Near Realtime（NRT）：近实时，两个意思，从写入数据到数据可以被搜索到有一个小延迟（大概1秒）；基于es执行搜索和分析可以达到秒级</p>
+<p>​       （2）Cluster：集群，包含多个节点，每个节点属于哪个集群是通过一个配置（集群名称，默认是elasticsearch）来决定的，对于中小型应用来说，刚开始一个集群就一个节点很正常</p>
+<p>​        （3）Node：节点，集群中的一个节点，节点也有一个名称（默认是随机分配的），节点名称很重要（在执行运维管理操作的时候），默认节点会去加入一个名称为“elasticsearch”的集群，如果直接启动一堆节点，那么它们会自动组成一个elasticsearch集群，当然一个节点也可以组成一个elasticsearch集群</p>
+<p>​        （4）Document&amp;field：文档 用户存储在ES中的数据文档，es中的最小数据单元，一个document可以是一条客户数据，一条商品分类数据，一条订单数据，通常用JSON数据结构表示，每个index下的type中，都可以去存储多个document。一个document里面有多个field，每个field就是一个数据字段。</p>
+<p>​      （5）Index：索引 由具有相同字段的文档列表组成，包含一堆有相似结构的文档数据，比如可以有一个客户索引，商品分类索引，订单索引，索引有一个名称。一个index包含很多document，一个index就代表了一类类似的或者相同的document。比如说建立一个product index，商品索引，里面可能就存放了所有的商品数据，所有的商品document。</p>
+<p>​       ES 6.0 之后 官方已经不允许在index中建多个type了，也就是说一个index 下面只有一个type ,且在未来的大版本中 会把type概念会去掉，所以在类比中 数据库中的 database 已经不合适，类比成mysql中的表就可以了</p>
+<p>​       （6）Type：类型，每个索引里都可以有一个或多个type，type是index中的一个逻辑数据分类，一个type下的document，都有相同的field，比如博客系统，有一个索引，可以定义用户数据type，博客数据type，评论数据type。</p>
+<p>​      （7）shard：单台机器无法存储大量数据，es可以将一个索引中的数据切分为多个shard，分布在多台服务器上存储。有了shard就可以横向扩展，存储更多数据，让搜索和分析等操作分布到多台服务器上去执行，提升吞吐量和性能。每个shard都是一个lucene index。</p>
+<p>​    （8）replica：任何一个服务器随时可能故障或宕机，此时shard可能就会丢失，因此可以为每个shard创建多个replica副本。replica可以在shard故障时提供备用服务，保证数据不丢失，多个replica还可以提升搜索操作的吞吐量和性能。primary shard（一般简称 shard ,建立索引时一次设置，不能修改，默认5个），replica shard（一般简称replica ,随时修改数量，默认1个），默认每个索引10个shard，5个primary shard，5个replica shard，最小的高可用配置，是2台服务器。</p>
+<p>ES 5.X 的概念对比</p>
+<table>
+<thead>
+<tr>
+<th>关系型数据库（比如Mysql）</th>
+<th>非关系型数据库（Elasticsearch）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据库Database</td>
+<td>索引Index</td>
+</tr>
+<tr>
+<td>表Table</td>
+<td>类型Type</td>
+</tr>
+<tr>
+<td>数据行Row</td>
+<td>文档Document</td>
+</tr>
+<tr>
+<td>数据列Column</td>
+<td>字段Field</td>
+</tr>
+<tr>
+<td>约束 Schema</td>
+<td>映射Mapping</td>
+</tr>
+</tbody></table>
+<p>ES 6.X 以后概念对比</p>
+<table>
+<thead>
+<tr>
+<th>关系型数据库（比如Mysql）</th>
+<th>非关系型数据库（Elasticsearch）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表Table</td>
+<td>索引Index</td>
+</tr>
+<tr>
+<td>数据行Row</td>
+<td>文档Document</td>
+</tr>
+<tr>
+<td>数据列Column</td>
+<td>字段Field</td>
+</tr>
+<tr>
+<td>约束 Schema</td>
+<td>映射Mapping</td>
+</tr>
+</tbody></table>
 ]]></content>
-      <tags>
-        <tag>Blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在Github上创建项目的Issues</title>
-    <url>/2019/ck91i43lh000bsstah0koekkm/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="在Github上创建项目的Issues"><a href="#在Github上创建项目的Issues" class="headerlink" title="在Github上创建项目的Issues"></a>在Github上创建项目的Issues</h2><ol>
-<li><p>选择一个项目</p>
-<p><img src="https://img-blog.csdnimg.cn/20190315163526648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70%22%E8%BF%99%E6%98%AFCSDN%E7%9A%84%E5%9B%BE%E6%A0%87%22" alt="1"></p>
-</li>
-</ol>
-<ol start="2">
-<li><p>找到 Settings</p>
-<p><img src="https://img-blog.csdnimg.cn/20190315163746580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70%22%E8%BF%99%E6%98%AFCSDN%E7%9A%84%E5%9B%BE%E6%A0%87%22" alt="2"></p>
-</li>
-</ol>
-<ol start="3">
-<li><p>可 设置 Set up templates  模板</p>
-<p><img src="https://img-blog.csdnimg.cn/20190315164050446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70%22%E8%BF%99%E6%98%AFCSDN%E7%9A%84%E5%9B%BE%E6%A0%87%22" alt="1"></p>
-<p>Add template 并 提交 Commit changes</p>
-</li>
-</ol>
-<ol start="4">
-<li><p>创建自己的第一个Issues<img src="https://img-blog.csdnimg.cn/201903151643358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70,%22%E8%BF%99%E6%98%AFCSDN%E7%9A%84%E5%9B%BE%E7%89%87%22" alt="1"></p>
-<p><img src="https://img-blog.csdnimg.cn/2019031516450112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="1"></p>
-</li>
-</ol>
-<pre><code>5. 提交Issues
-
-   ![6](https://img-blog.csdnimg.cn/201903151646002.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70,&quot;这是CSDN的图片&quot;)</code></pre>]]></content>
       <categories>
-        <category>git</category>
+        <category>Elasticsearch</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>Elasticsearch</tag>
       </tags>
   </entry>
   <entry>
     <title>Elasticsearch 入门</title>
-    <url>/2019/ck91i43lj000dsstaa37375x1/</url>
+    <url>/2019/ck91iwby6000ht8tah4xc99pu/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Elasticsearch-入门"><a href="#Elasticsearch-入门" class="headerlink" title="Elasticsearch 入门"></a>Elasticsearch 入门</h2><h1 id="Elasticsearch的由来"><a href="#Elasticsearch的由来" class="headerlink" title="Elasticsearch的由来"></a>Elasticsearch的由来</h1><p>有个帅哥名字叫“Shay Banon”，对就是这位。这是他2013年在dotScale大会上分享Elasticsearch的照片。<a href="https://link.jianshu.com/?t=https://www.youtube.com/watch?v=fEsmydn747c" target="_blank" rel="noopener">youtube上的分享视频</a></p>
 <p><img src="http://image.uczzd.cn/8622803757556180222.jpg" alt="img"></p>
 <p><strong>Elasticsearch的诞生历史</strong></p>
@@ -670,51 +793,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>Elasticsearch的功能、适用场景以及特点介绍</title>
-    <url>/2019/ck91i43ll000gsstab0wl2puv/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Elasticsearch的功能、适用场景以及特点介绍"><a href="#Elasticsearch的功能、适用场景以及特点介绍" class="headerlink" title="Elasticsearch的功能、适用场景以及特点介绍"></a>Elasticsearch的功能、适用场景以及特点介绍</h2><ol>
-<li><p>Elasticsearch 功能</p>
-<p>1&gt;.分布式的搜索引擎和数据分析引擎</p>
-<p>​     搜索：百度， 网站的站内搜索</p>
-<p>​     数据分析：eg: 冠寓，北京地区近7天出租率排名前10家的店铺有哪些?</p>
-<p>2&gt;.全文检索，结构化检索，数据分析</p>
-<p>​    全文检索: 搜索门店名称中包含‘北京’门店  select * from  projects  where project_name like “%北京%”；</p>
-<p>​    结构化检索：搜索工单类型为报修的工单都有哪些，select * from work_order where type=’id’;</p>
-<p>​    部分匹配、自动完成、搜索纠错、搜索推荐<br>​    数据分析：分析工单类型下有多少个工单数量，select  type,count(*) from wor_order group by type;</p>
-<p>3&gt;.对海量数据进行近实时的处理</p>
-<p>   分布式：ES自动可以将海量数据分散到多台服务器上去存储和检索</p>
-<p>  海量数据的处理：分布式以后，可以采用大量的服务器去存储和检索数据，自然而然的就可以实现海量数据的处理</p>
-<p>近实时：在秒级对数据进行搜索和分析</p>
-<p>离线批处理（batch-processing）：比如 检索某个数据需要花费1小时</p>
-</li>
-<li><p>Elasticsearch 适用场景</p>
-<p>1、2013年初，GitHub抛弃了Solr，采取ElasticSearch 来做PB级的搜索。 “GitHub使用ElasticSearch搜索20TB 的数据，包括13亿文件和1300亿行代码”</p>
-<p>2、维基百科：启动以elasticsearch为基础的核心搜索架构</p>
-<p>3、SoundCloud：“SoundCloud使用ElasticSearch为1.8亿用户提供即时而精准的音乐搜索服务”</p>
-<p>4、百度：百度目前广泛使用ElasticSearch作为文本数据分析，采集百度所有服务器上的各类指标数据及用户自定义数据，通过对各种数据进行多维分析展示，辅助定位分析实例异常或业务层面异常。目前覆盖百度内部20多个业务线（包括casio、云分析、网盟、预测、文库、直达号、钱包、风控等），单集群最大100台机器，200个ES节点，每天导入30TB+数据</p>
-<p>5、新浪使用ES 分析处理32亿条实时日志</p>
-<p>6、阿里使用ES 构建挖财自己的日志采集和分析体系</p>
-<p>7 、日志数据分析，logstash采集日志，ES进行复杂的数据分析（ELK技术，elasticsearch+logstash+kibana）</p>
-<p>8、BI系统，商业智能，Business Intelligence。比如说有个大型商场集团，BI，分析一下某某区域最近3年的用户消费金额的趋势以及用户群体的组成构成，产出相关的数张报表，**区，最近3年，每年消费金额呈现100%的增长，而且用户群体85%是高级白领，开一个新商场。ES执行数据分析和挖掘，Kibana进行数据可视化</p>
-</li>
-<li><p>Elasticsearch特点</p>
-<p>1&gt;.可以作为一个大型分布式集群（数百台服务器）技术，处理PB级数据，服务大公司；也可以运行在单机上，服务小公司</p>
-<p>2&gt;.Elasticsearch不是什么新技术，主要是将全文检索、数据分析以及分布式技术，合并在了一起，才形成了独一无二的ES；lucene（全文检索），商用的数据分析软件，分布式数据库（mycat）</p>
-<p>3&gt;.对用户而言，是开箱即用的</p>
-<p>4&gt;. 数据库的功能面对很多领域是不够用的（还有各种联机事务型的操作）；特殊的功能，比如全文检索，同义词处理，相关度排名，复杂数据分析，海量数据的近实时处理；Elasticsearch作为传统数据库的一个补充，提供了数据库所不不能提供的很多功能</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>elasticsearch 在Windows下的安装与启动</title>
-    <url>/2019/ck91i43lm000jssta0dik6rvf/</url>
+    <url>/2019/ck91iwby7000kt8ta7wsu1e6p/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>elasticsearch 在Windows下的安装与启动</p>
 <p>1、安装JDK，至少1.8.0_73以上版本，java -version</p>
 <p>2、下载和解压缩Elasticsearch安装包，目录结构</p>
@@ -800,7 +880,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>Elasticsearch的 6种搜索方式</title>
-    <url>/2019/ck91i43ln000kssta62nydh5m/</url>
+    <url>/2019/ck91iwbya000nt8tahymb6d32/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Elasticsearch的-6种搜索方式"><a href="#Elasticsearch的-6种搜索方式" class="headerlink" title="Elasticsearch的 6种搜索方式"></a>Elasticsearch的 6种搜索方式</h2><p>1、query string search</p>
 <p>​    搜索全部数据 GET /index/type/_search </p>
 <p>​    eg: 1. 搜索全部商品：GET /ecommerce/product/_search</p>
@@ -886,117 +966,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>Elasticsearch的核心概念</title>
-    <url>/2019/ck91i43lp000nsstaah2p1g84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Elasticsearch的核心概念</p>
-<p>1.lucene和elasticsearch的前世今生</p>
-<p>​       lucene，最先进、功能最强大的搜索库，直接基于lucene开发，非常复杂，api复杂（实现一些简单的功能，写大量的java代码），需要深入理解原理（各种索引结构）</p>
-<p>elasticsearch，基于lucene，隐藏复杂性，提供简单易用的restful api接口、java api接口（还有其他语言的api接口）<br>（1）分布式的文档存储引擎<br>（2）分布式的搜索引擎和分析引擎<br>（3）分布式，支持PB级数据</p>
-<p>开箱即用，优秀的默认参数，不需要任何额外设置，完全开源</p>
-<p>2、elasticsearch的核心概念</p>
-<p>​      （1）Near Realtime（NRT）：近实时，两个意思，从写入数据到数据可以被搜索到有一个小延迟（大概1秒）；基于es执行搜索和分析可以达到秒级</p>
-<p>​       （2）Cluster：集群，包含多个节点，每个节点属于哪个集群是通过一个配置（集群名称，默认是elasticsearch）来决定的，对于中小型应用来说，刚开始一个集群就一个节点很正常</p>
-<p>​        （3）Node：节点，集群中的一个节点，节点也有一个名称（默认是随机分配的），节点名称很重要（在执行运维管理操作的时候），默认节点会去加入一个名称为“elasticsearch”的集群，如果直接启动一堆节点，那么它们会自动组成一个elasticsearch集群，当然一个节点也可以组成一个elasticsearch集群</p>
-<p>​        （4）Document&amp;field：文档 用户存储在ES中的数据文档，es中的最小数据单元，一个document可以是一条客户数据，一条商品分类数据，一条订单数据，通常用JSON数据结构表示，每个index下的type中，都可以去存储多个document。一个document里面有多个field，每个field就是一个数据字段。</p>
-<p>​      （5）Index：索引 由具有相同字段的文档列表组成，包含一堆有相似结构的文档数据，比如可以有一个客户索引，商品分类索引，订单索引，索引有一个名称。一个index包含很多document，一个index就代表了一类类似的或者相同的document。比如说建立一个product index，商品索引，里面可能就存放了所有的商品数据，所有的商品document。</p>
-<p>​       ES 6.0 之后 官方已经不允许在index中建多个type了，也就是说一个index 下面只有一个type ,且在未来的大版本中 会把type概念会去掉，所以在类比中 数据库中的 database 已经不合适，类比成mysql中的表就可以了</p>
-<p>​       （6）Type：类型，每个索引里都可以有一个或多个type，type是index中的一个逻辑数据分类，一个type下的document，都有相同的field，比如博客系统，有一个索引，可以定义用户数据type，博客数据type，评论数据type。</p>
-<p>​      （7）shard：单台机器无法存储大量数据，es可以将一个索引中的数据切分为多个shard，分布在多台服务器上存储。有了shard就可以横向扩展，存储更多数据，让搜索和分析等操作分布到多台服务器上去执行，提升吞吐量和性能。每个shard都是一个lucene index。</p>
-<p>​    （8）replica：任何一个服务器随时可能故障或宕机，此时shard可能就会丢失，因此可以为每个shard创建多个replica副本。replica可以在shard故障时提供备用服务，保证数据不丢失，多个replica还可以提升搜索操作的吞吐量和性能。primary shard（一般简称 shard ,建立索引时一次设置，不能修改，默认5个），replica shard（一般简称replica ,随时修改数量，默认1个），默认每个索引10个shard，5个primary shard，5个replica shard，最小的高可用配置，是2台服务器。</p>
-<p>ES 5.X 的概念对比</p>
-<table>
-<thead>
-<tr>
-<th>关系型数据库（比如Mysql）</th>
-<th>非关系型数据库（Elasticsearch）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>数据库Database</td>
-<td>索引Index</td>
-</tr>
-<tr>
-<td>表Table</td>
-<td>类型Type</td>
-</tr>
-<tr>
-<td>数据行Row</td>
-<td>文档Document</td>
-</tr>
-<tr>
-<td>数据列Column</td>
-<td>字段Field</td>
-</tr>
-<tr>
-<td>约束 Schema</td>
-<td>映射Mapping</td>
-</tr>
-</tbody></table>
-<p>ES 6.X 以后概念对比</p>
-<table>
-<thead>
-<tr>
-<th>关系型数据库（比如Mysql）</th>
-<th>非关系型数据库（Elasticsearch）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>表Table</td>
-<td>索引Index</td>
-</tr>
-<tr>
-<td>数据行Row</td>
-<td>文档Document</td>
-</tr>
-<tr>
-<td>数据列Column</td>
-<td>字段Field</td>
-</tr>
-<tr>
-<td>约束 Schema</td>
-<td>映射Mapping</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Elasticsearch基础的分部署架构</title>
-    <url>/2019/ck91i43lq000pssta7sju73rj/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Elasticsearch基础的分部署架构"><a href="#Elasticsearch基础的分部署架构" class="headerlink" title="Elasticsearch基础的分部署架构"></a>Elasticsearch基础的分部署架构</h2><p>1、Elasticsearch对复杂分布式机制的透明隐藏特性</p>
-<p>​        Elasticsearch是一套分布式的系统，分布式是为了应对大数据量<br>隐藏了复杂的分布式机制</p>
-<p>分片机制（我们之前随随便便就将一些document插入到es集群中去了，我们有没有care过数据怎么进行分片的，数据到哪个shard中去）</p>
-<p>cluster discovery（集群发现机制，我们之前在做那个集群status从yellow转green的实验里，直接启动了第二个es进程，那个进程作为一个node自动就发现了集群，并且加入了进去，还接受了部分数据，replica shard）</p>
-<p>shard负载均衡（举例，假设现在有3个节点，总共有25个shard要分配到3个节点上去，es会自动进行均匀分配，以保持每个节点的均衡的读写负载请求）</p>
-<p>shard副本，请求路由，集群扩容，shard重分配</p>
-<p>2、Elasticsearch的垂直扩容与水平扩容</p>
-<p>​     垂直扩容：采购更强大的服务器，成本非常高昂，而且会有瓶颈</p>
-<p>​     水平扩容：业界经常采用的方案，采购越来越多的普通服务器，性能比较一般，但是很多普通服务器组织在一起，就能构成强大的计算和存储能力</p>
-<p>扩容对应用程序的透明性</p>
-<p>3、增减或减少节点时的数据rebalance</p>
-<p>保持负载均衡</p>
-<p>总有某些服务器的负载会重一些，承载的数据和请求量会大一些</p>
-<p>4、master节点</p>
-<p>master节点不承载所有的请求，所以不会有单点瓶颈</p>
-<p>（1）创建或删除索引<br>（2）增加或删除节点</p>
-<p>5、节点对等的分布式架构</p>
-<p>（1）节点对等，每个节点都能接收所有的请求<br>（2）自动请求路由到有数据节点<br>（3）响应收集</p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>嵌套聚合，下钻分析，聚合分析</title>
-    <url>/2019/ck91i43lr000usstaej7599i9/</url>
+    <url>/2019/ck91iwbyb000qt8ta5pjx16do/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="嵌套聚合，下钻分析，聚合分析"><a href="#嵌套聚合，下钻分析，聚合分析" class="headerlink" title="嵌套聚合，下钻分析，聚合分析"></a>嵌套聚合，下钻分析，聚合分析</h2><ol>
 <li>计算每个tag下的商品数量</li>
 </ol>
@@ -1049,8 +1020,37 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>Elasticsearch基础的分部署架构</title>
+    <url>/2019/ck91iwbyd000st8ta70yv8pcw/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Elasticsearch基础的分部署架构"><a href="#Elasticsearch基础的分部署架构" class="headerlink" title="Elasticsearch基础的分部署架构"></a>Elasticsearch基础的分部署架构</h2><p>1、Elasticsearch对复杂分布式机制的透明隐藏特性</p>
+<p>​        Elasticsearch是一套分布式的系统，分布式是为了应对大数据量<br>隐藏了复杂的分布式机制</p>
+<p>分片机制（我们之前随随便便就将一些document插入到es集群中去了，我们有没有care过数据怎么进行分片的，数据到哪个shard中去）</p>
+<p>cluster discovery（集群发现机制，我们之前在做那个集群status从yellow转green的实验里，直接启动了第二个es进程，那个进程作为一个node自动就发现了集群，并且加入了进去，还接受了部分数据，replica shard）</p>
+<p>shard负载均衡（举例，假设现在有3个节点，总共有25个shard要分配到3个节点上去，es会自动进行均匀分配，以保持每个节点的均衡的读写负载请求）</p>
+<p>shard副本，请求路由，集群扩容，shard重分配</p>
+<p>2、Elasticsearch的垂直扩容与水平扩容</p>
+<p>​     垂直扩容：采购更强大的服务器，成本非常高昂，而且会有瓶颈</p>
+<p>​     水平扩容：业界经常采用的方案，采购越来越多的普通服务器，性能比较一般，但是很多普通服务器组织在一起，就能构成强大的计算和存储能力</p>
+<p>扩容对应用程序的透明性</p>
+<p>3、增减或减少节点时的数据rebalance</p>
+<p>保持负载均衡</p>
+<p>总有某些服务器的负载会重一些，承载的数据和请求量会大一些</p>
+<p>4、master节点</p>
+<p>master节点不承载所有的请求，所以不会有单点瓶颈</p>
+<p>（1）创建或删除索引<br>（2）增加或删除节点</p>
+<p>5、节点对等的分布式架构</p>
+<p>（1）节点对等，每个节点都能接收所有的请求<br>（2）自动请求路由到有数据节点<br>（3）响应收集</p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2个node环境下replica shard是如何分配的</title>
-    <url>/2019/ck91i43ls000vssta9mxyeahh/</url>
+    <url>/2019/ck91iwbye000wt8ta0do57mnk/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="2个node环境下replica-shard是如何分配的"><a href="#2个node环境下replica-shard是如何分配的" class="headerlink" title="2个node环境下replica shard是如何分配的"></a>2个node环境下replica shard是如何分配的</h2><p>（1）replica shard分配：3个primary shard，3个replica shard，1 node<br>（2）primary —&gt; replica同步<br>（3）读请求：既可以请求到primary shard  也可以请求到 replica shard</p>
 <p><img src="https://img-blog.csdnimg.cn/20200128121901180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="image"></p>
 ]]></content>
@@ -1062,21 +1062,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>图解Elasticsearch容错机制：master选举，replica容错，数据恢复</title>
-    <url>/2019/ck91i43lv000zssta75w7drp7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="图解Elasticsearch容错机制：master选举，replica容错，数据恢复"><a href="#图解Elasticsearch容错机制：master选举，replica容错，数据恢复" class="headerlink" title="图解Elasticsearch容错机制：master选举，replica容错，数据恢复"></a>图解Elasticsearch容错机制：master选举，replica容错，数据恢复</h2><p>（1）9 shard，3 node<br>（2）master node宕机，自动master选举，集群状态为：red<br>（3）replica容错：新master将replica提升为primary shard，集群状态为：yellow<br>（4）重启宕机node，master copy replica到该node，使用原有的shard并同步宕机后的修改，green</p>
-<p><img src="https://img-blog.csdnimg.cn/20200129173240383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="Es 容错分析"></p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>横向扩容过程，如何超出扩容极限，以及如何提升容错性</title>
-    <url>/2019/ck91i43lw0012sstacd5w2hiv/</url>
+    <url>/2019/ck91iwbyf0010t8tagqfs6ap6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="横向扩容过程，如何超出扩容极限，以及如何提升容错性"><a href="#横向扩容过程，如何超出扩容极限，以及如何提升容错性" class="headerlink" title="横向扩容过程，如何超出扩容极限，以及如何提升容错性"></a>横向扩容过程，如何超出扩容极限，以及如何提升容错性</h2><p>（1）primary&amp;replica自动负载均衡，6个shard，3 primary，3 replica<br>（2）每个node有更少的shard，IO/CPU/Memory资源给每个shard分配更多，每个shard性能更好<br>（3）扩容的极限，6个shard（3 primary，3 replica），最多扩容到6台机器，每个shard可以占用单台服务器的所有资源，性能最好<br>（4）超出扩容极限，动态修改replica数量，9个shard（3primary，6 replica），扩容到9台机器，比3台机器时，拥有3倍的读吞吐量<br>（5）3台机器下，9个shard（3 primary，6 replica），资源更少，但是容错性更好，最多容纳2台机器宕机，6个shard只能容纳0台机器宕机</p>
 ]]></content>
       <categories>
@@ -1088,7 +1075,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>初步解析document的核心元数据以及图解剖析index创建反例</title>
-    <url>/2019/ck91i43m00017ssta8o15dypj/</url>
+    <url>/2019/ck91iwbyg0012t8ta39bgg1hf/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="初步解析document的核心元数据以及图解剖析index创建反例"><a href="#初步解析document的核心元数据以及图解剖析index创建反例" class="headerlink" title="初步解析document的核心元数据以及图解剖析index创建反例"></a>初步解析document的核心元数据以及图解剖析index创建反例</h2><p>1、_index元数据</p>
 <p>（1）代表一个document存放在哪个index中<br>（2）类似的数据放在一个索引，非类似的数据放不同索引：product index（包含了所有的商品），sales index（包含了所有的商品销售数据），inventory index（包含了所有库存相关的数据）。如果你把比如product，sales，human resource（employee），全都放在一个大的index里面，比如说company index，不合适的。<br>（3）index中包含了很多类似的document：类似是什么意思，其实指的就是说，这些document的fields很大一部分是相同的，你说你放了3个document，每个document的fields都完全不一样，这就不是类似了，就不太适合放到一个index里面去了。<br>（4）索引名称必须是小写的，不能用下划线开头，不能包含逗号：product，website，blog</p>
 <p>2、_type元数据</p>
@@ -1104,8 +1091,21 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>图解Elasticsearch容错机制：master选举，replica容错，数据恢复</title>
+    <url>/2019/ck91iwbyj0015t8tae5z0ece9/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="图解Elasticsearch容错机制：master选举，replica容错，数据恢复"><a href="#图解Elasticsearch容错机制：master选举，replica容错，数据恢复" class="headerlink" title="图解Elasticsearch容错机制：master选举，replica容错，数据恢复"></a>图解Elasticsearch容错机制：master选举，replica容错，数据恢复</h2><p>（1）9 shard，3 node<br>（2）master node宕机，自动master选举，集群状态为：red<br>（3）replica容错：新master将replica提升为primary shard，集群状态为：yellow<br>（4）重启宕机node，master copy replica到该node，使用原有的shard并同步宕机后的修改，green</p>
+<p><img src="https://img-blog.csdnimg.cn/20200129173240383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="Es 容错分析"></p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>document id的手动指定与自动生成两种方式解析</title>
-    <url>/2020/ck91i43m1001asstadndu6qwf/</url>
+    <url>/2020/ck91iwbyk0017t8tadmrnanzh/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="document-id的手动指定与自动生成两种方式解析"><a href="#document-id的手动指定与自动生成两种方式解析" class="headerlink" title="document id的手动指定与自动生成两种方式解析"></a>document id的手动指定与自动生成两种方式解析</h2><h3 id="1-手动指定document-id"><a href="#1-手动指定document-id" class="headerlink" title="1.手动指定document id"></a>1.手动指定document id</h3><p> 1&gt;.一般来说，是从某些其他的系统中，导入一些数据到es时，会采取这种方式，就是使用系统中已有数据的唯一标识，作为es中document的id。举个例子，比如说，我们现在在开发一个电商网站，做搜索功能。这个时候，数据首先会在网站系统或者IT系统内部的数据库中，会先有一份，此时就肯定会有一个数据库的primary key（自增长，UUID，或者是业务编号）。如果将数据导入到es中，此时就比较适合采用数据在数据库中已有的primary key。</p>
 <p>如果说，我们是在做一个系统，这个系统主要的数据存储就是es一种，也就是说，数据产生出来以后，可能就没有id，直接就放es一个存储，那么这个时候，可能就不太适合说手动指定document id的形式了，因为你也不知道id应该是什么，此时可以采取下面要讲解的让es自动生成id的方式。</p>
 <p>eg: put</p>
@@ -1127,7 +1127,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>document的_source元数据以及定制返回结果解析</title>
-    <url>/2020/ck91i43m2001dssta131n6zxw/</url>
+    <url>/2020/ck91iwbyl001at8ta0jxedgq7/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="document的-source元数据以及定制返回结果解析"><a href="#document的-source元数据以及定制返回结果解析" class="headerlink" title="document的_source元数据以及定制返回结果解析"></a>document的_source元数据以及定制返回结果解析</h2><h4 id="1-source元数据"><a href="#1-source元数据" class="headerlink" title="1._source元数据"></a>1._source元数据</h4><p>_source元数据：就是说，我们在创建一个document的时候，使用的那个放在request body中的json串，默认情况下，在get的时候，会原封不动的返回回来。</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">put /test_index/test_type/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"test_field1"</span>: <span class="string">"test field1"</span>,</span><br><span class="line">  <span class="attr">"test_field2"</span>: <span class="string">"test field2"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">get /test_index/test_type/1</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"_index"</span>: <span class="string">"test_index"</span>,</span><br><span class="line">  <span class="attr">"_type"</span>: <span class="string">"test_type"</span>,</span><br><span class="line">  <span class="attr">"_id"</span>: <span class="string">"1"</span>,</span><br><span class="line">  <span class="attr">"_version"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">"found"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"_source"</span>: &#123;</span><br><span class="line">    <span class="attr">"test_field1"</span>: <span class="string">"test field1"</span>,</span><br><span class="line">    <span class="attr">"test_field2"</span>: <span class="string">"test field2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1146,8 +1146,23 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>_document的全量替换、强制创建以及图解lazy delete机制</title>
+    <url>/2020/ck91iwbyn001dt8ta4x2d3y0b/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="document的全量替换、强制创建以及图解lazy-delete机制"><a href="#document的全量替换、强制创建以及图解lazy-delete机制" class="headerlink" title="_document的全量替换、强制创建以及图解lazy delete机制"></a>_document的全量替换、强制创建以及图解lazy delete机制</h2><h4 id="1-document的全量替换"><a href="#1-document的全量替换" class="headerlink" title="1.document的全量替换"></a>1.document的全量替换</h4><p>（1）语法同创建文档是一样的，如果document id不存在，那么就是创建；如果document id已经存在，那么就是全量替换操作，替换document的json串内容<br>（2）document是不可变的，如果要修改document的内容，第一种方式就是全量替换，直接对document重新建立索引，替换里面所有的内容<br>（3）es会将老的document标记为deleted，然后新增我们给定的一个document，当我们创建越来越多的document的时候，es会在适当的时机在后台自动删除标记为deleted的document</p>
+<p><img src="https://img-blog.csdnimg.cn/20200131194059226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="document"></p>
+<h4 id="2-document的强制创建"><a href="#2-document的强制创建" class="headerlink" title="2.document的强制创建"></a>2.document的强制创建</h4><p>（1）创建文档与全量替换的语法是一样的，有时我们只是想新建文档，不想替换文档，如果强制进行创建呢？<br>（2）PUT /index/type/id?op_type=create，PUT /index/type/id/_create</p>
+<h4 id="3-document的删除"><a href="#3-document的删除" class="headerlink" title="3.document的删除"></a>3.document的删除</h4><p>（1）DELETE /index/type/id<br>（2）不会理解物理删除，只会将其标记为deleted，当数据越来越多的时候，在后台自动删除</p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ES的并发冲突问题及悲观锁 乐观锁并发控制方案</title>
-    <url>/2020/ck91i43m3001hsstafm63cvvd/</url>
+    <url>/2020/ck91iwbyn001gt8ta1c1r8jc6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="ES的并发冲突问题及悲观锁-乐观锁并发控制方案"><a href="#ES的并发冲突问题及悲观锁-乐观锁并发控制方案" class="headerlink" title="ES的并发冲突问题及悲观锁 乐观锁并发控制方案"></a>ES的并发冲突问题及悲观锁 乐观锁并发控制方案</h2><h4 id="1-es-并发问题图解说明"><a href="#1-es-并发问题图解说明" class="headerlink" title="1.es 并发问题图解说明"></a>1.es 并发问题图解说明</h4><p><img src="https://img-blog.csdnimg.cn/20200201153652498.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="es 并发问题图解说明"></p>
 <h4 id="2-悲观锁"><a href="#2-悲观锁" class="headerlink" title="2.悲观锁"></a>2.悲观锁</h4><p><img src="https://img-blog.csdnimg.cn/20200201221742823.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="悲观锁"></p>
 <h4 id="3-乐观锁"><a href="#3-乐观锁" class="headerlink" title="3.乐观锁"></a>3.乐观锁</h4><p><img src="https://img-blog.csdnimg.cn/20200201222237446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="乐观锁"></p>
@@ -1179,23 +1194,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>_document的全量替换、强制创建以及图解lazy delete机制</title>
-    <url>/2020/ck91i43m4001jsstaed7t8us4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="document的全量替换、强制创建以及图解lazy-delete机制"><a href="#document的全量替换、强制创建以及图解lazy-delete机制" class="headerlink" title="_document的全量替换、强制创建以及图解lazy delete机制"></a>_document的全量替换、强制创建以及图解lazy delete机制</h2><h4 id="1-document的全量替换"><a href="#1-document的全量替换" class="headerlink" title="1.document的全量替换"></a>1.document的全量替换</h4><p>（1）语法同创建文档是一样的，如果document id不存在，那么就是创建；如果document id已经存在，那么就是全量替换操作，替换document的json串内容<br>（2）document是不可变的，如果要修改document的内容，第一种方式就是全量替换，直接对document重新建立索引，替换里面所有的内容<br>（3）es会将老的document标记为deleted，然后新增我们给定的一个document，当我们创建越来越多的document的时候，es会在适当的时机在后台自动删除标记为deleted的document</p>
-<p><img src="https://img-blog.csdnimg.cn/20200131194059226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt="document"></p>
-<h4 id="2-document的强制创建"><a href="#2-document的强制创建" class="headerlink" title="2.document的强制创建"></a>2.document的强制创建</h4><p>（1）创建文档与全量替换的语法是一样的，有时我们只是想新建文档，不想替换文档，如果强制进行创建呢？<br>（2）PUT /index/type/id?op_type=create，PUT /index/type/id/_create</p>
-<h4 id="3-document的删除"><a href="#3-document的删除" class="headerlink" title="3.document的删除"></a>3.document的删除</h4><p>（1）DELETE /index/type/id<br>（2）不会理解物理删除，只会将其标记为deleted，当数据越来越多的时候，在后台自动删除</p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Elasticsearch内部如何基于_version进行乐观锁并发控制</title>
-    <url>/2020/ck91i43m6001nsstabuor3kb4/</url>
+    <url>/2020/ck91iwbyo001kt8ta9y2ia4m2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Elasticsearch内部如何基于-version进行乐观锁并发控制"><a href="#Elasticsearch内部如何基于-version进行乐观锁并发控制" class="headerlink" title="Elasticsearch内部如何基于_version进行乐观锁并发控制"></a>Elasticsearch内部如何基于_version进行乐观锁并发控制</h2><h3 id="eg-version元数据"><a href="#eg-version元数据" class="headerlink" title="eg: _version元数据"></a>eg: _version元数据</h3><p>PUT /test_index/test_type/6<br>{<br>  “test_field”: “test test”<br>}</p>
 <p>{<br>  “_index”: “test_index”,<br>  “_type”: “test_type”,<br>  “_id”: “6”,<br>  “_version”: 1,<br>  “result”: “created”,<br>  “_shards”: {<br>​    “total”: 2,<br>​    “successful”: 1,<br>​    “failed”: 0<br>  },<br>  “created”: true<br>}</p>
 <p>第一次创建一个document的时候，它的_version内部版本号就是1；以后，每次对这个document执行修改或者删除操作，都会对这个_version版本号自动加1；哪怕是删除，也会对这条数据的版本号加1</p>
@@ -1212,7 +1212,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>基于_version进行乐观锁并发控制</title>
-    <url>/2020/ck91i43m7001qsstabniv8dny/</url>
+    <url>/2020/ck91iwbyp001nt8ta8jrdgxfb/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="基于-version进行乐观锁并发控制"><a href="#基于-version进行乐观锁并发控制" class="headerlink" title="基于_version进行乐观锁并发控制"></a>基于_version进行乐观锁并发控制</h2><h3 id="1-首先创建一条数据"><a href="#1-首先创建一条数据" class="headerlink" title="1. 首先创建一条数据"></a>1. 首先创建一条数据</h3><p>PUT /test_index/test_type/1<br>{<br>  “test_field”: “test test”<br>}</p>
 <h3 id="2-模拟两个客户端，都获取到了同一条数据"><a href="#2-模拟两个客户端，都获取到了同一条数据" class="headerlink" title="2.模拟两个客户端，都获取到了同一条数据"></a>2.模拟两个客户端，都获取到了同一条数据</h3><p>GET test_index/test_type/1</p>
 <p>{<br>  “_index”: “test_index”,<br>  “_type”: “test_type”,<br>  “_id”: “7”,<br>  “_version”: 1,<br>  “found”: true,<br>  “_source”: {<br>​    “test_field”: “test test”<br>  }<br>}</p>
@@ -1235,7 +1235,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>自己维护版本号，基于external version进行乐观锁并发控制</title>
-    <url>/2020/ck91i43m9001usstabn841e8j/</url>
+    <url>/2020/ck91iwbys001rt8ta644k8df4/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="自己维护版本号，基于external-version进行乐观锁并发控制"><a href="#自己维护版本号，基于external-version进行乐观锁并发控制" class="headerlink" title="自己维护版本号，基于external version进行乐观锁并发控制"></a>自己维护版本号，基于external version进行乐观锁并发控制</h3><h4 id="1-external-version"><a href="#1-external-version" class="headerlink" title="1.external version"></a>1.external version</h4><p>es提供了一个feature，就是说，你可以不用它提供的内部_version版本号来进行并发控制，可以基于你自己维护的一个版本号来进行并发控制。 一句话，当你 可不想用es内部的_version来进行控制，而是用你自己维护的那个version来进行控制。此时就是可以采用 external version </p>
 <p>?version=1<br>?version=1&amp;version_type=external</p>
 <p>version_type=external，唯一的区别在于，_version，只有当你提供的version与es中的_version一模一样的时候，才可以进行修改，只要不一样，就报错；</p>
@@ -1263,8 +1263,31 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>ES 的 partial update</title>
+    <url>/2020/ck91iwbyu001ut8taalza8cqc/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="ES-的-partial-update"><a href="#ES-的-partial-update" class="headerlink" title="ES 的 partial update"></a>ES 的 partial update</h3><h4 id="1-PUT-index-type-id"><a href="#1-PUT-index-type-id" class="headerlink" title="1. PUT /index/type/id"></a>1. PUT /index/type/id</h4><h4 id="创建文档-amp-替换文档，就是一样的语法"><a href="#创建文档-amp-替换文档，就是一样的语法" class="headerlink" title="创建文档&amp;替换文档，就是一样的语法"></a>创建文档&amp;替换文档，就是一样的语法</h4><p>一般对应到应用程序中，每次的执行流程基本是这样的：</p>
+<p>（1）应用程序先发起一个get请求，获取到document，展示到前台界面，供用户查看和修改<br>（2）用户在前台界面修改数据，发送到后台<br>（3）后台代码，会将用户修改的数据在内存中进行执行，然后封装好修改后的全量数据<br>（4）然后发送PUT请求，到es中，进行全量替换<br>（5）es会将老的document标记为deleted，然后重新创建一个新的document</p>
+<p>partial update</p>
+<p>post /index/type/id/_update<br>{<br>   “doc”: {<br>​      “要修改的少数几个field即可，不需要全量的数据”<br>   }<br>}</p>
+<p>看起来，好像就比较方便了，每次就传递少数几个发生修改的field即可，不需要将全量的document数据发送过去，</p>
+<h4 id="2-图解partial-update实现原理以及其优点"><a href="#2-图解partial-update实现原理以及其优点" class="headerlink" title="2.  图解partial update实现原理以及其优点"></a>2.  图解partial update实现原理以及其优点</h4><p>partial update，看起来很方便的操作，实际内部的原理是什么样子的，然后它的优点是什么</p>
+<h3 id="3-上机动手实战演练-partial-update"><a href="#3-上机动手实战演练-partial-update" class="headerlink" title="3.  上机动手实战演练 partial update"></a>3.  上机动手实战演练 partial update</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUT &#x2F;test_index&#x2F;test_type&#x2F;10</span><br><span class="line">&#123;</span><br><span class="line">  &quot;test_field1&quot;: &quot;test1&quot;,</span><br><span class="line">  &quot;test_field2&quot;: &quot;test2&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">POST &#x2F;test_index&#x2F;test_type&#x2F;10&#x2F;_update</span><br><span class="line">&#123;</span><br><span class="line">  &quot;doc&quot;: &#123;</span><br><span class="line">    &quot;test_field2&quot;: &quot;updated test2&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>es 基于groovy脚本进行partial update</title>
-    <url>/2020/ck91i43ma001xssta5b0mak5k/</url>
+    <url>/2020/ck91iwbyv001yt8ta50wbczq9/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="es-基于groovy脚本进行partial-update"><a href="#es-基于groovy脚本进行partial-update" class="headerlink" title="es 基于groovy脚本进行partial update"></a>es 基于groovy脚本进行partial update</h3><p><img src="https://img-blog.csdnimg.cn/2020020322454336.png" alt=""></p>
 <p>在es目录下 config/scripts 创建groovy 脚本</p>
 <h4 id="1-es-是有个内置的脚本支持的，可以基于groovy脚本实现各种各样的复杂操作"><a href="#1-es-是有个内置的脚本支持的，可以基于groovy脚本实现各种各样的复杂操作" class="headerlink" title="1.  es 是有个内置的脚本支持的，可以基于groovy脚本实现各种各样的复杂操作"></a>1.  es 是有个内置的脚本支持的，可以基于groovy脚本实现各种各样的复杂操作</h4><p>PUT /test_index/test_type/11<br>{<br>  “num”: 0,<br>  “tags”: []<br>}</p>
@@ -1288,7 +1311,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>partial update内置乐观锁并发控制</title>
-    <url>/2020/ck91i43mb0021sstahy4u13am/</url>
+    <url>/2020/ck91iwbyw0021t8ta2bca9ihd/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="partial-update内置乐观锁并发控制"><a href="#partial-update内置乐观锁并发控制" class="headerlink" title="partial update内置乐观锁并发控制"></a>partial update内置乐观锁并发控制</h3><h4 id="1-partial-update内置乐观锁并发控制"><a href="#1-partial-update内置乐观锁并发控制" class="headerlink" title="1. partial update内置乐观锁并发控制"></a>1. partial update内置乐观锁并发控制</h4><p>如果partial update更新时候，所携带的_version 小于ES中所存储的version版本，则这个partial  update 失败</p>
 <h4 id="2-retry-on-conflict"><a href="#2-retry-on-conflict" class="headerlink" title="2.retry_on_conflict"></a>2.retry_on_conflict</h4><p>  1&gt;. 再次获取document的数据和最新的版本（最新的数据）</p>
 <p>  2&gt;.基于最新版本号再次去更新，若成功则不需要再次重试了； </p>
@@ -1305,31 +1328,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>ES 的 partial update</title>
-    <url>/2020/ck91i43mc0024sstaf4duextw/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="ES-的-partial-update"><a href="#ES-的-partial-update" class="headerlink" title="ES 的 partial update"></a>ES 的 partial update</h3><h4 id="1-PUT-index-type-id"><a href="#1-PUT-index-type-id" class="headerlink" title="1. PUT /index/type/id"></a>1. PUT /index/type/id</h4><h4 id="创建文档-amp-替换文档，就是一样的语法"><a href="#创建文档-amp-替换文档，就是一样的语法" class="headerlink" title="创建文档&amp;替换文档，就是一样的语法"></a>创建文档&amp;替换文档，就是一样的语法</h4><p>一般对应到应用程序中，每次的执行流程基本是这样的：</p>
-<p>（1）应用程序先发起一个get请求，获取到document，展示到前台界面，供用户查看和修改<br>（2）用户在前台界面修改数据，发送到后台<br>（3）后台代码，会将用户修改的数据在内存中进行执行，然后封装好修改后的全量数据<br>（4）然后发送PUT请求，到es中，进行全量替换<br>（5）es会将老的document标记为deleted，然后重新创建一个新的document</p>
-<p>partial update</p>
-<p>post /index/type/id/_update<br>{<br>   “doc”: {<br>​      “要修改的少数几个field即可，不需要全量的数据”<br>   }<br>}</p>
-<p>看起来，好像就比较方便了，每次就传递少数几个发生修改的field即可，不需要将全量的document数据发送过去，</p>
-<h4 id="2-图解partial-update实现原理以及其优点"><a href="#2-图解partial-update实现原理以及其优点" class="headerlink" title="2.  图解partial update实现原理以及其优点"></a>2.  图解partial update实现原理以及其优点</h4><p>partial update，看起来很方便的操作，实际内部的原理是什么样子的，然后它的优点是什么</p>
-<h3 id="3-上机动手实战演练-partial-update"><a href="#3-上机动手实战演练-partial-update" class="headerlink" title="3.  上机动手实战演练 partial update"></a>3.  上机动手实战演练 partial update</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUT &#x2F;test_index&#x2F;test_type&#x2F;10</span><br><span class="line">&#123;</span><br><span class="line">  &quot;test_field1&quot;: &quot;test1&quot;,</span><br><span class="line">  &quot;test_field2&quot;: &quot;test2&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">POST &#x2F;test_index&#x2F;test_type&#x2F;10&#x2F;_update</span><br><span class="line">&#123;</span><br><span class="line">  &quot;doc&quot;: &#123;</span><br><span class="line">    &quot;test_field2&quot;: &quot;updated test2&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Elasticsearch  mget 的批量查询</title>
-    <url>/2020/ck91i43md0028ssta7umx85xz/</url>
+    <url>/2020/ck91iwbyx0025t8tac9fy13fw/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="Elasticsearch-mget-的批量查询"><a href="#Elasticsearch-mget-的批量查询" class="headerlink" title="Elasticsearch  mget 的批量查询"></a>Elasticsearch  mget 的批量查询</h3><h4 id="1-批量查询好处"><a href="#1-批量查询好处" class="headerlink" title="1. 批量查询好处"></a>1. 批量查询好处</h4><p>一条一条的查询，比如说要查询100条数据，那么就要发送100次网络请求，这个开销还是很大的<br>如果进行批量查询的话，查询100条数据，就只要发送1次网络请求，网络请求的性能开销缩减100倍</p>
 <p>可以说mget是很重要的，一般来说，在进行查询的时候，如果一次性要查询多条数据的话，那么一定要用batch批量操作的api<br>尽可能减少网络开销次数，可能可以将性能提升数倍，甚至数十倍，非常非常之重要</p>
 <h4 id="2-mget的语法"><a href="#2-mget的语法" class="headerlink" title="2. mget的语法"></a>2. mget的语法</h4><h5 id="1-单条数据查询语法"><a href="#1-单条数据查询语法" class="headerlink" title="1.单条数据查询语法"></a>1.单条数据查询语法</h5><p>GET /test_index/test_type/1<br>GET /test_index/test_type/2</p>
@@ -1357,29 +1357,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>distributed document store （分布式文档存储）</title>
-    <url>/2020/ck91i43me002bssta9xirczne/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="distributed-document-store-（分布式文档存储）"><a href="#distributed-document-store-（分布式文档存储）" class="headerlink" title="distributed document store （分布式文档存储）"></a>distributed document store （分布式文档存储）</h3><p>Elasticsearch其实最核心的功能，就是一个分布式的文档数据存储系统。ES是分布式的。文档数据存储系统。文档数据，存储系统。</p>
-<p>文档数据：es可以存储和操作json文档类型的数据，而且这也是es的核心数据结构。</p>
-<p>存储系统：es可以对json文档类型的数据进行存储，查询，创建，更新，删除，等等操作。？其实ES满足了这些功能，就可以说已经是一个NoSQL的存储系统了。</p>
-<p>根据ES的特性可以构建以下应用程序 ：</p>
-<ol>
-<li>数据量较大，es的分布式本质，可以帮助你快速进行扩容，承载大量数据</li>
-<li>数据结构灵活多变，随时可能会变化，而且数据结构之间的关系，非常复杂，如果我们用传统数据库，就要面临大量的表操作</li>
-<li>对数据的相关操作，较为简单，比如就是一些简单的增删改查，用我们之前讲解的那些document操作就可以搞定</li>
-<li>NoSQL数据库，适用的也是类似于上面的这种场景</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES bulk</title>
-    <url>/2020/ck91i43mf002fssta4el3g4mz/</url>
+    <url>/2020/ck91iwbyy0028t8ta43j14g6p/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="ES-bulk"><a href="#ES-bulk" class="headerlink" title="ES bulk"></a>ES bulk</h3><h4 id="1-bulk语法"><a href="#1-bulk语法" class="headerlink" title="1.bulk语法"></a>1.bulk语法</h4><p>每一个操作要两个json串，语法如下：</p>
 <p>{“action”: {“metadata”}}<br>{“data”}</p>
 <p>POST /_bulk<br>{ “delete”: { “_index”: “test_index”, “_type”: “test_type”, “_id”: “3” }}<br>{ “create”: { “_index”: “test_index”, “_type”: “test_type”, “_id”: “12” }}<br>{ “test_field”:    “test12” }<br>{ “index”:  { “_index”: “test_index”, “_type”: “test_type”, “_id”: “2” }}<br>{ “test_field”:    “replaced test2” }<br>{ “update”: { “_index”: “test_index”, “_type”: “test_type”, “_id”: “1”, “_retry_on_conflict” : 3} }<br>{ “doc” : {“test_field2” : “bulk test1”} }</p>
@@ -1405,10 +1384,18 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>document增删改内部原理图解</title>
-    <url>/2020/ck91i43mg002issta1n80fns5/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="document增删改内部原理图解"><a href="#document增删改内部原理图解" class="headerlink" title="document增删改内部原理图解"></a>document增删改内部原理图解</h4><p>（1）客户端选择一个node发送请求过去，这个node就是coordinating node（协调节点）<br>（2）coordinating node，对document进行路由，将请求转发给对应的node（所包含的primary shard）<br>（3）实际的node上的primary shard处理请求，然后将数据同步到replica node<br>（4）coordinating node，如果发现primary node和所有replica node都处理完成后，就返回响应结果给客户端</p>
-<p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/CMS/U_kHvefjT4c.png" alt=""></p>
+    <title>distributed document store （分布式文档存储）</title>
+    <url>/2020/ck91iwbyz002ct8tacz736c2j/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="distributed-document-store-（分布式文档存储）"><a href="#distributed-document-store-（分布式文档存储）" class="headerlink" title="distributed document store （分布式文档存储）"></a>distributed document store （分布式文档存储）</h3><p>Elasticsearch其实最核心的功能，就是一个分布式的文档数据存储系统。ES是分布式的。文档数据存储系统。文档数据，存储系统。</p>
+<p>文档数据：es可以存储和操作json文档类型的数据，而且这也是es的核心数据结构。</p>
+<p>存储系统：es可以对json文档类型的数据进行存储，查询，创建，更新，删除，等等操作。？其实ES满足了这些功能，就可以说已经是一个NoSQL的存储系统了。</p>
+<p>根据ES的特性可以构建以下应用程序 ：</p>
+<ol>
+<li>数据量较大，es的分布式本质，可以帮助你快速进行扩容，承载大量数据</li>
+<li>数据结构灵活多变，随时可能会变化，而且数据结构之间的关系，非常复杂，如果我们用传统数据库，就要面临大量的表操作</li>
+<li>对数据的相关操作，较为简单，比如就是一些简单的增删改查，用我们之前讲解的那些document操作就可以搞定</li>
+<li>NoSQL数据库，适用的也是类似于上面的这种场景</li>
+</ol>
 ]]></content>
       <categories>
         <category>Elasticsearch</category>
@@ -1418,27 +1405,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>bulk api json格式与底层性能优化</title>
-    <url>/2020/ck91i43mh002mssta8ccx3cn5/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="bulk-api-json格式与底层性能优化"><a href="#bulk-api-json格式与底层性能优化" class="headerlink" title="bulk api json格式与底层性能优化"></a>bulk api json格式与底层性能优化</h4><h5 id="1-bulk中的每个操作都可能要转发到不同的node的shard去执行"><a href="#1-bulk中的每个操作都可能要转发到不同的node的shard去执行" class="headerlink" title="1. bulk中的每个操作都可能要转发到不同的node的shard去执行"></a>1. bulk中的每个操作都可能要转发到不同的node的shard去执行</h5><p>{“action”: {“meta”}}\n<br>{“data”}\n<br>{“action”: {“meta”}}\n<br>{“data”}\n</p>
-<p>都是有换行</p>
-<h5 id="2-如果采用比较良好的json数组格式"><a href="#2-如果采用比较良好的json数组格式" class="headerlink" title="2. 如果采用比较良好的json数组格式"></a>2. 如果采用比较良好的json数组格式</h5><p>允许任意的换行，可读性好，es拿到那种标准格式的json串以后，要按照下述流程去进行处理</p>
-<p>（1）将json数组解析为JSONArray对象，这个时候，整个数据，就会在内存中出现一份一模一样的拷贝，一份数据是json文本，一份数据是JSONArray对象<br>（2）解析json数组里的每个json，对每个请求中的document进行路由<br>（3）为路由到同一个shard上的多个请求，创建一个请求数组<br>（4）将这个请求数组序列化<br>（5）将序列化后的请求数组发送到对应的节点上去</p>
-<h5 id="3-耗费更多内存，更多的jvm-gc开销"><a href="#3-耗费更多内存，更多的jvm-gc开销" class="headerlink" title="3.耗费更多内存，更多的jvm gc开销"></a>3.耗费更多内存，更多的jvm gc开销</h5><p>bulk size最佳大小的问题，一般建议在几千条，大小在10MB左右。假设说现在100个bulk请求发送到了一个节点上去，然后每个请求是10MB，100个请求，就是1000MB ≈ 1GB，然后每个请求的json都copy一份为jsonarray对象，此时内存中的占用就会翻倍，就会占用2GB的内存，甚至还不止。因为弄成jsonarray之后，还可能会多搞一些其他的数据结构，2GB+的内存占用。</p>
-<p>​        占用更多的内存可能就会积压其他请求的内存使用量，比如说最重要的搜索请求，分析请求，等等，此时就可能会导致其他请求的性能急速下降<br>另外的话，占用内存更多，就会导致java虚拟机的垃圾回收次数更多，更频繁，每次要回收的垃圾对象更多，耗费的时间更长，导致es的java虚拟机停止工作线程的时间更多</p>
-<h5 id="4-现在的奇特格式"><a href="#4-现在的奇特格式" class="headerlink" title="4.现在的奇特格式"></a>4.现在的奇特格式</h5><p>{“action”: {“meta”}}\n<br>{“data”}\n<br>{“action”: {“meta”}}\n<br>{“data”}\n</p>
-<p>（1）不用将其转换为json对象，不会出现内存中的相同数据的拷贝，直接按照换行符切割json<br>（2）对每两个一组的json，读取meta，进行document路由<br>（3）直接将对应的json发送到node上去</p>
-<h5 id="5、最大的优势在于，不需要将json数组解析为一个JSONArray对象，形成一份大数据的拷贝，浪费内存空间，尽可能地保证性能"><a href="#5、最大的优势在于，不需要将json数组解析为一个JSONArray对象，形成一份大数据的拷贝，浪费内存空间，尽可能地保证性能" class="headerlink" title="5、最大的优势在于，不需要将json数组解析为一个JSONArray对象，形成一份大数据的拷贝，浪费内存空间，尽可能地保证性能"></a>5、最大的优势在于，不需要将json数组解析为一个JSONArray对象，形成一份大数据的拷贝，浪费内存空间，尽可能地保证性能</h5>]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES document数据路由原理</title>
-    <url>/2020/ck91i43mi002pssta7d710coc/</url>
+    <url>/2020/ck91iwbz0002ft8ta1kjh26yt/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="ES-document数据路由原理"><a href="#ES-document数据路由原理" class="headerlink" title="ES document数据路由原理"></a>ES document数据路由原理</h3><h4 id="1-document如何路由到shard上的"><a href="#1-document如何路由到shard上的" class="headerlink" title="1. document如何路由到shard上的"></a>1. document如何路由到shard上的</h4><p><img src="https://img-blog.csdnimg.cn/20200205215655827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1OTkwMTI4NjM4,size_16,color_FFFFFF,t_70" alt=""></p>
 <h4 id="2-路由算法"><a href="#2-路由算法" class="headerlink" title="2. 路由算法"></a>2. 路由算法</h4><p>shard = hash(routing) % number_of_primary_shards</p>
 <p>举个例子，一个index有3个primary shard，P0，P1，P2</p>
@@ -1459,7 +1427,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>写一致性原理以及quorum机制剖析</title>
-    <url>/2020/ck91i43mj002tsstacfog4np3/</url>
+    <url>/2020/ck91iwbz1002jt8ta1jblclp8/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="写一致性原理以及quorum机制剖析"><a href="#写一致性原理以及quorum机制剖析" class="headerlink" title="写一致性原理以及quorum机制剖析"></a>写一致性原理以及quorum机制剖析</h4><h5 id="1-consistency-参数-one（primary-shard），all（all-shard），quorum（default）"><a href="#1-consistency-参数-one（primary-shard），all（all-shard），quorum（default）" class="headerlink" title="1.consistency 参数  one（primary shard），all（all shard），quorum（default）"></a>1.consistency 参数  one（primary shard），all（all shard），quorum（default）</h5><p>​       在发送任何一个增删改操作的时候，eg : put /index/type/id，可以带上一个consistency参数，指明我们想要的写一致性是什么？<br>put /index/type/id?consistency=quorum</p>
 <p>one：要求我们这个写操作，只要有一个primary shard是active活跃可用的，就可以执行<br>all：要求我们这个写操作，必须所有的primary shard和replica shard都是活跃的，才可以执行这个写操作<br>quorum：默认的值，要求所有的shard中，必须是大部分的shard都是活跃的，可用的，才可以执行这个写操作</p>
 <h5 id="2-quorum机制，写之前必须确保大多数shard都可用，int-primary-number-of-replicas-2-1，当number-of-replicas-gt-1时才生效"><a href="#2-quorum机制，写之前必须确保大多数shard都可用，int-primary-number-of-replicas-2-1，当number-of-replicas-gt-1时才生效" class="headerlink" title="2.quorum机制，写之前必须确保大多数shard都可用，int( (primary + number_of_replicas) / 2 ) + 1，当number_of_replicas&gt;1时才生效"></a>2.quorum机制，写之前必须确保大多数shard都可用，int( (primary + number_of_replicas) / 2 ) + 1，当number_of_replicas&gt;1时才生效</h5><p>机制： quroum = int( (primary + number_of_replicas) / 2 ) + 1<br>eg : 3个primary shard，number_of_replicas=1，总共有3 + 3 * 1 = 6个shard<br>quorum = int( (3 + 1) / 2 ) + 1 = 3<br>所以，要求6个shard中至少有3个shard是active状态的，才可以执行这个写操作</p>
@@ -1478,8 +1446,40 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>bulk api json格式与底层性能优化</title>
+    <url>/2020/ck91iwbz2002mt8ta11gpebi6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="bulk-api-json格式与底层性能优化"><a href="#bulk-api-json格式与底层性能优化" class="headerlink" title="bulk api json格式与底层性能优化"></a>bulk api json格式与底层性能优化</h4><h5 id="1-bulk中的每个操作都可能要转发到不同的node的shard去执行"><a href="#1-bulk中的每个操作都可能要转发到不同的node的shard去执行" class="headerlink" title="1. bulk中的每个操作都可能要转发到不同的node的shard去执行"></a>1. bulk中的每个操作都可能要转发到不同的node的shard去执行</h5><p>{“action”: {“meta”}}\n<br>{“data”}\n<br>{“action”: {“meta”}}\n<br>{“data”}\n</p>
+<p>都是有换行</p>
+<h5 id="2-如果采用比较良好的json数组格式"><a href="#2-如果采用比较良好的json数组格式" class="headerlink" title="2. 如果采用比较良好的json数组格式"></a>2. 如果采用比较良好的json数组格式</h5><p>允许任意的换行，可读性好，es拿到那种标准格式的json串以后，要按照下述流程去进行处理</p>
+<p>（1）将json数组解析为JSONArray对象，这个时候，整个数据，就会在内存中出现一份一模一样的拷贝，一份数据是json文本，一份数据是JSONArray对象<br>（2）解析json数组里的每个json，对每个请求中的document进行路由<br>（3）为路由到同一个shard上的多个请求，创建一个请求数组<br>（4）将这个请求数组序列化<br>（5）将序列化后的请求数组发送到对应的节点上去</p>
+<h5 id="3-耗费更多内存，更多的jvm-gc开销"><a href="#3-耗费更多内存，更多的jvm-gc开销" class="headerlink" title="3.耗费更多内存，更多的jvm gc开销"></a>3.耗费更多内存，更多的jvm gc开销</h5><p>bulk size最佳大小的问题，一般建议在几千条，大小在10MB左右。假设说现在100个bulk请求发送到了一个节点上去，然后每个请求是10MB，100个请求，就是1000MB ≈ 1GB，然后每个请求的json都copy一份为jsonarray对象，此时内存中的占用就会翻倍，就会占用2GB的内存，甚至还不止。因为弄成jsonarray之后，还可能会多搞一些其他的数据结构，2GB+的内存占用。</p>
+<p>​        占用更多的内存可能就会积压其他请求的内存使用量，比如说最重要的搜索请求，分析请求，等等，此时就可能会导致其他请求的性能急速下降<br>另外的话，占用内存更多，就会导致java虚拟机的垃圾回收次数更多，更频繁，每次要回收的垃圾对象更多，耗费的时间更长，导致es的java虚拟机停止工作线程的时间更多</p>
+<h5 id="4-现在的奇特格式"><a href="#4-现在的奇特格式" class="headerlink" title="4.现在的奇特格式"></a>4.现在的奇特格式</h5><p>{“action”: {“meta”}}\n<br>{“data”}\n<br>{“action”: {“meta”}}\n<br>{“data”}\n</p>
+<p>（1）不用将其转换为json对象，不会出现内存中的相同数据的拷贝，直接按照换行符切割json<br>（2）对每两个一组的json，读取meta，进行document路由<br>（3）直接将对应的json发送到node上去</p>
+<h5 id="5、最大的优势在于，不需要将json数组解析为一个JSONArray对象，形成一份大数据的拷贝，浪费内存空间，尽可能地保证性能"><a href="#5、最大的优势在于，不需要将json数组解析为一个JSONArray对象，形成一份大数据的拷贝，浪费内存空间，尽可能地保证性能" class="headerlink" title="5、最大的优势在于，不需要将json数组解析为一个JSONArray对象，形成一份大数据的拷贝，浪费内存空间，尽可能地保证性能"></a>5、最大的优势在于，不需要将json数组解析为一个JSONArray对象，形成一份大数据的拷贝，浪费内存空间，尽可能地保证性能</h5>]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>document增删改内部原理图解</title>
+    <url>/2020/ck91iwbz3002qt8taatfkhm9c/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="document增删改内部原理图解"><a href="#document增删改内部原理图解" class="headerlink" title="document增删改内部原理图解"></a>document增删改内部原理图解</h4><p>（1）客户端选择一个node发送请求过去，这个node就是coordinating node（协调节点）<br>（2）coordinating node，对document进行路由，将请求转发给对应的node（所包含的primary shard）<br>（3）实际的node上的primary shard处理请求，然后将数据同步到replica node<br>（4）coordinating node，如果发现primary node和所有replica node都处理完成后，就返回响应结果给客户端</p>
+<p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/CMS/U_kHvefjT4c.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>_search结果解析及timeout机制</title>
-    <url>/2020/ck91i43mk002wssta66h91gsh/</url>
+    <url>/2020/ck91iwbz4002tt8tah5yyfv48/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="search结果解析及timeout机制"><a href="#search结果解析及timeout机制" class="headerlink" title="_search结果解析及timeout机制"></a>_search结果解析及timeout机制</h4><h4 id="1-搜索结果里的各种数据，都代表了什么含义"><a href="#1-搜索结果里的各种数据，都代表了什么含义" class="headerlink" title="1. 搜索结果里的各种数据，都代表了什么含义"></a>1. 搜索结果里的各种数据，都代表了什么含义</h4><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">GET /_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"took"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="attr">"timed_out"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"_shards"</span>: &#123;</span><br><span class="line">    <span class="attr">"total"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">"successful"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">"failed"</span>: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"hits"</span>: &#123;</span><br><span class="line">    <span class="attr">"total"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">"max_score"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"hits"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"_index"</span>: <span class="string">".kibana"</span>,</span><br><span class="line">        <span class="attr">"_type"</span>: <span class="string">"config"</span>,</span><br><span class="line">        <span class="attr">"_id"</span>: <span class="string">"5.2.0"</span>,</span><br><span class="line">        <span class="attr">"_score"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"_source"</span>: &#123;</span><br><span class="line">          <span class="attr">"buildNum"</span>: <span class="number">14695</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -1530,7 +1530,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>_multi-index&amp;multi-type搜索模式使用以及搜索原理初步图解</title>
-    <url>/2020/ck91i43mm0030ssta06fgf945/</url>
+    <url>/2020/ck91iwbz5002xt8tahjlc7bj6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="multi-index-amp-multi-type搜索模式使用以及搜索原理初步图解"><a href="#multi-index-amp-multi-type搜索模式使用以及搜索原理初步图解" class="headerlink" title="_multi-index&amp;multi-type搜索模式使用以及搜索原理初步图解"></a>_multi-index&amp;multi-type搜索模式使用以及搜索原理初步图解</h4><h5 id="1-multi-index和multi-type搜索模式"><a href="#1-multi-index和multi-type搜索模式" class="headerlink" title="1. multi-index和multi-type搜索模式"></a>1. multi-index和multi-type搜索模式</h5><p>告诉你如何一次性搜索多个index和多个type下的数据</p>
 <table>
 <thead>
@@ -1582,8 +1582,69 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>分页搜索以及deep paging性能问题图解</title>
+    <url>/2020/ck91iwbz50030t8ta4c890zzx/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="分页搜索以及deep-paging性能问题图解"><a href="#分页搜索以及deep-paging性能问题图解" class="headerlink" title="分页搜索以及deep paging性能问题图解"></a>分页搜索以及deep paging性能问题图解</h4><h5 id="1-分页"><a href="#1-分页" class="headerlink" title="1. 分页"></a>1. 分页</h5><p>GET /_search?size=10<br>GET /_search?size=10&amp;from=0<br>GET /_search?size=10&amp;from=20</p>
+<p>分页的上机实验</p>
+<p>GET /test_index/test_type/_search</p>
+<p>“hits”: {<br>​    “total”: 9,<br>​    “max_score”: 1,</p>
+<p>我们假设将这9条数据分成3页，每一页是3条数据，来实验一下这个分页搜索的效果</p>
+<p>GET /test_index/test_type/_search?from=0&amp;size=3</p>
+<p>{<br>  “took”: 2,<br>  “timed_out”: false,<br>  “_shards”: {<br>​    “total”: 5,<br>​    “successful”: 5,<br>​    “failed”: 0<br>  },<br>  “hits”: {<br>​    “total”: 9,<br>​    “max_score”: 1,<br>​    “hits”: [<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “8”,<br>​        “_score”: 1,<br>​        “_source”: {<br>​          “test_field”: “test client 2”<br>​        }<br>​      },<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “6”,<br>​        “_score”: 1,<br>​        “_source”: {<br>​          “test_field”: “tes test”<br>​        }<br>​      },<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “4”,<br>​        “_score”: 1,<br>​        “_source”: {<br>​          “test_field”: “test4”<br>​        }<br>​      }<br>​    ]<br>  }<br>}</p>
+<p>第一页：id=8,6,4</p>
+<p>GET /test_index/test_type/_search?from=3&amp;size=3</p>
+<p>第二页：id=2,自动生成,7</p>
+<p>GET /test_index/test_type/_search?from=6&amp;size=3</p>
+<p>第三页：id=1,11,3</p>
+<h5 id="2-deep-paging"><a href="#2-deep-paging" class="headerlink" title="2.deep paging"></a>2.deep paging</h5><p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/work_order/addadNSGzJ8.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mapping是什么</title>
+    <url>/2020/ck91iwbz70034t8ta9xpk2eb7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="mapping是什么"><a href="#mapping是什么" class="headerlink" title="mapping是什么"></a>mapping是什么</h4><h5 id="1-插入几条数据，让es自动为我们建立一个索引"><a href="#1-插入几条数据，让es自动为我们建立一个索引" class="headerlink" title="1.  插入几条数据，让es自动为我们建立一个索引"></a>1.  插入几条数据，让es自动为我们建立一个索引</h5><p>PUT /website/article/1<br>{<br>  “post_date”: “2017-01-01”,<br>  “title”: “my first article”,<br>  “content”: “this is my first article in this website”,<br>  “author_id”: 11400<br>}</p>
+<p>PUT /website/article/2<br>{<br>  “post_date”: “2017-01-02”,<br>  “title”: “my second article”,<br>  “content”: “this is my second article in this website”,<br>  “author_id”: 11400<br>}</p>
+<p>PUT /website/article/3<br>{<br>  “post_date”: “2017-01-03”,<br>  “title”: “my third article”,<br>  “content”: “this is my third article in this website”,<br>  “author_id”: 11400<br>}</p>
+<p>尝试各种搜索</p>
+<p>GET /website/article/_search?q=2017                             3条结果<br>GET /website/article/_search?q=2017-01-01                             3条结果<br>GET /website/article/_search?q=post_date:2017-01-01        1条结果<br>GET /website/article/_search?q=post_date:2017                      1条结果</p>
+<h5 id="2-mapping的定义"><a href="#2-mapping的定义" class="headerlink" title="2. mapping的定义"></a>2. mapping的定义</h5><p>自动或手动为index中的type建立的一种数据结构和相关配置，简称为mapping<br>dynamic mapping，自动为我们建立index，创建type，以及type对应的mapping，mapping中包含了每个field对应的数据类型，以及如何分词等设置<br>我们当然，后面会讲解，也可以手动在创建数据之前，先创建index和type，以及type对应的mapping</p>
+<h5 id="3-查看某个type-所对应的的mapping"><a href="#3-查看某个type-所对应的的mapping" class="headerlink" title="3.  查看某个type 所对应的的mapping"></a>3.  查看某个type 所对应的的mapping</h5><p>GET /website/_mapping/article</p>
+<p>{<br>  “website”: {<br>​    “mappings”: {<br>​      “article”: {<br>​        “properties”: {<br>​          “author_id”: {<br>​            “type”: “long”<br>​          },<br>​          “content”: {<br>​            “type”: “text”,<br>​            “fields”: {<br>​              “keyword”: {<br>​                “type”: “keyword”,<br>​                “ignore_above”: 256<br>​              }<br>​            }<br>​          },<br>​          “post_date”: {<br>​            “type”: “date”<br>​          },<br>​          “title”: {<br>​            “type”: “text”,<br>​            “fields”: {<br>​              “keyword”: {<br>​                “type”: “keyword”,<br>​                “ignore_above”: 256<br>​              }<br>​            }<br>​          }<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
+<p>搜索结果为什么不一致，因为es自动建立mapping的时候，设置了不同的field不同的data type。不同的data type的分词、搜索等行为是不一样的。所以出现了_all field和post_date field的搜索表现完全不一样。</p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>exact value 与 full text 搜索</title>
+    <url>/2020/ck91iwbz70037t8ta46rv9b9g/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="exact-value-与-full-text-搜索"><a href="#exact-value-与-full-text-搜索" class="headerlink" title="exact value 与 full text 搜索"></a>exact value 与 full text 搜索</h4><h5 id="1-exact-value"><a href="#1-exact-value" class="headerlink" title="1. exact value"></a>1. exact value</h5><p>eg: </p>
+<p>录入: 2017-01-01，采用exact value，搜索的时候，必须输入2017-01-01，才能搜索出来<br>如果你输入一个01，是搜索不出来的; 也就是说  搜索的文字 必须与录入的一模一样才能搜索出来</p>
+<h5 id="2-full-text-可以泛泛理解为全文检索"><a href="#2-full-text-可以泛泛理解为全文检索" class="headerlink" title="2. full text (可以泛泛理解为全文检索)"></a>2. full text (可以泛泛理解为全文检索)</h5><p>（1）缩写 vs. 全程：cn vs. china<br>（2）格式转化：like liked likes<br>（3）大小写：Tom vs tom<br>（4）同义词：like vs love</p>
+<p>eg:</p>
+<p>录入: 2017-01-01，es 可以将其拆分为 2017, 01, 01，搜索2017，或者01，都可以搜索出来<br>china，搜索cn，也可以将china搜索出来<br>likes，搜索like，也可以将likes搜索出来<br>Tom，搜索tom，也可以将Tom搜索出来<br>like，搜索love，同义词，也可以将like搜索出来</p>
+<p>就不是说单纯的只是匹配完整的一个值，而是可以对值进行拆分词语后（分词）进行匹配，也可以通过缩写、时态、大小写、同义词等进行匹配</p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>query string search语法以及_all metadata原理</title>
-    <url>/2020/ck91i43mn0033sstad5dh78ym/</url>
+    <url>/2020/ck91iwbz8003bt8ta8hyz98dq/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="query-string-search语法以及-all-metadata原理"><a href="#query-string-search语法以及-all-metadata原理" class="headerlink" title="query string search语法以及_all metadata原理"></a>query string search语法以及_all metadata原理</h4><h5 id="1-query-string基础语法"><a href="#1-query-string基础语法" class="headerlink" title="1.  query string基础语法"></a>1.  query string基础语法</h5><p>其实就是http请求,报附加的参数 通过url传过来</p>
 <p>GET /test_index/test_type/_search?q=test_field:test _</p>
 <p>表示 test_index ,test_type  下,test_field所包含的关键字 test<br>GET /test_index/test_type/_search?q=+test_field:test  _</p>
@@ -1608,52 +1669,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>mapping是什么</title>
-    <url>/2020/ck91i43mp0037ssta9gl56pd9/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="mapping是什么"><a href="#mapping是什么" class="headerlink" title="mapping是什么"></a>mapping是什么</h4><h5 id="1-插入几条数据，让es自动为我们建立一个索引"><a href="#1-插入几条数据，让es自动为我们建立一个索引" class="headerlink" title="1.  插入几条数据，让es自动为我们建立一个索引"></a>1.  插入几条数据，让es自动为我们建立一个索引</h5><p>PUT /website/article/1<br>{<br>  “post_date”: “2017-01-01”,<br>  “title”: “my first article”,<br>  “content”: “this is my first article in this website”,<br>  “author_id”: 11400<br>}</p>
-<p>PUT /website/article/2<br>{<br>  “post_date”: “2017-01-02”,<br>  “title”: “my second article”,<br>  “content”: “this is my second article in this website”,<br>  “author_id”: 11400<br>}</p>
-<p>PUT /website/article/3<br>{<br>  “post_date”: “2017-01-03”,<br>  “title”: “my third article”,<br>  “content”: “this is my third article in this website”,<br>  “author_id”: 11400<br>}</p>
-<p>尝试各种搜索</p>
-<p>GET /website/article/_search?q=2017                             3条结果<br>GET /website/article/_search?q=2017-01-01                             3条结果<br>GET /website/article/_search?q=post_date:2017-01-01        1条结果<br>GET /website/article/_search?q=post_date:2017                      1条结果</p>
-<h5 id="2-mapping的定义"><a href="#2-mapping的定义" class="headerlink" title="2. mapping的定义"></a>2. mapping的定义</h5><p>自动或手动为index中的type建立的一种数据结构和相关配置，简称为mapping<br>dynamic mapping，自动为我们建立index，创建type，以及type对应的mapping，mapping中包含了每个field对应的数据类型，以及如何分词等设置<br>我们当然，后面会讲解，也可以手动在创建数据之前，先创建index和type，以及type对应的mapping</p>
-<h5 id="3-查看某个type-所对应的的mapping"><a href="#3-查看某个type-所对应的的mapping" class="headerlink" title="3.  查看某个type 所对应的的mapping"></a>3.  查看某个type 所对应的的mapping</h5><p>GET /website/_mapping/article</p>
-<p>{<br>  “website”: {<br>​    “mappings”: {<br>​      “article”: {<br>​        “properties”: {<br>​          “author_id”: {<br>​            “type”: “long”<br>​          },<br>​          “content”: {<br>​            “type”: “text”,<br>​            “fields”: {<br>​              “keyword”: {<br>​                “type”: “keyword”,<br>​                “ignore_above”: 256<br>​              }<br>​            }<br>​          },<br>​          “post_date”: {<br>​            “type”: “date”<br>​          },<br>​          “title”: {<br>​            “type”: “text”,<br>​            “fields”: {<br>​              “keyword”: {<br>​                “type”: “keyword”,<br>​                “ignore_above”: 256<br>​              }<br>​            }<br>​          }<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
-<p>搜索结果为什么不一致，因为es自动建立mapping的时候，设置了不同的field不同的data type。不同的data type的分词、搜索等行为是不一样的。所以出现了_all field和post_date field的搜索表现完全不一样。</p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分页搜索以及deep paging性能问题图解</title>
-    <url>/2020/ck91i43mq003asstahgvtaz4w/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="分页搜索以及deep-paging性能问题图解"><a href="#分页搜索以及deep-paging性能问题图解" class="headerlink" title="分页搜索以及deep paging性能问题图解"></a>分页搜索以及deep paging性能问题图解</h4><h5 id="1-分页"><a href="#1-分页" class="headerlink" title="1. 分页"></a>1. 分页</h5><p>GET /_search?size=10<br>GET /_search?size=10&amp;from=0<br>GET /_search?size=10&amp;from=20</p>
-<p>分页的上机实验</p>
-<p>GET /test_index/test_type/_search</p>
-<p>“hits”: {<br>​    “total”: 9,<br>​    “max_score”: 1,</p>
-<p>我们假设将这9条数据分成3页，每一页是3条数据，来实验一下这个分页搜索的效果</p>
-<p>GET /test_index/test_type/_search?from=0&amp;size=3</p>
-<p>{<br>  “took”: 2,<br>  “timed_out”: false,<br>  “_shards”: {<br>​    “total”: 5,<br>​    “successful”: 5,<br>​    “failed”: 0<br>  },<br>  “hits”: {<br>​    “total”: 9,<br>​    “max_score”: 1,<br>​    “hits”: [<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “8”,<br>​        “_score”: 1,<br>​        “_source”: {<br>​          “test_field”: “test client 2”<br>​        }<br>​      },<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “6”,<br>​        “_score”: 1,<br>​        “_source”: {<br>​          “test_field”: “tes test”<br>​        }<br>​      },<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “4”,<br>​        “_score”: 1,<br>​        “_source”: {<br>​          “test_field”: “test4”<br>​        }<br>​      }<br>​    ]<br>  }<br>}</p>
-<p>第一页：id=8,6,4</p>
-<p>GET /test_index/test_type/_search?from=3&amp;size=3</p>
-<p>第二页：id=2,自动生成,7</p>
-<p>GET /test_index/test_type/_search?from=6&amp;size=3</p>
-<p>第三页：id=1,11,3</p>
-<h5 id="2-deep-paging"><a href="#2-deep-paging" class="headerlink" title="2.deep paging"></a>2.deep paging</h5><p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/work_order/addadNSGzJ8.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>倒排索引核心原理</title>
-    <url>/2020/ck91i43mr003esstab2rwaa3w/</url>
+    <url>/2020/ck91iwbz9003et8ta1uezcyoh/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="倒排索引核心原理"><a href="#倒排索引核心原理" class="headerlink" title="倒排索引核心原理"></a>倒排索引核心原理</h4><p>比如我们目前有两个语句</p>
 <p>doc1：I really liked my small dogs, and I think my mom also liked them.<br>doc2：He never liked any dogs, so I hope that my mom will not expect me to liked him.</p>
 <p>分词，初步的倒排索引的建立</p>
@@ -1952,25 +1969,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>exact value 与 full text 搜索</title>
-    <url>/2020/ck91i43ms003hsstacek86z6b/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="exact-value-与-full-text-搜索"><a href="#exact-value-与-full-text-搜索" class="headerlink" title="exact value 与 full text 搜索"></a>exact value 与 full text 搜索</h4><h5 id="1-exact-value"><a href="#1-exact-value" class="headerlink" title="1. exact value"></a>1. exact value</h5><p>eg: </p>
-<p>录入: 2017-01-01，采用exact value，搜索的时候，必须输入2017-01-01，才能搜索出来<br>如果你输入一个01，是搜索不出来的; 也就是说  搜索的文字 必须与录入的一模一样才能搜索出来</p>
-<h5 id="2-full-text-可以泛泛理解为全文检索"><a href="#2-full-text-可以泛泛理解为全文检索" class="headerlink" title="2. full text (可以泛泛理解为全文检索)"></a>2. full text (可以泛泛理解为全文检索)</h5><p>（1）缩写 vs. 全程：cn vs. china<br>（2）格式转化：like liked likes<br>（3）大小写：Tom vs tom<br>（4）同义词：like vs love</p>
-<p>eg:</p>
-<p>录入: 2017-01-01，es 可以将其拆分为 2017, 01, 01，搜索2017，或者01，都可以搜索出来<br>china，搜索cn，也可以将china搜索出来<br>likes，搜索like，也可以将likes搜索出来<br>Tom，搜索tom，也可以将Tom搜索出来<br>like，搜索love，同义词，也可以将like搜索出来</p>
-<p>就不是说单纯的只是匹配完整的一个值，而是可以对值进行拆分词语后（分词）进行匹配，也可以通过缩写、时态、大小写、同义词等进行匹配</p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分词器的内部组成与内置分词器</title>
-    <url>/2020/ck91i43mt003lssta0juf2tt1/</url>
+    <url>/2020/ck91iwbzb003it8tahfsgddnr/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="分词器的内部组成与内置分词器"><a href="#分词器的内部组成与内置分词器" class="headerlink" title="分词器的内部组成与内置分词器"></a>分词器的内部组成与内置分词器</h4><h5 id="1-分词器"><a href="#1-分词器" class="headerlink" title="1. 分词器"></a>1. 分词器</h5><p>切分词语，normalization（提升recall召回率）</p>
 <p>给出一个句子，然后将这段句子拆分成一个一个的单个的单词，同时对每个单词进行normalization（时态转换，单复数转换），分词器<br>recall(召回率)：搜索的时候，增加能够搜索到的结果的数量</p>
 <p>character filter：</p>
@@ -1997,35 +1997,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>mapping复杂数据类型以及object类型数据底层结构</title>
-    <url>/2020/ck91i43mv003ossta8esv5evq/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="mapping复杂数据类型以及object类型数据底层结构"><a href="#mapping复杂数据类型以及object类型数据底层结构" class="headerlink" title="mapping复杂数据类型以及object类型数据底层结构"></a>mapping复杂数据类型以及object类型数据底层结构</h4><p>课程大纲</p>
-<h5 id="1、multivalue-field"><a href="#1、multivalue-field" class="headerlink" title="1、multivalue field"></a>1、multivalue field</h5><p>{ “tags”: [ “tag1”, “tag2” ]}</p>
-<p>建立索引时与string是一样的，数据类型不能混 即 tags中对应的数组的类型是一样的</p>
-<h5 id="2、empty-field"><a href="#2、empty-field" class="headerlink" title="2、empty field"></a>2、empty field</h5><p>null，[]，[null]</p>
-<p>对于空串的处理</p>
-<h5 id="3、object-field"><a href="#3、object-field" class="headerlink" title="3、object field"></a>3、object field</h5><p>PUT /company/employee/1<br>{<br>  “address”: {<br>​    “country”: “china”,<br>​    “province”: “guangdong”,<br>​    “city”: “guangzhou”<br>  },<br>  “name”: “jack”,<br>  “age”: 27,<br>  “join_date”: “2017-01-01”<br>}</p>
-<p>address：object类型</p>
-<p>{<br>  “company”: {<br>​    “mappings”: {<br>​      “employee”: {<br>​        “properties”: {<br>​          “address”: {<br>​            “properties”: {<br>​              “city”: {<br>​                “type”: “text”,<br>​                “fields”: {<br>​                  “keyword”: {<br>​                    “type”: “keyword”,<br>​                    “ignore_above”: 256<br>​                  }<br>​                }<br>​              },<br>​              “country”: {<br>​                “type”: “text”,<br>​                “fields”: {<br>​                  “keyword”: {<br>​                    “type”: “keyword”,<br>​                    “ignore_above”: 256<br>​                  }<br>​                }<br>​              },<br>​              “province”: {<br>​                “type”: “text”,<br>​                “fields”: {<br>​                  “keyword”: {<br>​                    “type”: “keyword”,<br>​                    “ignore_above”: 256<br>​                  }<br>​                }<br>​              }<br>​            }<br>​          },<br>​          “age”: {<br>​            “type”: “long”<br>​          },<br>​          “join_date”: {<br>​            “type”: “date”<br>​          },<br>​          “name”: {<br>​            “type”: “text”,<br>​            “fields”: {<br>​              “keyword”: {<br>​                “type”: “keyword”,<br>​                “ignore_above”: 256<br>​              }<br>​            }<br>​          }<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
-<p>对于这样的数据类型</p>
-<p>{<br>  “address”: {<br>​    “country”: “china”,<br>​    “province”: “guangdong”,<br>​    “city”: “guangzhou”<br>  },<br>  “name”: “jack”,<br>  “age”: 27,<br>  “join_date”: “2017-01-01”<br>}</p>
-<p>在es 中会转换成这样的存储方式</p>
-<p>{<br>​    “name”:            [jack],<br>​    “age”:          [27],<br>​    “join_date”:      [2017-01-01],<br>​    “address.country”:         [china],<br>​    “address.province”:   [guangdong],<br>​    “address.city”:  [guangzhou]<br>}</p>
-<p>包含多个对象的数据类型</p>
-<p>{<br>​    “authors”: [<br>​        { “age”: 26, “name”: “Jack White”},<br>​        { “age”: 55, “name”: “Tom Jones”},<br>​        { “age”: 39, “name”: “Kitty Smith”}<br>​    ]<br>}</p>
-<p>在ES中会从 行式  存储转为 列式 存储</p>
-<p>{<br>​    “authors.age”:    [26, 55, 39],<br>​    “authors.name”:   [jack, white, tom, jones, kitty, smith]<br>}</p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>query string的分词以及mapping引入案例遗留问题</title>
-    <url>/2020/ck91i43mw003ssstach60429s/</url>
+    <url>/2020/ck91iwbzc003lt8ta1dto2y7v/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="query-string的分词以及mapping引入案例遗留问题"><a href="#query-string的分词以及mapping引入案例遗留问题" class="headerlink" title="query string的分词以及mapping引入案例遗留问题"></a>query string的分词以及mapping引入案例遗留问题</h4><h6 id="1、query-string分词"><a href="#1、query-string分词" class="headerlink" title="1、query string分词"></a>1、query string分词</h6><p>query string必须以和index建立时相同的analyzer进行分词<br>query string对exact value和full text的区别对待</p>
 <p>date：exact value<br>_all：full text</p>
 <p>比如我们有一个document，其中有一个field，包含的value是：hello you and me，建立倒排索引<br>我们要搜索这个document对应的index，搜索文本是hell me，这个搜索文本就是query string<br>query string，默认情况下，es会使用它对应的field建立倒排索引时相同的分词器去进行分词和normalization，只有这样，才能实现正确的搜索</p>
@@ -2116,8 +2089,35 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>mapping复杂数据类型以及object类型数据底层结构</title>
+    <url>/2020/ck91iwbzd003pt8ta67l2dg8k/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="mapping复杂数据类型以及object类型数据底层结构"><a href="#mapping复杂数据类型以及object类型数据底层结构" class="headerlink" title="mapping复杂数据类型以及object类型数据底层结构"></a>mapping复杂数据类型以及object类型数据底层结构</h4><p>课程大纲</p>
+<h5 id="1、multivalue-field"><a href="#1、multivalue-field" class="headerlink" title="1、multivalue field"></a>1、multivalue field</h5><p>{ “tags”: [ “tag1”, “tag2” ]}</p>
+<p>建立索引时与string是一样的，数据类型不能混 即 tags中对应的数组的类型是一样的</p>
+<h5 id="2、empty-field"><a href="#2、empty-field" class="headerlink" title="2、empty field"></a>2、empty field</h5><p>null，[]，[null]</p>
+<p>对于空串的处理</p>
+<h5 id="3、object-field"><a href="#3、object-field" class="headerlink" title="3、object field"></a>3、object field</h5><p>PUT /company/employee/1<br>{<br>  “address”: {<br>​    “country”: “china”,<br>​    “province”: “guangdong”,<br>​    “city”: “guangzhou”<br>  },<br>  “name”: “jack”,<br>  “age”: 27,<br>  “join_date”: “2017-01-01”<br>}</p>
+<p>address：object类型</p>
+<p>{<br>  “company”: {<br>​    “mappings”: {<br>​      “employee”: {<br>​        “properties”: {<br>​          “address”: {<br>​            “properties”: {<br>​              “city”: {<br>​                “type”: “text”,<br>​                “fields”: {<br>​                  “keyword”: {<br>​                    “type”: “keyword”,<br>​                    “ignore_above”: 256<br>​                  }<br>​                }<br>​              },<br>​              “country”: {<br>​                “type”: “text”,<br>​                “fields”: {<br>​                  “keyword”: {<br>​                    “type”: “keyword”,<br>​                    “ignore_above”: 256<br>​                  }<br>​                }<br>​              },<br>​              “province”: {<br>​                “type”: “text”,<br>​                “fields”: {<br>​                  “keyword”: {<br>​                    “type”: “keyword”,<br>​                    “ignore_above”: 256<br>​                  }<br>​                }<br>​              }<br>​            }<br>​          },<br>​          “age”: {<br>​            “type”: “long”<br>​          },<br>​          “join_date”: {<br>​            “type”: “date”<br>​          },<br>​          “name”: {<br>​            “type”: “text”,<br>​            “fields”: {<br>​              “keyword”: {<br>​                “type”: “keyword”,<br>​                “ignore_above”: 256<br>​              }<br>​            }<br>​          }<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
+<p>对于这样的数据类型</p>
+<p>{<br>  “address”: {<br>​    “country”: “china”,<br>​    “province”: “guangdong”,<br>​    “city”: “guangzhou”<br>  },<br>  “name”: “jack”,<br>  “age”: 27,<br>  “join_date”: “2017-01-01”<br>}</p>
+<p>在es 中会转换成这样的存储方式</p>
+<p>{<br>​    “name”:            [jack],<br>​    “age”:          [27],<br>​    “join_date”:      [2017-01-01],<br>​    “address.country”:         [china],<br>​    “address.province”:   [guangdong],<br>​    “address.city”:  [guangzhou]<br>}</p>
+<p>包含多个对象的数据类型</p>
+<p>{<br>​    “authors”: [<br>​        { “age”: 26, “name”: “Jack White”},<br>​        { “age”: 55, “name”: “Tom Jones”},<br>​        { “age”: 39, “name”: “Kitty Smith”}<br>​    ]<br>}</p>
+<p>在ES中会从 行式  存储转为 列式 存储</p>
+<p>{<br>​    “authors.age”:    [26, 55, 39],<br>​    “authors.name”:   [jack, white, tom, jones, kitty, smith]<br>}</p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mapping的透彻理解</title>
-    <url>/2020/ck91i43mx003vssta1m15flfy/</url>
+    <url>/2020/ck91iwbzf003st8tabox3ga6a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="mapping的透彻理解"><a href="#mapping的透彻理解" class="headerlink" title="mapping的透彻理解"></a>mapping的透彻理解</h5><p>（1）往es里面直接插入数据，es会自动建立索引，同时建立type以及对应的mapping<br>（2）mapping中就自动定义了每个field的数据类型<br>（3）不同的数据类型（比如说text和date），可能有的是exact value，也可能有的是full text<br>（4）exact value，在建立倒排索引，分词 的时候，是将整个值一起作为一个关键词建立到倒排索引中的；</p>
 <p>​         full text，会经历各种各样的处理，分词，normaliztion（时态转换，同义词转换，大小写转换），才会建立到倒排索引中<br>（5）同时呢，exact value和full text类型的field就决定了，在一个搜索过来的时候，对exact value field或者是full text field进行搜索的行为也是不一样的，会跟建立倒排索引的行为保持一致；</p>
 <p>​       比如说exact value搜索的时候，就是直接按照整个值进行匹配，full text query string，也会进行分词和normalization再去倒排索引中去搜索<br>（6）可以用es的dynamic mapping，让其自动建立mapping，包括自动设置数据类型；也可以提前手动创建index和type的mapping，自己对各个field进行设置，包括数据类型，包括索引行为，包括分词器，等等</p>
@@ -2132,7 +2132,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>mapping的核心数据类型以及dynamic mapping</title>
-    <url>/2020/ck91i43mx003ysstabyn0ak64/</url>
+    <url>/2020/ck91iwbzg003wt8tacuu24zn6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="mapping的核心数据类型以及dynamic-mapping"><a href="#mapping的核心数据类型以及dynamic-mapping" class="headerlink" title="mapping的核心数据类型以及dynamic mapping"></a>mapping的核心数据类型以及dynamic mapping</h5><h6 id="1、核心的数据类型"><a href="#1、核心的数据类型" class="headerlink" title="1、核心的数据类型"></a>1、核心的数据类型</h6><p>string<br>byte，short，integer，long<br>float，double<br>boolean<br>date</p>
 <h6 id="2、dynamic-mapping"><a href="#2、dynamic-mapping" class="headerlink" title="2、dynamic mapping"></a>2、dynamic mapping</h6><p>动态映射</p>
 <p>true or false    –&gt;    boolean<br>123        –&gt;    long<br>123.45        –&gt;    double<br>2017-01-01    –&gt;    date<br>“hello world”    –&gt;    string/text</p>
@@ -2147,7 +2147,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>手动建立和修改mapping以及定制string类型数据是否分词</title>
-    <url>/2020/ck91i43my0041sstag67c46he/</url>
+    <url>/2020/ck91iwbzh003zt8ta9hkz4cg3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="手动建立和修改mapping以及定制string类型数据是否分词"><a href="#手动建立和修改mapping以及定制string类型数据是否分词" class="headerlink" title="手动建立和修改mapping以及定制string类型数据是否分词"></a>手动建立和修改mapping以及定制string类型数据是否分词</h5><h6 id="1、如何建立索引"><a href="#1、如何建立索引" class="headerlink" title="1、如何建立索引"></a>1、如何建立索引</h6><p>analyzed             分词<br>not_analyzed     不分词<br>no                       不被索引搜索</p>
 <h6 id="2、修改mapping"><a href="#2、修改mapping" class="headerlink" title="2、修改mapping"></a>2、修改mapping</h6><p>只能创建index时手动建立mapping，或者新增field mapping，但是不能update field mapping</p>
 <p>PUT /website<br>{<br>  “mappings”: {<br>​    “article”: {<br>​      “properties”: {<br>​        “author_id”: {<br>​          “type”: “long”<br>​        },<br>​        “title”: {<br>​          “type”: “text”,<br>​          “analyzer”: “english”<br>​        },<br>​        “content”: {<br>​          “type”: “text”<br>​        },<br>​        “post_date”: {<br>​          “type”: “date”<br>​        },<br>​        “publisher_id”: {<br>​          “type”: “text”,<br>​          “index”: “not_analyzed”<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
@@ -2166,27 +2166,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>search api的基础语法</title>
-    <url>/2020/ck91i43mz0044ssta8m6z4f22/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="search-api的基础语法"><a href="#search-api的基础语法" class="headerlink" title="search api的基础语法"></a>search api的基础语法</h5><h6 id="1、search-api的基本语法"><a href="#1、search-api的基本语法" class="headerlink" title="1、search api的基本语法"></a>1、search api的基本语法</h6><p>GET /_search<br>{}</p>
-<p>GET /index1,index2/type1,type2/search<br>{}</p>
-<p>GET /_search<br>{<br>  “from”: 0,<br>  “size”: 10<br>}</p>
-<h6 id="2、http协议中get是否可以带上request-body"><a href="#2、http协议中get是否可以带上request-body" class="headerlink" title="2、http协议中get是否可以带上request body"></a>2、http协议中get是否可以带上request body</h6><p>HTTP协议，一般不允许get请求带上request body，但是因为get更加适合描述查询数据的操作，因此还是这么用了</p>
-<p>GET /_search?from=0&amp;size=10</p>
-<p>碰巧，很多浏览器，或者是服务器，也都支持GET+request body模式</p>
-<p>如果遇到不支持的场景，也可以用POST /_search</p>
-<p>POST /_search<br>{<br>  “from”:0,<br>  “size”:10<br>}</p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mapping复杂数据类型以及object类型数据底层结构</title>
-    <url>/2020/ck91i43n00047ssta6tw0gvi3/</url>
+    <url>/2020/ck91iwbzi0043t8ta7kzf91rs/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="mapping复杂数据类型以及object类型数据底层结构"><a href="#mapping复杂数据类型以及object类型数据底层结构" class="headerlink" title="mapping复杂数据类型以及object类型数据底层结构"></a>mapping复杂数据类型以及object类型数据底层结构</h5><h6 id="1、multivalue-field"><a href="#1、multivalue-field" class="headerlink" title="1、multivalue field"></a>1、multivalue field</h6><p>{ “tags”: [ “tag1”, “tag2” ]}</p>
 <p>建立索引时与string是一样的，数据类型不能混</p>
 <h6 id="2-empty-field"><a href="#2-empty-field" class="headerlink" title="2. empty field"></a>2. empty field</h6><p>null，[]，[null]</p>
@@ -2209,8 +2190,27 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>search api的基础语法</title>
+    <url>/2020/ck91iwbzj0046t8ta4sew2dgy/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="search-api的基础语法"><a href="#search-api的基础语法" class="headerlink" title="search api的基础语法"></a>search api的基础语法</h5><h6 id="1、search-api的基本语法"><a href="#1、search-api的基本语法" class="headerlink" title="1、search api的基本语法"></a>1、search api的基本语法</h6><p>GET /_search<br>{}</p>
+<p>GET /index1,index2/type1,type2/search<br>{}</p>
+<p>GET /_search<br>{<br>  “from”: 0,<br>  “size”: 10<br>}</p>
+<h6 id="2、http协议中get是否可以带上request-body"><a href="#2、http协议中get是否可以带上request-body" class="headerlink" title="2、http协议中get是否可以带上request body"></a>2、http协议中get是否可以带上request body</h6><p>HTTP协议，一般不允许get请求带上request body，但是因为get更加适合描述查询数据的操作，因此还是这么用了</p>
+<p>GET /_search?from=0&amp;size=10</p>
+<p>碰巧，很多浏览器，或者是服务器，也都支持GET+request body模式</p>
+<p>如果遇到不支持的场景，也可以用POST /_search</p>
+<p>POST /_search<br>{<br>  “from”:0,<br>  “size”:10<br>}</p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Query DSL搜索语法</title>
-    <url>/2020/ck91i43n0004asstace9wdyzr/</url>
+    <url>/2020/ck91iwbzk004at8taaefu5hz7/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="Query-DSL搜索语法"><a href="#Query-DSL搜索语法" class="headerlink" title="Query DSL搜索语法"></a>Query DSL搜索语法</h5><p>ES中有两种搜索语法: 1. Query String  (GET /index/type/?name=??)</p>
 <h6 id="1、一个例子让你明白什么是Query-DSL"><a href="#1、一个例子让你明白什么是Query-DSL" class="headerlink" title="1、一个例子让你明白什么是Query DSL"></a>1、一个例子让你明白什么是Query DSL</h6><p>GET /_search<br>{<br>​    “query”: {<br>​        “match_all”: {}<br>​    }<br>}</p>
 <h6 id="2、Query-DSL的基本语法"><a href="#2、Query-DSL的基本语法" class="headerlink" title="2、Query DSL的基本语法"></a>2、Query DSL的基本语法</h6><p>{<br>​    QUERY_NAME: {<br>​        ARGUMENT: VALUE,<br>​        ARGUMENT: VALUE,…<br>​    }<br>}</p>
@@ -2232,7 +2232,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>filter与query深入对比解密：相关度，性能</title>
-    <url>/2020/ck91i43n1004dsstaede895fc/</url>
+    <url>/2020/ck91iwbzl004dt8tahm5yayj7/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="filter与query深入对比解密：相关度，性能"><a href="#filter与query深入对比解密：相关度，性能" class="headerlink" title="filter与query深入对比解密：相关度，性能"></a>filter与query深入对比解密：相关度，性能</h4><h5 id="1、filter与query示例"><a href="#1、filter与query示例" class="headerlink" title="1、filter与query示例"></a>1、filter与query示例</h5><p>构建数据:</p>
 <p>PUT /company/employee/2<br>{<br>  “address”: {<br>​    “country”: “china”,<br>​    “province”: “jiangsu”,<br>​    “city”: “nanjing”<br>  },<br>  “name”: “tom”,<br>  “age”: 30,<br>  “join_date”: “2016-01-01”<br>}</p>
 <p>PUT /company/employee/3<br>{<br>  “address”: {<br>​    “country”: “china”,<br>​    “province”: “shanxi”,<br>​    “city”: “xian”<br>  },<br>  “name”: “marry”,<br>  “age”: 35,<br>  “join_date”: “2015-01-01”<br>}</p>
@@ -2251,7 +2251,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>各种query搜索语法</title>
-    <url>/2020/ck91i43n2004gsstabbse55wc/</url>
+    <url>/2020/ck91iwbzn004gt8ta19rrf70j/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="各种query搜索语法"><a href="#各种query搜索语法" class="headerlink" title="各种query搜索语法"></a>各种query搜索语法</h5><h6 id="1、match-all"><a href="#1、match-all" class="headerlink" title="1、match all"></a>1、match all</h6><p>GET /_search<br>{<br>​    “query”: {<br>​        “match_all”: {}<br>​    }<br>}</p>
 <h6 id="2、match-会对查询的条件进行分词-然后再进行查询"><a href="#2、match-会对查询的条件进行分词-然后再进行查询" class="headerlink" title="2、match (会对查询的条件进行分词,然后再进行查询)"></a>2、match (会对查询的条件进行分词,然后再进行查询)</h6><p>GET /_search<br>{<br>​    “query”: { “match”: { “title”: “my elasticsearch article” }}<br>}</p>
 <h6 id="3、multi-match"><a href="#3、multi-match" class="headerlink" title="3、multi match"></a>3、multi match</h6><p>GET /test_index/test_type/_search<br>{<br>  “query”: {<br>​    “multi_match”: {<br>​      “query”: “test”,<br>​      “fields”: [“test_field”, “test_field1”]<br>​    }<br>  }<br>}</p>
@@ -2267,8 +2267,24 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>多搜索条件组合查询</title>
+    <url>/2020/ck91iwbzn004jt8tadvzt0m2u/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="多搜索条件组合查询"><a href="#多搜索条件组合查询" class="headerlink" title="多搜索条件组合查询"></a>多搜索条件组合查询</h5><p>GET /website/article/_search<br>{<br>  “query”: {<br>​    “bool”: {<br>​      “must”: [<br>​        {<br>​          “match”: {<br>​            “title”: “elasticsearch”<br>​          }<br>​        }<br>​      ],<br>​      “should”: [<br>​        {<br>​          “match”: {<br>​            “content”: “elasticsearch”<br>​          }<br>​        }<br>​      ],<br>​      “must_not”: [<br>​        {<br>​          “match”: {<br>​            “author_id”: 111<br>​          }<br>​        }<br>​      ]<br>​    }<br>  }<br>}</p>
+<p>{<br>​    “bool”: {<br>​        “must”:     { “match”: { “title”: “how to make millions” }},<br>​        “must_not”: { “match”: { “tag”:   “spam” }},<br>​        “should”: [<br>​            { “match”: { “tag”: “starred” }}<br>​        ],<br>​        “filter”: {<br>​          “range”: { “date”: { “gte”: “2014-01-01” }}<br>​        }<br>​    }<br>}</p>
+<p>bool 关键字底下可以方 以下字段:<br>must，must_not，should，filter</p>
+<h6 id="每个子查询都会计算一个document针对它的相关度分数，然后bool综合所有分数，合并为一个分数，当然filter是不会计算分数的"><a href="#每个子查询都会计算一个document针对它的相关度分数，然后bool综合所有分数，合并为一个分数，当然filter是不会计算分数的" class="headerlink" title="每个子查询都会计算一个document针对它的相关度分数，然后bool综合所有分数，合并为一个分数，当然filter是不会计算分数的"></a>每个子查询都会计算一个document针对它的相关度分数，然后bool综合所有分数，合并为一个分数，当然filter是不会计算分数的</h6><p>{<br>​    “bool”: {<br>​        “must”:     { “match”: { “title”: “how to make millions” }},<br>​        “must_not”: { “match”: { “tag”:   “spam” }},<br>​        “should”: [<br>​            { “match”: { “tag”: “starred” }}<br>​        ],<br>​        “filter”: {<br>​          “bool”: {<br>​              “must”: [<br>​                  { “range”: { “date”: { “gte”: “2014-01-01” }}},<br>​                  { “range”: { “price”: { “lte”: 29.99 }}}<br>​              ],<br>​              “must_not”: [<br>​                  { “term”: { “category”: “ebooks” }}<br>​              ]<br>​          }<br>​        }<br>​    }<br>}</p>
+<h6 id="如果只用filter进行查询-需要加一个-constant-score-进行单纯的过滤"><a href="#如果只用filter进行查询-需要加一个-constant-score-进行单纯的过滤" class="headerlink" title="如果只用filter进行查询 ,需要加一个 constant_score 进行单纯的过滤"></a>如果只用filter进行查询 ,需要加一个 constant_score 进行单纯的过滤</h6><p>GET /company/employee/_search<br>{<br>  “query”: {<br>​    “constant_score”: {<br>​      “filter”: {<br>​        “range”: {<br>​          “age”: {<br>​            “gte”: 30<br>​          }<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何定位不合法的搜索以及其原因</title>
-    <url>/2020/ck91i43n3004jssta7l2n349c/</url>
+    <url>/2020/ck91iwbzo004mt8taaw6nhuog/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="如何定位不合法的搜索以及其原因"><a href="#如何定位不合法的搜索以及其原因" class="headerlink" title="如何定位不合法的搜索以及其原因"></a>如何定位不合法的搜索以及其原因</h5><h6 id="1-eg-反例"><a href="#1-eg-反例" class="headerlink" title="1 .eg 反例"></a>1 .eg 反例</h6><p>GET /test_index/test_type/_validate/query?explain<br>{<br>  “query”: {<br>​    “math”: {<br>​      “test_field”: “test”<br>​    }<br>  }<br>}</p>
 <p>提示的错误信息:</p>
 <p>{<br>  “valid”: false,<br>  “error”: “org.elasticsearch.common.ParsingException: no [query] registered for [math]”<br>}</p>
@@ -2286,7 +2302,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>如何定制搜索结果的排序规则</title>
-    <url>/2020/ck91i43n4004mssta8meo8429/</url>
+    <url>/2020/ck91iwbzp004pt8tae22j019e/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="如何定制搜索结果的排序规则"><a href="#如何定制搜索结果的排序规则" class="headerlink" title="如何定制搜索结果的排序规则"></a>如何定制搜索结果的排序规则</h5><h6 id="1、默认排序规则"><a href="#1、默认排序规则" class="headerlink" title="1、默认排序规则"></a>1、默认排序规则</h6><p>默认情况下，是按照_score降序排序的</p>
 <p>然而，某些情况下，可能没有有用到_score，比如说filter</p>
 <p>GET /_search<br>{<br>​    “query” : {<br>​        “bool” : {<br>​            “filter” : {<br>​                “term” : {<br>​                    “author_id” : 1<br>​                }<br>​            }<br>​        }<br>​    }<br>}</p>
@@ -2303,7 +2319,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>如何定制搜索结果的排序规则</title>
-    <url>/2020/ck91i43n5004pssta7mrh8zbi/</url>
+    <url>/2020/ck91iwbzq004st8tacnry0v1j/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="如何将一个field索引两次来解决字符串排序问题"><a href="#如何将一个field索引两次来解决字符串排序问题" class="headerlink" title="如何将一个field索引两次来解决字符串排序问题"></a>如何将一个field索引两次来解决字符串排序问题</h5><p>如果对一个string field进行排序，结果往往不准确，因为分词后是多个单词，再排序就不是我们想要的结果了</p>
 <p>通常解决方案是，将一个string field建立两次索引，一个分词，用来进行搜索；一个不分词，用来进行排序</p>
 <h6 id="1-设置索引类型"><a href="#1-设置索引类型" class="headerlink" title="1.设置索引类型"></a>1.设置索引类型</h6><p>PUT /website<br>{<br>  “mappings”: {<br>​    “article”: {<br>​      “properties”: {<br>​        “title”: {<br>​          “type”: “text”,<br>​          “fields”: {<br>​            “raw”: {// 一般会用raw来表示<br>​              “type”: “string”,<br>​              “index”: “not_analyzed”<br>​            }<br>​          },<br>​          “fielddata”: true // 涉及正排索引<br>​        },<br>​        “content”: {<br>​          “type”: “text”<br>​        },<br>​        “post_date”: {<br>​          “type”: “date”<br>​        },<br>​        “author_id”: {<br>​          “type”: “long”<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
@@ -2320,24 +2336,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>多搜索条件组合查询</title>
-    <url>/2020/ck91i43n5004sssta4eoqcki6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="多搜索条件组合查询"><a href="#多搜索条件组合查询" class="headerlink" title="多搜索条件组合查询"></a>多搜索条件组合查询</h5><p>GET /website/article/_search<br>{<br>  “query”: {<br>​    “bool”: {<br>​      “must”: [<br>​        {<br>​          “match”: {<br>​            “title”: “elasticsearch”<br>​          }<br>​        }<br>​      ],<br>​      “should”: [<br>​        {<br>​          “match”: {<br>​            “content”: “elasticsearch”<br>​          }<br>​        }<br>​      ],<br>​      “must_not”: [<br>​        {<br>​          “match”: {<br>​            “author_id”: 111<br>​          }<br>​        }<br>​      ]<br>​    }<br>  }<br>}</p>
-<p>{<br>​    “bool”: {<br>​        “must”:     { “match”: { “title”: “how to make millions” }},<br>​        “must_not”: { “match”: { “tag”:   “spam” }},<br>​        “should”: [<br>​            { “match”: { “tag”: “starred” }}<br>​        ],<br>​        “filter”: {<br>​          “range”: { “date”: { “gte”: “2014-01-01” }}<br>​        }<br>​    }<br>}</p>
-<p>bool 关键字底下可以方 以下字段:<br>must，must_not，should，filter</p>
-<h6 id="每个子查询都会计算一个document针对它的相关度分数，然后bool综合所有分数，合并为一个分数，当然filter是不会计算分数的"><a href="#每个子查询都会计算一个document针对它的相关度分数，然后bool综合所有分数，合并为一个分数，当然filter是不会计算分数的" class="headerlink" title="每个子查询都会计算一个document针对它的相关度分数，然后bool综合所有分数，合并为一个分数，当然filter是不会计算分数的"></a>每个子查询都会计算一个document针对它的相关度分数，然后bool综合所有分数，合并为一个分数，当然filter是不会计算分数的</h6><p>{<br>​    “bool”: {<br>​        “must”:     { “match”: { “title”: “how to make millions” }},<br>​        “must_not”: { “match”: { “tag”:   “spam” }},<br>​        “should”: [<br>​            { “match”: { “tag”: “starred” }}<br>​        ],<br>​        “filter”: {<br>​          “bool”: {<br>​              “must”: [<br>​                  { “range”: { “date”: { “gte”: “2014-01-01” }}},<br>​                  { “range”: { “price”: { “lte”: 29.99 }}}<br>​              ],<br>​              “must_not”: [<br>​                  { “term”: { “category”: “ebooks” }}<br>​              ]<br>​          }<br>​        }<br>​    }<br>}</p>
-<h6 id="如果只用filter进行查询-需要加一个-constant-score-进行单纯的过滤"><a href="#如果只用filter进行查询-需要加一个-constant-score-进行单纯的过滤" class="headerlink" title="如果只用filter进行查询 ,需要加一个 constant_score 进行单纯的过滤"></a>如果只用filter进行查询 ,需要加一个 constant_score 进行单纯的过滤</h6><p>GET /company/employee/_search<br>{<br>  “query”: {<br>​    “constant_score”: {<br>​      “filter”: {<br>​        “range”: {<br>​          “age”: {<br>​            “gte”: 30<br>​          }<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>内核级知识点之doc value 简介</title>
-    <url>/2020/ck91i43n6004vssta21rqckw1/</url>
+    <url>/2020/ck91iwbzs004vt8tafaxcczps/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="内核级知识点之doc-value-简介"><a href="#内核级知识点之doc-value-简介" class="headerlink" title="内核级知识点之doc value 简介"></a>内核级知识点之doc value 简介</h4><h5 id="1-doc-values-简介"><a href="#1-doc-values-简介" class="headerlink" title="1. doc values 简介"></a>1. doc values 简介</h5><p>搜索的时候，要依靠倒排索引；排序的时候，需要依靠正排索引，看到每个document的每个field，然后进行排序，所谓的正排索引，其实就是doc values</p>
 <p>在建立索引的时候，一方面会建立倒排索引，以供搜索用；一方面会建立正排索引，也就是doc values，以供排序，聚合，过滤等操作使用</p>
 <p>doc values是被保存在磁盘上的，此时如果内存足够，os会自动将其缓存在内存中，性能还是会很高；如果内存不足够，os会将其写入磁盘上</p>
@@ -2427,7 +2427,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>分布式搜索引擎内核解密之query phase</title>
-    <url>/2020/ck91i43n7004ysstaakpa6kze/</url>
+    <url>/2020/ck91iwbzt004yt8ta87sc8s66/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="分布式搜索引擎内核解密之query-phase"><a href="#分布式搜索引擎内核解密之query-phase" class="headerlink" title="分布式搜索引擎内核解密之query phase"></a>分布式搜索引擎内核解密之query phase</h5><h6 id="1、query-phase"><a href="#1、query-phase" class="headerlink" title="1、query phase"></a>1、query phase</h6><p>（1）搜索请求发送到某一个coordinate node，构构建一个priority queue(优先队列)，长度以paging操作from和size为准，默认为10<br>（2）coordinate node将请求转发到所有shard，每个shard本地搜索，并构建一个本地的priority queue<br>（3）各个shard将自己的priority queue返回给coordinate node，并构建一个全局的priority queue</p>
 <h6 id="2、replica-shard如何提升搜索吞吐量"><a href="#2、replica-shard如何提升搜索吞吐量" class="headerlink" title="2、replica shard如何提升搜索吞吐量"></a>2、replica shard如何提升搜索吞吐量</h6><p>一次请求要打到所有shard的一个replica/primary  shard 上去，如果每个shard都有多个replica，那么同时并发过来的搜索请求可以同时打到其他的replica上去</p>
 <p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/work_order/OxDk3eRjCvc.png" alt="query phase"></p>
@@ -2441,7 +2441,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>分布式搜索引擎内核解密之query phase</title>
-    <url>/2020/ck91i43n80051ssta00q7e9av/</url>
+    <url>/2020/ck91iwbzu0051t8tad2goe1gl/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="分布式搜索引擎内核解密之fetch-phase"><a href="#分布式搜索引擎内核解密之fetch-phase" class="headerlink" title="分布式搜索引擎内核解密之fetch phase"></a>分布式搜索引擎内核解密之fetch phase</h4><h5 id="1、fetch-phbase工作流程"><a href="#1、fetch-phbase工作流程" class="headerlink" title="1、fetch phbase工作流程"></a>1、fetch phbase工作流程</h5><p>（1）coordinate node构建完priority queue之后，就发送mget请求去所有shard上获取对应的document<br>（2）各个shard将document返回给coordinate node<br>（3）coordinate node将合并后的document结果返回给client客户端</p>
 <p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/work_order/_zKICQtJ0iI.png" alt=""></p>
 <h5 id="2、一般搜索，如果不加from和size，就默认搜索前10条，按照-score-相关度分数-排序"><a href="#2、一般搜索，如果不加from和size，就默认搜索前10条，按照-score-相关度分数-排序" class="headerlink" title="2、一般搜索，如果不加from和size，就默认搜索前10条，按照_score(相关度分数)排序"></a>2、一般搜索，如果不加from和size，就默认搜索前10条，按照_score(相关度分数)排序</h5>]]></content>
@@ -2453,8 +2453,25 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>bouncing results问题解决方案</title>
+    <url>/2020/ck91iwbzv0054t8ta6rky82av/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="bouncing-results问题解决方案"><a href="#bouncing-results问题解决方案" class="headerlink" title="bouncing results问题解决方案"></a>bouncing results问题解决方案</h4><h5 id="1、preference"><a href="#1、preference" class="headerlink" title="1、preference"></a>1、preference</h5><p>决定了哪些shard会被用来执行搜索操作</p>
+<p>_primary, _primary_first, _local, _only_node:xyz, _prefer_node:xyz, _shards:2,3</p>
+<p>bouncing results问题，两个document排序，field值相同；不同的shard上，可能排序不同；每次请求轮询打到不同的replica shard上；每次页面上看到的搜索结果的排序都不一样。这就是bouncing result，也就是跳跃的结果。</p>
+<p>搜索的时候，是轮询将搜索请求发送到每一个replica shard（primary shard），但是在不同的shard上，可能document的排序不同</p>
+<p>解决方案就是将preference设置为一个字符串，比如说user_id，让每个user每次搜索的时候，都使用同一个replica shard去执行，就不会看到bouncing results了</p>
+<h5 id="2、timeout-主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长"><a href="#2、timeout-主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长" class="headerlink" title="2、timeout:  主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长"></a>2、timeout:  主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长</h5><h5 id="3、routing，document文档路由，-id路由，routing-user-id，这样的话可以让同一个user对应的数据到一个shard上去"><a href="#3、routing，document文档路由，-id路由，routing-user-id，这样的话可以让同一个user对应的数据到一个shard上去" class="headerlink" title="3、routing，document文档路由，_id路由，routing=user_id，这样的话可以让同一个user对应的数据到一个shard上去"></a>3、routing，document文档路由，_id路由，routing=user_id，这样的话可以让同一个user对应的数据到一个shard上去</h5><h5 id="4、search-type"><a href="#4、search-type" class="headerlink" title="4、search_type"></a>4、search_type</h5><p>default：query_then_fetch<br>dfs_query_then_fetch，可以提升revelance sort精准度</p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>scoll滚动搜索</title>
-    <url>/2020/ck91i43n90054sstad8moef59/</url>
+    <url>/2020/ck91iwbzv0057t8ta0v566d6j/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="scoll滚动搜索"><a href="#scoll滚动搜索" class="headerlink" title="scoll滚动搜索"></a>scoll滚动搜索</h4><p>eg : 如果一次性要查出来比如10万条数据，那么性能会很差，此时一般会采取用scoll滚动查询，一批一批的查，直到所有数据都查询完处理完</p>
 <p>使用scoll滚动搜索，可以先搜索一批数据，然后下次再搜索一批数据，以此类推，直到搜索出全部的数据来<br>scoll搜索会在第一次搜索的时候，保存一个当时的视图快照，之后只会基于该旧的视图快照提供数据搜索，如果这个期间数据变更，是不会让用户看到的<br>采用基于_doc进行排序的方式，性能较高<br>每次发送scroll请求，我们还需要指定一个scoll参数，指定一个时间窗口，每次搜索请求只要在这个时间窗口内能完成就可以了</p>
 <p>GET /test_index/test_type/_search?scroll=1m<br>{<br>  “query”: {<br>​    “match_all”: {}<br>  },<br>  “sort”: [ “_doc” ],<br>  “size”: 3<br>}</p>
@@ -2473,14 +2490,16 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>bouncing results问题解决方案</title>
-    <url>/2020/ck91i43nb0057ssta39gnaec1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="bouncing-results问题解决方案"><a href="#bouncing-results问题解决方案" class="headerlink" title="bouncing results问题解决方案"></a>bouncing results问题解决方案</h4><h5 id="1、preference"><a href="#1、preference" class="headerlink" title="1、preference"></a>1、preference</h5><p>决定了哪些shard会被用来执行搜索操作</p>
-<p>_primary, _primary_first, _local, _only_node:xyz, _prefer_node:xyz, _shards:2,3</p>
-<p>bouncing results问题，两个document排序，field值相同；不同的shard上，可能排序不同；每次请求轮询打到不同的replica shard上；每次页面上看到的搜索结果的排序都不一样。这就是bouncing result，也就是跳跃的结果。</p>
-<p>搜索的时候，是轮询将搜索请求发送到每一个replica shard（primary shard），但是在不同的shard上，可能document的排序不同</p>
-<p>解决方案就是将preference设置为一个字符串，比如说user_id，让每个user每次搜索的时候，都使用同一个replica shard去执行，就不会看到bouncing results了</p>
-<h5 id="2、timeout-主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长"><a href="#2、timeout-主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长" class="headerlink" title="2、timeout:  主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长"></a>2、timeout:  主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长</h5><h5 id="3、routing，document文档路由，-id路由，routing-user-id，这样的话可以让同一个user对应的数据到一个shard上去"><a href="#3、routing，document文档路由，-id路由，routing-user-id，这样的话可以让同一个user对应的数据到一个shard上去" class="headerlink" title="3、routing，document文档路由，_id路由，routing=user_id，这样的话可以让同一个user对应的数据到一个shard上去"></a>3、routing，document文档路由，_id路由，routing=user_id，这样的话可以让同一个user对应的数据到一个shard上去</h5><h5 id="4、search-type"><a href="#4、search-type" class="headerlink" title="4、search_type"></a>4、search_type</h5><p>default：query_then_fetch<br>dfs_query_then_fetch，可以提升revelance sort精准度</p>
+    <title>创建、修改以及删除索引</title>
+    <url>/2020/ck91iwbzw005at8ta61xj713t/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="创建、修改以及删除索引"><a href="#创建、修改以及删除索引" class="headerlink" title="创建、修改以及删除索引"></a>创建、修改以及删除索引</h4><h5 id="1、创建索引"><a href="#1、创建索引" class="headerlink" title="1、创建索引"></a>1、创建索引</h5><p>创建索引的语法</p>
+<p>PUT /my_index<br>{<br>​    “settings”: { … any settings … },<br>​    “mappings”: {<br>​        “type_one”: { … any mappings … },<br>​        “type_two”: { … any mappings … },<br>​        …<br>​    }<br>}</p>
+<p>创建索引的示例</p>
+<p>PUT /my_index<br>{<br>  “settings”: {<br>​    “number_of_shards”: 1,<br>​    “number_of_replicas”: 0<br>  },<br>  “mappings”: {<br>​    “my_type”: {<br>​      “properties”: {<br>​        “my_field”: {<br>​          “type”: “text”<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
+<h5 id="2、修改索引"><a href="#2、修改索引" class="headerlink" title="2、修改索引"></a>2、修改索引</h5><p>PUT /my_index/_settings<br>{<br>​    “number_of_replicas”: 1<br>}</p>
+<h5 id="3、删除索引"><a href="#3、删除索引" class="headerlink" title="3、删除索引"></a>3、删除索引</h5><p>DELETE /my_index<br>DELETE /index_one,index_two<br>DELETE /index_*<br>DELETE /_all</p>
+<p>可以在elasticsearch.yml中配置<br>action.destructive_requires_name: true  </p>
+<p>禁用DELETE /_all 操作,只能指定操作</p>
 ]]></content>
       <categories>
         <category>Elasticsearch</category>
@@ -2491,7 +2510,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>修改分词器以及自定义分词器</title>
-    <url>/2020/ck91i43nb005assta3zr48oyh/</url>
+    <url>/2020/ck91iwbzx005dt8taf5w57267/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="修改分词器以及自定义分词器"><a href="#修改分词器以及自定义分词器" class="headerlink" title="修改分词器以及自定义分词器"></a>修改分词器以及自定义分词器</h4><h6 id="1、默认的分词器简介"><a href="#1、默认的分词器简介" class="headerlink" title="1、默认的分词器简介"></a>1、默认的分词器简介</h6><p>standard</p>
 <p>standard tokenizer：以单词边界进行切分<br>standard token filter：什么都不做<br>lowercase token filter：将所有字母转换为小写<br>stop token filer（默认被禁用）：移除停用词，比如a the it等等</p>
 <h6 id="2、修改分词器的设置"><a href="#2、修改分词器的设置" class="headerlink" title="2、修改分词器的设置"></a>2、修改分词器的设置</h6><p>启用english停用词token filter</p>
@@ -2511,7 +2530,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>type的底层数据结构</title>
-    <url>/2020/ck91i43nc005dsstaamhmgs6g/</url>
+    <url>/2020/ck91iwbzy005gt8ta6h8j4fvl/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="type的底层数据结构"><a href="#type的底层数据结构" class="headerlink" title="type的底层数据结构"></a>type的底层数据结构</h5><p>type，是一个index中用来区分类似的数据的，但是可能有不同的fields，而且有不同的属性来控制索引建立、分词器<br>field的value，在底层的lucene中建立索引的时候，全部是opaque bytes类型，不区分类型的<br>也就是说lucene是没有type的概念的，在document中，实际上将type作为一个document的field来存储，即_type，es通过_type来进行type的过滤和筛选<br>一个index中的多个type，实际上是放在一起存储的，因此一个index下，不能有多个type重名，而类型或者其他设置不同的，因为那样是无法处理的</p>
 <p>eg: type的数据结构</p>
 <p>{<br>   “ecommerce”: {<br>​      “mappings”: {<br>​         “elactronic_goods”: {<br>​            “properties”: {<br>​               “name”: {<br>​                  “type”: “string”,<br>​               },<br>​               “price”: {<br>​                  “type”: “double”<br>​               },<br>​           “service_period”: {<br>​          “type”: “string”<br>​           }<br>​            }<br>​         },<br>​         “fresh_goods”: {<br>​            “properties”: {<br>​               “name”: {<br>​                  “type”: “string”,<br>​               },<br>​               “price”: {<br>​                  “type”: “double”<br>​               },<br>​           “eat_period”: {<br>​          “type”: “string”<br>​           }<br>​            }<br>​         }<br>​      }<br>   }<br>}</p>
@@ -2532,16 +2551,22 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>创建、修改以及删除索引</title>
-    <url>/2020/ck91i43nd005gssta0ev6534k/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="创建、修改以及删除索引"><a href="#创建、修改以及删除索引" class="headerlink" title="创建、修改以及删除索引"></a>创建、修改以及删除索引</h4><h5 id="1、创建索引"><a href="#1、创建索引" class="headerlink" title="1、创建索引"></a>1、创建索引</h5><p>创建索引的语法</p>
-<p>PUT /my_index<br>{<br>​    “settings”: { … any settings … },<br>​    “mappings”: {<br>​        “type_one”: { … any mappings … },<br>​        “type_two”: { … any mappings … },<br>​        …<br>​    }<br>}</p>
-<p>创建索引的示例</p>
-<p>PUT /my_index<br>{<br>  “settings”: {<br>​    “number_of_shards”: 1,<br>​    “number_of_replicas”: 0<br>  },<br>  “mappings”: {<br>​    “my_type”: {<br>​      “properties”: {<br>​        “my_field”: {<br>​          “type”: “text”<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
-<h5 id="2、修改索引"><a href="#2、修改索引" class="headerlink" title="2、修改索引"></a>2、修改索引</h5><p>PUT /my_index/_settings<br>{<br>​    “number_of_replicas”: 1<br>}</p>
-<h5 id="3、删除索引"><a href="#3、删除索引" class="headerlink" title="3、删除索引"></a>3、删除索引</h5><p>DELETE /my_index<br>DELETE /index_one,index_two<br>DELETE /index_*<br>DELETE /_all</p>
-<p>可以在elasticsearch.yml中配置<br>action.destructive_requires_name: true  </p>
-<p>禁用DELETE /_all 操作,只能指定操作</p>
+    <title>mapping root object深入剖析</title>
+    <url>/2020/ck91iwbzy005jt8ta6clkh3ql/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="mapping-root-object深入剖析"><a href="#mapping-root-object深入剖析" class="headerlink" title="mapping root object深入剖析"></a>mapping root object深入剖析</h4><h6 id="1、root-object"><a href="#1、root-object" class="headerlink" title="1、root object"></a>1、root object</h6><p>就是某个type对应的mapping json，包括了properties，metadata（_id，_source，_type），settings（analyzer），其他settings（比如include_in_all）</p>
+<p>PUT /my_index<br>{<br>  “mappings”: {<br>​    “my_type”: {<br>​      “properties”: {}<br>​    }<br>  }<br>}</p>
+<h6 id="2、properties"><a href="#2、properties" class="headerlink" title="2、properties"></a>2、properties</h6><p>type，index，analyzer</p>
+<p>PUT /my_index/_mapping/my_type<br>{<br>  “properties”: {<br>​    “title”: {<br>​      “type”: “text”<br>​    }<br>  }<br>}</p>
+<h6 id="3、-source"><a href="#3、-source" class="headerlink" title="3、_source"></a>3、_source</h6><p>好处</p>
+<p>（1）查询的时候，直接可以拿到完整的document，不需要先拿document id，再发送一次请求拿document<br>（2）partial update基于_source实现<br>（3）reindex时，直接基于_source实现，不需要从数据库（或者其他外部存储）查询数据再修改<br>（4）可以基于_source定制返回field<br>（5）debug query更容易，因为可以直接看到_source</p>
+<p>如果不需要上述功能，可以禁用_source</p>
+<p>禁用语法:</p>
+<p>PUT /my_index/_mapping/my_type2<br>{<br>  “_source”: {“enabled”: false}<br>}</p>
+<h6 id="4、-all"><a href="#4、-all" class="headerlink" title="4、_all"></a>4、_all</h6><p>将所有field打包在一起，作为一个_all field，建立索引。没指定任何 field 进行搜索时，就是使用_all field在搜索。</p>
+<p>PUT /my_index/_mapping/my_type3<br>{<br>  “_all”: {“enabled”: false}<br>}</p>
+<p>也可以在field级别设置include_in_all field，设置是否要将field的值包含在_all field中</p>
+<p>PUT /my_index/_mapping/my_type4<br>{<br>  “properties”: {<br>​    “my_field”: {<br>​      “type”: “text”,<br>​      “include_in_all”: false<br>​    }<br>  }<br>}</p>
+<h6 id="5、标识性metadata"><a href="#5、标识性metadata" class="headerlink" title="5、标识性metadata"></a>5、标识性metadata</h6><p>_index，_type，_id</p>
 ]]></content>
       <categories>
         <category>Elasticsearch</category>
@@ -2552,7 +2577,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>自定义dynamic mapping策略</title>
-    <url>/2020/ck91i43ne005jssta4904dqcb/</url>
+    <url>/2020/ck91iwbzz005mt8tacxrda735/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="自定义dynamic-mapping策略"><a href="#自定义dynamic-mapping策略" class="headerlink" title="自定义dynamic mapping策略"></a>自定义dynamic mapping策略</h4><h6 id="1、定制dynamic策略"><a href="#1、定制dynamic策略" class="headerlink" title="1、定制dynamic策略"></a>1、定制dynamic策略</h6><p> true：遇到陌生字段，就进行dynamic mapping<br>false：遇到陌生字段，就忽略<br>strict：遇到陌生字段，就报错</p>
 <p>PUT /my_index<br>{<br>  “mappings”: {<br>​    “my_type”: {<br>​      “dynamic”: “strict”,  // 设置属性<br>​      “properties”: {<br>​        “title”: {<br>​          “type”: “text”<br>​        },<br>​        “address”: {<br>​          “type”: “object”,<br>​          “dynamic”: “true”<br>​        }<br>​      }<br>​    }<br>  }<br>}</p>
 <p>设置和类型不同的field 时</p>
@@ -2583,33 +2608,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>mapping root object深入剖析</title>
-    <url>/2020/ck91i43ne005mssta6w6e65qn/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="mapping-root-object深入剖析"><a href="#mapping-root-object深入剖析" class="headerlink" title="mapping root object深入剖析"></a>mapping root object深入剖析</h4><h6 id="1、root-object"><a href="#1、root-object" class="headerlink" title="1、root object"></a>1、root object</h6><p>就是某个type对应的mapping json，包括了properties，metadata（_id，_source，_type），settings（analyzer），其他settings（比如include_in_all）</p>
-<p>PUT /my_index<br>{<br>  “mappings”: {<br>​    “my_type”: {<br>​      “properties”: {}<br>​    }<br>  }<br>}</p>
-<h6 id="2、properties"><a href="#2、properties" class="headerlink" title="2、properties"></a>2、properties</h6><p>type，index，analyzer</p>
-<p>PUT /my_index/_mapping/my_type<br>{<br>  “properties”: {<br>​    “title”: {<br>​      “type”: “text”<br>​    }<br>  }<br>}</p>
-<h6 id="3、-source"><a href="#3、-source" class="headerlink" title="3、_source"></a>3、_source</h6><p>好处</p>
-<p>（1）查询的时候，直接可以拿到完整的document，不需要先拿document id，再发送一次请求拿document<br>（2）partial update基于_source实现<br>（3）reindex时，直接基于_source实现，不需要从数据库（或者其他外部存储）查询数据再修改<br>（4）可以基于_source定制返回field<br>（5）debug query更容易，因为可以直接看到_source</p>
-<p>如果不需要上述功能，可以禁用_source</p>
-<p>禁用语法:</p>
-<p>PUT /my_index/_mapping/my_type2<br>{<br>  “_source”: {“enabled”: false}<br>}</p>
-<h6 id="4、-all"><a href="#4、-all" class="headerlink" title="4、_all"></a>4、_all</h6><p>将所有field打包在一起，作为一个_all field，建立索引。没指定任何 field 进行搜索时，就是使用_all field在搜索。</p>
-<p>PUT /my_index/_mapping/my_type3<br>{<br>  “_all”: {“enabled”: false}<br>}</p>
-<p>也可以在field级别设置include_in_all field，设置是否要将field的值包含在_all field中</p>
-<p>PUT /my_index/_mapping/my_type4<br>{<br>  “properties”: {<br>​    “my_field”: {<br>​      “type”: “text”,<br>​      “include_in_all”: false<br>​    }<br>  }<br>}</p>
-<h6 id="5、标识性metadata"><a href="#5、标识性metadata" class="headerlink" title="5、标识性metadata"></a>5、标识性metadata</h6><p>_index，_type，_id</p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>倒排索引组成结构以及其索引不可变原因</title>
-    <url>/2020/ck91i43nf005pssta724xcv6s/</url>
+    <url>/2020/ck91iwc00005pt8ta23bs0bvs/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="倒排索引组成结构以及其索引不可变原因"><a href="#倒排索引组成结构以及其索引不可变原因" class="headerlink" title="倒排索引组成结构以及其索引不可变原因"></a>倒排索引组成结构以及其索引不可变原因</h4><p>倒排索引，是适合用于进行搜索的</p>
 <p>倒排索引的结构</p>
 <p>（1）包含这个关键词的document list<br>（2）包含这个关键词的所有document的数量：IDF（inverse document frequency）<br>（3）这个关键词在每个document中出现的次数：TF（term frequency）<br>（4）这个关键词在这个document中的次序<br>（5）每个document的长度：length norm<br>（6）包含这个关键词的所有document的平均长度</p>
@@ -2625,8 +2625,41 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>剖析document写入原理（buffer，segment，commit）</title>
+    <url>/2020/ck91iwc01005st8ta8kofbepz/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="剖析document写入原理（buffer，segment，commit）"><a href="#剖析document写入原理（buffer，segment，commit）" class="headerlink" title="剖析document写入原理（buffer，segment，commit）"></a>剖析document写入原理（buffer，segment，commit）</h4><p>（1）数据写入buffer<br>（2）commit point<br>（3）buffer中的数据写入新的index segment<br>（4）等待在os cache中的index segment被fsync强制刷到磁盘上<br>（5）新的index sgement被打开，供search使用<br>（6）buffer被清空</p>
+<p>每次commit point时，会有一个.del文件，标记了哪些segment中的哪些document被标记为deleted了<br>搜索的时候，会依次查询所有的segment，从旧的到新的，比如被修改过的document，在旧的segment中，会标记为deleted，在新的segment中会有其新的数据</p>
+<p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/work_order/FMr1GIRdH14.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>优化写入流程实现NRT近实时（filesystem cache，refresh）</title>
+    <url>/2020/ck91iwc02005vt8ta28ex84k6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="优化写入流程实现NRT近实时（filesystem-cache，refresh）"><a href="#优化写入流程实现NRT近实时（filesystem-cache，refresh）" class="headerlink" title="优化写入流程实现NRT近实时（filesystem cache，refresh）"></a>优化写入流程实现NRT近实时（filesystem cache，refresh）</h4><p>现有流程的问题，每次都必须等待fsync将segment刷入磁盘，才能将segment打开供search使用，这样的话，从一个document写入，到它可以被搜索，可能会超过1分钟！！！这就不是近实时的搜索了！！！主要瓶颈在于fsync实际发生磁盘IO写数据进磁盘，是很耗时的。</p>
+<p>写入流程别改进如下：</p>
+<p>（1）数据写入buffer<br>（2）每隔一定时间，buffer中的数据被写入segment文件，但是先写入os cache<br>（3）只要segment写入os cache，那就直接打开供search使用，不立即执行commit</p>
+<p>数据写入os cache，并被打开供搜索的过程，叫做refresh，默认是每隔1秒refresh一次。也就是说，每隔一秒就会将buffer中的数据写入一个新的index segment file，先写入os cache中。所以，es是近实时的，数据写入到可以被搜索，默认是1秒。</p>
+<p>POST /my_index/_refresh，可以手动refresh，一般不需要手动执行，让es自己搞就可以了</p>
+<p>比如说，我们现在的时效性要求，比较低，只要求一条数据写入es，一分钟以后才让我们搜索到就可以了，那么就可以调整refresh interval</p>
+<p>PUT /my_index<br>{<br>  “settings”: {<br>​    “refresh_interval”: “30s”<br>  }<br>}</p>
+<p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/work_order/9DvuSHDWyeA.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于scoll+bulk+索引别名实现零停机重建索引</title>
-    <url>/2020/ck91i43ng005ssstaeitq3dx9/</url>
+    <url>/2020/ck91iwc03005yt8ta8kpq5i7m/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="基于scoll-bulk-索引别名实现零停机重建索引"><a href="#基于scoll-bulk-索引别名实现零停机重建索引" class="headerlink" title="基于scoll+bulk+索引别名实现零停机重建索引"></a>基于scoll+bulk+索引别名实现零停机重建索引</h4><h6 id="1、重建索引"><a href="#1、重建索引" class="headerlink" title="1、重建索引"></a>1、重建索引</h6><p>一个field的设置是不能被修改的，如果要修改一个Field，那么应该重新按照新的mapping，建立一个index，然后将数据批量查询出来，重新用bulk api写入index中</p>
 <p>批量查询的时候，建议采用scroll api，并且采用多线程并发的方式来reindex数据，每次scoll就查询指定日期的一段数据，交给一个线程即可</p>
 <p>（1）一开始，依靠dynamic mapping，插入数据，但是不小心有些数据是2017-01-01这种日期格式的，所以title这种field被自动映射为了date类型，实际上它应该是string类型的</p>
@@ -2669,41 +2702,8 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
-    <title>优化写入流程实现NRT近实时（filesystem cache，refresh）</title>
-    <url>/2020/ck91i43nh005vssta3x6wccc9/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="优化写入流程实现NRT近实时（filesystem-cache，refresh）"><a href="#优化写入流程实现NRT近实时（filesystem-cache，refresh）" class="headerlink" title="优化写入流程实现NRT近实时（filesystem cache，refresh）"></a>优化写入流程实现NRT近实时（filesystem cache，refresh）</h4><p>现有流程的问题，每次都必须等待fsync将segment刷入磁盘，才能将segment打开供search使用，这样的话，从一个document写入，到它可以被搜索，可能会超过1分钟！！！这就不是近实时的搜索了！！！主要瓶颈在于fsync实际发生磁盘IO写数据进磁盘，是很耗时的。</p>
-<p>写入流程别改进如下：</p>
-<p>（1）数据写入buffer<br>（2）每隔一定时间，buffer中的数据被写入segment文件，但是先写入os cache<br>（3）只要segment写入os cache，那就直接打开供search使用，不立即执行commit</p>
-<p>数据写入os cache，并被打开供搜索的过程，叫做refresh，默认是每隔1秒refresh一次。也就是说，每隔一秒就会将buffer中的数据写入一个新的index segment file，先写入os cache中。所以，es是近实时的，数据写入到可以被搜索，默认是1秒。</p>
-<p>POST /my_index/_refresh，可以手动refresh，一般不需要手动执行，让es自己搞就可以了</p>
-<p>比如说，我们现在的时效性要求，比较低，只要求一条数据写入es，一分钟以后才让我们搜索到就可以了，那么就可以调整refresh interval</p>
-<p>PUT /my_index<br>{<br>  “settings”: {<br>​    “refresh_interval”: “30s”<br>  }<br>}</p>
-<p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/work_order/9DvuSHDWyeA.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>剖析document写入原理（buffer，segment，commit）</title>
-    <url>/2020/ck91i43ni005yssta4o2d74dj/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="剖析document写入原理（buffer，segment，commit）"><a href="#剖析document写入原理（buffer，segment，commit）" class="headerlink" title="剖析document写入原理（buffer，segment，commit）"></a>剖析document写入原理（buffer，segment，commit）</h4><p>（1）数据写入buffer<br>（2）commit point<br>（3）buffer中的数据写入新的index segment<br>（4）等待在os cache中的index segment被fsync强制刷到磁盘上<br>（5）新的index sgement被打开，供search使用<br>（6）buffer被清空</p>
-<p>每次commit point时，会有一个.del文件，标记了哪些segment中的哪些document被标记为deleted了<br>搜索的时候，会依次查询所有的segment，从旧的到新的，比如被修改过的document，在旧的segment中，会标记为deleted，在新的segment中会有其新的数据</p>
-<p><img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/work_order/FMr1GIRdH14.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>实现durability可靠存储（translog，flush）</title>
-    <url>/2020/ck91i43ni0061ssta9984e3lx/</url>
+    <url>/2020/ck91iwc040061t8ta646w3959/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="实现durability可靠存储（translog，flush）"><a href="#实现durability可靠存储（translog，flush）" class="headerlink" title="实现durability可靠存储（translog，flush）"></a>实现durability可靠存储（translog，flush）</h4><p>再次优化的写入流程</p>
 <p>（1）数据写入buffer缓冲和translog日志文件<br>（2）每隔一秒钟，buffer中的数据被写入新的segment file，并进入os cache，此时segment被打开并供search使用<br>（3）buffer被清空<br>（4）重复1~3，新的segment不断添加，buffer不断被清空，而translog中的数据不断累加<br>（5）当translog长度达到一定程度的时候，commit操作发生<br>  （5-1）buffer中的所有数据写入一个新的segment，并写入os cache，打开供使用<br>  （5-2）buffer被清空<br>  （5-3）一个commit ponit被写入磁盘，标明了所有的index segment<br>  （5-4）filesystem cache中的所有index segment file缓存数据，被fsync强行刷到磁盘上<br>  （5-5）现有的translog被清空，创建一个新的translog</p>
 <p>基于translog和commit point，如何进行数据恢复</p>
@@ -2725,7 +2725,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>写入流程实现海量磁盘文件合并（segment merge，optimize）</title>
-    <url>/2020/ck91i43nj0064sstaedi2cs9a/</url>
+    <url>/2020/ck91iwc040064t8ta1f9bf866/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="写入流程实现海量磁盘文件合并（segment-merge，optimize）"><a href="#写入流程实现海量磁盘文件合并（segment-merge，optimize）" class="headerlink" title="写入流程实现海量磁盘文件合并（segment merge，optimize）"></a>写入流程实现海量磁盘文件合并（segment merge，optimize）</h4><p>每秒一个segment file，文件过多，而且每次search都要搜索所有的segment，很耗时</p>
 <p>默认会在后台执行segment merge操作，在merge的时候，被标记为deleted的document也会被彻底物理删除</p>
 <p>每次merge操作的执行流程</p>
@@ -2742,7 +2742,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>基于Java实现员工信息的增删改查</title>
-    <url>/2020/ck91i43nk0067ssta85hkddyv/</url>
+    <url>/2020/ck91iwc050067t8tagnal3y4i/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="基于Java实现员工信息的增删改查"><a href="#基于Java实现员工信息的增删改查" class="headerlink" title="基于Java实现员工信息的增删改查"></a>基于Java实现员工信息的增删改查</h4><h5 id="1、maven依赖"><a href="#1、maven依赖" class="headerlink" title="1、maven依赖"></a>1、maven依赖</h5><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;transport&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.2.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;log4j-api&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.7&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.7&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 
 <p>创建log4j2的配置文件</p>
@@ -2770,8 +2770,31 @@ Typroa 推荐使用两个*号。
       </tags>
   </entry>
   <entry>
+    <title>基于Java对员工信息进行复杂的搜索操作</title>
+    <url>/2020/ck91iwc06006at8taadr78puf/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="基于Java对员工信息进行复杂的搜索操作"><a href="#基于Java对员工信息进行复杂的搜索操作" class="headerlink" title="基于Java对员工信息进行复杂的搜索操作"></a>基于Java对员工信息进行复杂的搜索操作</h4><p>API:</p>
+<p>SearchResponse response = client.prepareSearch(“index1”, “index2”)<br>​        .setTypes(“type1”, “type2”)<br>​        .setQuery(QueryBuilders.termQuery(“multi”, “test”))                 // Query<br>​        .setPostFilter(QueryBuilders.rangeQuery(“age”).from(12).to(18))     // Filter<br>​        .setFrom(0).setSize(60)<br>​        .get();</p>
+<p>需求：</p>
+<p>（1）搜索职位中包含technique的员工<br>（2）同时要求age在30到40岁之间<br>（3）分页查询，查找第一页</p>
+<p>GET /company/employee/_search<br>{<br>  “query”: {<br>​    “bool”: {<br>​      “must”: [<br>​        {<br>​          “match”: {<br>​            “position”: “technique”<br>​          }<br>​        }<br>​      ],<br>​      “filter”: {<br>​        “range”: {<br>​          “age”: {<br>​            “gte”: 30,<br>​            “lte”: 40<br>​          }<br>​        }<br>​      }<br>​    }<br>  },<br>  “from”: 0,<br>  “size”: 1<br>}</p>
+<p>刚才一边运行创建document，一边搜索什么都没搜索到？？？？</p>
+<p>近实时！！！</p>
+<p>默认是1秒以后，写入es的数据，才能被搜索到。很明显刚才，写入数据不到一秒，所以就搜索不到。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.InetAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.action.search.SearchResponse;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.client.transport.TransportClient;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.common.settings.Settings;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.common.transport.InetSocketTransportAddress;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.common.xcontent.XContentFactory;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.index.query.QueryBuilders;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.search.SearchHit;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.transport.client.PreBuiltTransportClient;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 员工搜索应用程序</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Administrator</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeSearchApp</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@SuppressWarnings</span>(&#123; <span class="string">"unchecked"</span>, <span class="string">"resource"</span> &#125;)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		Settings settings = Settings.builder()</span><br><span class="line">				.put(<span class="string">"cluster.name"</span>, <span class="string">"elasticsearch"</span>)</span><br><span class="line">				.build();</span><br><span class="line">		</span><br><span class="line">		TransportClient client = <span class="keyword">new</span> PreBuiltTransportClient(settings)</span><br><span class="line">				.addTransportAddress(<span class="keyword">new</span> InetSocketTransportAddress(InetAddress.getByName(<span class="string">"localhost"</span>), <span class="number">9300</span>)); </span><br><span class="line">		</span><br><span class="line"><span class="comment">//		prepareData(client);</span></span><br><span class="line">		executeSearch(client);</span><br><span class="line">		</span><br><span class="line">		client.close();</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 执行搜索操作</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> client</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">executeSearch</span><span class="params">(TransportClient client)</span> </span>&#123;</span><br><span class="line">		SearchResponse response = client.prepareSearch(<span class="string">"company"</span>)</span><br><span class="line">				.setTypes(<span class="string">"employee"</span>)</span><br><span class="line">				.setQuery(QueryBuilders.matchQuery(<span class="string">"position"</span>, <span class="string">"technique"</span>))</span><br><span class="line">				.setPostFilter(QueryBuilders.rangeQuery(<span class="string">"age"</span>).from(<span class="number">30</span>).to(<span class="number">40</span>))</span><br><span class="line">				.setFrom(<span class="number">0</span>).setSize(<span class="number">1</span>)</span><br><span class="line">				.get();</span><br><span class="line">		</span><br><span class="line">		SearchHit[] searchHits = response.getHits().getHits();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; searchHits.length; i++) &#123;</span><br><span class="line">			System.out.println(searchHits[i].getSourceAsString()); </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 准备数据</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> client</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepareData</span><span class="params">(TransportClient client)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"1"</span>) </span><br><span class="line">				.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">						.startObject()</span><br><span class="line">							.field(<span class="string">"name"</span>, <span class="string">"jack"</span>)</span><br><span class="line">							.field(<span class="string">"age"</span>, <span class="number">27</span>)</span><br><span class="line">							.field(<span class="string">"position"</span>, <span class="string">"technique software"</span>)</span><br><span class="line">							.field(<span class="string">"country"</span>, <span class="string">"china"</span>)</span><br><span class="line">							.field(<span class="string">"join_date"</span>, <span class="string">"2017-01-01"</span>)</span><br><span class="line">							.field(<span class="string">"salary"</span>, <span class="number">10000</span>)</span><br><span class="line">						.endObject())</span><br><span class="line">				.get();</span><br><span class="line">		</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"2"</span>) </span><br><span class="line">				.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">						.startObject()</span><br><span class="line">							.field(<span class="string">"name"</span>, <span class="string">"marry"</span>)</span><br><span class="line">							.field(<span class="string">"age"</span>, <span class="number">35</span>)</span><br><span class="line">							.field(<span class="string">"position"</span>, <span class="string">"technique manager"</span>)</span><br><span class="line">							.field(<span class="string">"country"</span>, <span class="string">"china"</span>)</span><br><span class="line">							.field(<span class="string">"join_date"</span>, <span class="string">"2017-01-01"</span>)</span><br><span class="line">							.field(<span class="string">"salary"</span>, <span class="number">12000</span>)</span><br><span class="line">						.endObject())</span><br><span class="line">				.get();</span><br><span class="line">		</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"3"</span>) </span><br><span class="line">		.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">				.startObject()</span><br><span class="line">					.field(<span class="string">"name"</span>, <span class="string">"tom"</span>)</span><br><span class="line">					.field(<span class="string">"age"</span>, <span class="number">32</span>)</span><br><span class="line">					.field(<span class="string">"position"</span>, <span class="string">"senior technique software"</span>)</span><br><span class="line">					.field(<span class="string">"country"</span>, <span class="string">"china"</span>)</span><br><span class="line">					.field(<span class="string">"join_date"</span>, <span class="string">"2016-01-01"</span>)</span><br><span class="line">					.field(<span class="string">"salary"</span>, <span class="number">11000</span>)</span><br><span class="line">				.endObject())</span><br><span class="line">		.get();</span><br><span class="line">		</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"4"</span>) </span><br><span class="line">		.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">				.startObject()</span><br><span class="line">					.field(<span class="string">"name"</span>, <span class="string">"jen"</span>)</span><br><span class="line">					.field(<span class="string">"age"</span>, <span class="number">25</span>)</span><br><span class="line">					.field(<span class="string">"position"</span>, <span class="string">"junior finance"</span>)</span><br><span class="line">					.field(<span class="string">"country"</span>, <span class="string">"usa"</span>)</span><br><span class="line">					.field(<span class="string">"join_date"</span>, <span class="string">"2016-01-01"</span>)</span><br><span class="line">					.field(<span class="string">"salary"</span>, <span class="number">7000</span>)</span><br><span class="line">				.endObject())</span><br><span class="line">		.get();</span><br><span class="line">		</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"5"</span>) </span><br><span class="line">		.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">				.startObject()</span><br><span class="line">					.field(<span class="string">"name"</span>, <span class="string">"mike"</span>)</span><br><span class="line">					.field(<span class="string">"age"</span>, <span class="number">37</span>)</span><br><span class="line">					.field(<span class="string">"position"</span>, <span class="string">"finance manager"</span>)</span><br><span class="line">					.field(<span class="string">"country"</span>, <span class="string">"usa"</span>)</span><br><span class="line">					.field(<span class="string">"join_date"</span>, <span class="string">"2015-01-01"</span>)</span><br><span class="line">					.field(<span class="string">"salary"</span>, <span class="number">15000</span>)</span><br><span class="line">				.endObject())</span><br><span class="line">		.get();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于Java对员工信息进行聚合分析</title>
-    <url>/2020/ck91i43nl006assta6097blrt/</url>
+    <url>/2020/ck91iwc06006dt8ta063lehmc/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="基于Java对员工信息进行聚合分析"><a href="#基于Java对员工信息进行聚合分析" class="headerlink" title="基于Java对员工信息进行聚合分析"></a>基于Java对员工信息进行聚合分析</h4><p>API 语法:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SearchResponse sr = node.client().prepareSearch()</span><br><span class="line">    .addAggregation(</span><br><span class="line">        AggregationBuilders.terms(<span class="string">"by_country"</span>).field(<span class="string">"country"</span>)</span><br><span class="line">        .subAggregation(AggregationBuilders.dateHistogram(<span class="string">"by_year"</span>)</span><br><span class="line">            .field(<span class="string">"dateOfBirth"</span>)</span><br><span class="line">            .dateHistogramInterval(DateHistogramInterval.YEAR)</span><br><span class="line">            .subAggregation(AggregationBuilders.avg(<span class="string">"avg_children"</span>).field(<span class="string">"children"</span>))</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">    .execute().actionGet();</span><br></pre></td></tr></table></figure>
 
@@ -2798,7 +2821,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/ck91i43nm006dsstad8zvbc07/</url>
+    <url>/2020/ck91iwc07006gt8tah5vyh78k/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
@@ -2815,31 +2838,8 @@ Typroa 推荐使用两个*号。
 ]]></content>
   </entry>
   <entry>
-    <title>基于Java对员工信息进行复杂的搜索操作</title>
-    <url>/2020/ck91i43nn006gssta97ulhf49/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="基于Java对员工信息进行复杂的搜索操作"><a href="#基于Java对员工信息进行复杂的搜索操作" class="headerlink" title="基于Java对员工信息进行复杂的搜索操作"></a>基于Java对员工信息进行复杂的搜索操作</h4><p>API:</p>
-<p>SearchResponse response = client.prepareSearch(“index1”, “index2”)<br>​        .setTypes(“type1”, “type2”)<br>​        .setQuery(QueryBuilders.termQuery(“multi”, “test”))                 // Query<br>​        .setPostFilter(QueryBuilders.rangeQuery(“age”).from(12).to(18))     // Filter<br>​        .setFrom(0).setSize(60)<br>​        .get();</p>
-<p>需求：</p>
-<p>（1）搜索职位中包含technique的员工<br>（2）同时要求age在30到40岁之间<br>（3）分页查询，查找第一页</p>
-<p>GET /company/employee/_search<br>{<br>  “query”: {<br>​    “bool”: {<br>​      “must”: [<br>​        {<br>​          “match”: {<br>​            “position”: “technique”<br>​          }<br>​        }<br>​      ],<br>​      “filter”: {<br>​        “range”: {<br>​          “age”: {<br>​            “gte”: 30,<br>​            “lte”: 40<br>​          }<br>​        }<br>​      }<br>​    }<br>  },<br>  “from”: 0,<br>  “size”: 1<br>}</p>
-<p>刚才一边运行创建document，一边搜索什么都没搜索到？？？？</p>
-<p>近实时！！！</p>
-<p>默认是1秒以后，写入es的数据，才能被搜索到。很明显刚才，写入数据不到一秒，所以就搜索不到。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.InetAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.action.search.SearchResponse;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.client.transport.TransportClient;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.common.settings.Settings;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.common.transport.InetSocketTransportAddress;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.common.xcontent.XContentFactory;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.index.query.QueryBuilders;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.search.SearchHit;</span><br><span class="line"><span class="keyword">import</span> org.elasticsearch.transport.client.PreBuiltTransportClient;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 员工搜索应用程序</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Administrator</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeSearchApp</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@SuppressWarnings</span>(&#123; <span class="string">"unchecked"</span>, <span class="string">"resource"</span> &#125;)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		Settings settings = Settings.builder()</span><br><span class="line">				.put(<span class="string">"cluster.name"</span>, <span class="string">"elasticsearch"</span>)</span><br><span class="line">				.build();</span><br><span class="line">		</span><br><span class="line">		TransportClient client = <span class="keyword">new</span> PreBuiltTransportClient(settings)</span><br><span class="line">				.addTransportAddress(<span class="keyword">new</span> InetSocketTransportAddress(InetAddress.getByName(<span class="string">"localhost"</span>), <span class="number">9300</span>)); </span><br><span class="line">		</span><br><span class="line"><span class="comment">//		prepareData(client);</span></span><br><span class="line">		executeSearch(client);</span><br><span class="line">		</span><br><span class="line">		client.close();</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 执行搜索操作</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> client</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">executeSearch</span><span class="params">(TransportClient client)</span> </span>&#123;</span><br><span class="line">		SearchResponse response = client.prepareSearch(<span class="string">"company"</span>)</span><br><span class="line">				.setTypes(<span class="string">"employee"</span>)</span><br><span class="line">				.setQuery(QueryBuilders.matchQuery(<span class="string">"position"</span>, <span class="string">"technique"</span>))</span><br><span class="line">				.setPostFilter(QueryBuilders.rangeQuery(<span class="string">"age"</span>).from(<span class="number">30</span>).to(<span class="number">40</span>))</span><br><span class="line">				.setFrom(<span class="number">0</span>).setSize(<span class="number">1</span>)</span><br><span class="line">				.get();</span><br><span class="line">		</span><br><span class="line">		SearchHit[] searchHits = response.getHits().getHits();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; searchHits.length; i++) &#123;</span><br><span class="line">			System.out.println(searchHits[i].getSourceAsString()); </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 准备数据</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> client</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepareData</span><span class="params">(TransportClient client)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"1"</span>) </span><br><span class="line">				.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">						.startObject()</span><br><span class="line">							.field(<span class="string">"name"</span>, <span class="string">"jack"</span>)</span><br><span class="line">							.field(<span class="string">"age"</span>, <span class="number">27</span>)</span><br><span class="line">							.field(<span class="string">"position"</span>, <span class="string">"technique software"</span>)</span><br><span class="line">							.field(<span class="string">"country"</span>, <span class="string">"china"</span>)</span><br><span class="line">							.field(<span class="string">"join_date"</span>, <span class="string">"2017-01-01"</span>)</span><br><span class="line">							.field(<span class="string">"salary"</span>, <span class="number">10000</span>)</span><br><span class="line">						.endObject())</span><br><span class="line">				.get();</span><br><span class="line">		</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"2"</span>) </span><br><span class="line">				.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">						.startObject()</span><br><span class="line">							.field(<span class="string">"name"</span>, <span class="string">"marry"</span>)</span><br><span class="line">							.field(<span class="string">"age"</span>, <span class="number">35</span>)</span><br><span class="line">							.field(<span class="string">"position"</span>, <span class="string">"technique manager"</span>)</span><br><span class="line">							.field(<span class="string">"country"</span>, <span class="string">"china"</span>)</span><br><span class="line">							.field(<span class="string">"join_date"</span>, <span class="string">"2017-01-01"</span>)</span><br><span class="line">							.field(<span class="string">"salary"</span>, <span class="number">12000</span>)</span><br><span class="line">						.endObject())</span><br><span class="line">				.get();</span><br><span class="line">		</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"3"</span>) </span><br><span class="line">		.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">				.startObject()</span><br><span class="line">					.field(<span class="string">"name"</span>, <span class="string">"tom"</span>)</span><br><span class="line">					.field(<span class="string">"age"</span>, <span class="number">32</span>)</span><br><span class="line">					.field(<span class="string">"position"</span>, <span class="string">"senior technique software"</span>)</span><br><span class="line">					.field(<span class="string">"country"</span>, <span class="string">"china"</span>)</span><br><span class="line">					.field(<span class="string">"join_date"</span>, <span class="string">"2016-01-01"</span>)</span><br><span class="line">					.field(<span class="string">"salary"</span>, <span class="number">11000</span>)</span><br><span class="line">				.endObject())</span><br><span class="line">		.get();</span><br><span class="line">		</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"4"</span>) </span><br><span class="line">		.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">				.startObject()</span><br><span class="line">					.field(<span class="string">"name"</span>, <span class="string">"jen"</span>)</span><br><span class="line">					.field(<span class="string">"age"</span>, <span class="number">25</span>)</span><br><span class="line">					.field(<span class="string">"position"</span>, <span class="string">"junior finance"</span>)</span><br><span class="line">					.field(<span class="string">"country"</span>, <span class="string">"usa"</span>)</span><br><span class="line">					.field(<span class="string">"join_date"</span>, <span class="string">"2016-01-01"</span>)</span><br><span class="line">					.field(<span class="string">"salary"</span>, <span class="number">7000</span>)</span><br><span class="line">				.endObject())</span><br><span class="line">		.get();</span><br><span class="line">		</span><br><span class="line">		client.prepareIndex(<span class="string">"company"</span>, <span class="string">"employee"</span>, <span class="string">"5"</span>) </span><br><span class="line">		.setSource(XContentFactory.jsonBuilder()</span><br><span class="line">				.startObject()</span><br><span class="line">					.field(<span class="string">"name"</span>, <span class="string">"mike"</span>)</span><br><span class="line">					.field(<span class="string">"age"</span>, <span class="number">37</span>)</span><br><span class="line">					.field(<span class="string">"position"</span>, <span class="string">"finance manager"</span>)</span><br><span class="line">					.field(<span class="string">"country"</span>, <span class="string">"usa"</span>)</span><br><span class="line">					.field(<span class="string">"join_date"</span>, <span class="string">"2015-01-01"</span>)</span><br><span class="line">					.field(<span class="string">"salary"</span>, <span class="number">15000</span>)</span><br><span class="line">				.endObject())</span><br><span class="line">		.get();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>集群管理，以及文档的CRUD操作</title>
-    <url>/2019/ck91i43nu0072sstah4j493v6/</url>
+    <url>/2019/ck91iwc0l0074t8tagafhcno7/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="集群管理，以及文档的CRUD操作"><a href="#集群管理，以及文档的CRUD操作" class="headerlink" title="集群管理，以及文档的CRUD操作"></a>集群管理，以及文档的CRUD操作</h2><p>1.document数据格式</p>
 <p>面向文档的搜索分析引擎</p>
 <p>（1）应用系统的数据结构都是面向对象的，复杂的<br>（2）对象数据存储到数据库中，只能拆解开来，变为扁平的多张表，每次查询的时候还得还原回对象格式，相当麻烦<br>（3）ES是面向文档的，文档中存储的数据结构，与面向对象的数据结构是一样的，基于这种文档数据结构，es可以提供复杂的索引，全文检索，分析聚合等功能<br>（4）es的document用json数据格式来表达</p>
@@ -3001,7 +3001,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>Markdown测试</title>
-    <url>/2020/ck91i43nu0073ssta6az03czn/</url>
+    <url>/2020/ck91iwc0m0075t8tabblbd5lf/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><hr>
 <h3 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1. 斜体和粗体"></a>1. 斜体和粗体</h3><p>使用 * 和 ** 表示斜体和粗体。</p>
 <p>示例：</p>
@@ -3184,7 +3184,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>相关度评分TF&amp;IDF算法</title>
-    <url>/2020/ck91i43oa007asstad7ew0ld0/</url>
+    <url>/2020/ck91iwc0p007ct8ta8dkz3ln7/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="相关度评分TF-amp-IDF算法"><a href="#相关度评分TF-amp-IDF算法" class="headerlink" title="相关度评分TF&amp;IDF算法"></a>相关度评分TF&amp;IDF算法</h5><h6 id="1、算法介绍"><a href="#1、算法介绍" class="headerlink" title="1、算法介绍"></a>1、算法介绍</h6><p>relevance score算法: 简单来说，就是计算出，一个索引中的文本，与搜索文本，他们之间的关联匹配程度</p>
 <p>Elasticsearch使用的是 term frequency/inverse document frequency算法，简称为TF/IDF算法</p>
 <p>Term frequency：搜索文本中的各个词条在field文本中出现了多少次，出现次数越多，就越相关</p>
@@ -3213,7 +3213,7 @@ Typroa 推荐使用两个*号。
   </entry>
   <entry>
     <title>快速搭建个人博客</title>
-    <url>/2017/ck91i43oc007dssta8qj509bp/</url>
+    <url>/2017/ck91iwc0u007ft8ta0j549kxe/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>正所谓前人栽树，后人乘凉。</p>
 <p>感谢<a href="https://github.com/huxpro" target="_blank" rel="noopener">Huxpro</a>提供的博客模板</p>
