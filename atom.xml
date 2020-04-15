@@ -18,8 +18,8 @@
   
   <entry>
     <title>2019-09-20-Typora For Markdown 语法</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsmn000iggtab2wjg4yy/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsmn000iggtab2wjg4yy/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq88m0007ygta5vvn5pcp/"/>
+    <id>https://blog.collmall.com/2020/ck91gq88m0007ygta5vvn5pcp/</id>
     <published>2020-04-15T10:32:04.074Z</published>
     <updated>2019-04-19T08:50:20.232Z</updated>
     
@@ -40,8 +40,8 @@
   
   <entry>
     <title>2019-02-27-idea下的配置springboot的热加载</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsmg0008ggtae6d65rea/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsmg0008ggtae6d65rea/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq88i0004ygta82i7aua3/"/>
+    <id>https://blog.collmall.com/2020/ck91gq88i0004ygta82i7aua3/</id>
     <published>2020-04-15T10:32:04.067Z</published>
     <updated>2019-03-04T06:48:09.729Z</updated>
     
@@ -62,8 +62,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsox006dggta20ei26ly/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsox006dggta20ei26ly/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bo006sygtagvg51lar/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bo006sygtagvg51lar/</id>
     <published>2020-04-15T09:05:27.263Z</published>
     <updated>2020-04-14T15:53:19.223Z</updated>
     
@@ -84,8 +84,8 @@
   
   <entry>
     <title>Markdown测试</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsp4006vggtadxp516bb/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsp4006vggtadxp516bb/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bs0070ygta80dv8xuu/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bs0070ygta80dv8xuu/</id>
     <published>2020-04-05T09:07:11.000Z</published>
     <updated>2020-04-15T13:07:10.637Z</updated>
     
@@ -110,8 +110,8 @@
   
   <entry>
     <title>基于Java对员工信息进行聚合分析</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsow006aggtafo9j7kcw/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsow006aggtafo9j7kcw/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bn006pygtacabg5u2y/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bn006pygtacabg5u2y/</id>
     <published>2020-03-07T09:07:11.000Z</published>
     <updated>2020-04-15T13:31:28.919Z</updated>
     
@@ -136,8 +136,8 @@
   
   <entry>
     <title>基于Java对员工信息进行复杂的搜索操作</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsou0061ggta5hvogegp/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsou0061ggta5hvogegp/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bk006jygta83ho0w3n/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bk006jygta83ho0w3n/</id>
     <published>2020-03-06T09:07:11.000Z</published>
     <updated>2020-04-15T13:30:57.379Z</updated>
     
@@ -162,8 +162,8 @@
   
   <entry>
     <title>基于Java实现员工信息的增删改查</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsow0067ggta9tsh2miw/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsow0067ggta9tsh2miw/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bm006mygtae9l7bmm6/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bm006mygtae9l7bmm6/</id>
     <published>2020-03-05T09:07:11.000Z</published>
     <updated>2020-04-15T13:30:21.998Z</updated>
     
@@ -188,8 +188,8 @@
   
   <entry>
     <title>写入流程实现海量磁盘文件合并（segment merge，optimize）</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsov0064ggtagouc63ss/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsov0064ggtagouc63ss/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bi006dygtagjxs1jjg/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bi006dygtagjxs1jjg/</id>
     <published>2020-03-04T09:07:11.000Z</published>
     <updated>2020-04-15T13:29:53.313Z</updated>
     
@@ -214,8 +214,8 @@
   
   <entry>
     <title>实现durability可靠存储（translog，flush）</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsos005vggtag0i20sn9/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsos005vggtag0i20sn9/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bj006gygta7ssrd1db/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bj006gygta7ssrd1db/</id>
     <published>2020-03-03T09:07:11.000Z</published>
     <updated>2020-04-15T13:29:34.185Z</updated>
     
@@ -240,8 +240,8 @@
   
   <entry>
     <title>优化写入流程实现NRT近实时（filesystem cache，refresh）</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsos005sggta9b827g7l/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsos005sggta9b827g7l/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bi006aygta30p83ny5/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bi006aygta30p83ny5/</id>
     <published>2020-03-02T09:07:11.000Z</published>
     <updated>2020-04-15T13:28:53.186Z</updated>
     
@@ -266,8 +266,8 @@
   
   <entry>
     <title>剖析document写入原理（buffer，segment，commit）</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsor005pggta26j043sv/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsor005pggta26j043sv/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bg0064ygta7o6fget7/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bg0064ygta7o6fget7/</id>
     <published>2020-03-01T09:07:11.000Z</published>
     <updated>2020-04-15T13:28:34.198Z</updated>
     
@@ -292,8 +292,8 @@
   
   <entry>
     <title>倒排索引组成结构以及其索引不可变原因</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsot005yggtady701nfe/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsot005yggtady701nfe/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8be0061ygta0j0l40dy/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8be0061ygta0j0l40dy/</id>
     <published>2020-02-29T09:07:11.000Z</published>
     <updated>2020-04-15T13:27:49.248Z</updated>
     
@@ -318,8 +318,8 @@
   
   <entry>
     <title>基于scoll+bulk+索引别名实现零停机重建索引</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsoq005mggta95zd674e/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsoq005mggta95zd674e/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bh0067ygtadwy4a07f/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bh0067ygtadwy4a07f/</id>
     <published>2020-02-28T09:07:11.000Z</published>
     <updated>2020-04-15T13:27:25.001Z</updated>
     
@@ -344,8 +344,8 @@
   
   <entry>
     <title>自定义dynamic mapping策略</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsop005jggtaavsp0kgf/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsop005jggtaavsp0kgf/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bd005vygta3vbsc8en/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bd005vygta3vbsc8en/</id>
     <published>2020-02-27T09:07:11.000Z</published>
     <updated>2020-04-15T13:26:56.983Z</updated>
     
@@ -370,8 +370,8 @@
   
   <entry>
     <title>mapping root object深入剖析</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsop005gggtaetp4fe91/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsop005gggtaetp4fe91/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bd005yygtadbeo22sd/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bd005yygtadbeo22sd/</id>
     <published>2020-02-26T09:07:11.000Z</published>
     <updated>2020-04-15T13:26:28.530Z</updated>
     
@@ -396,8 +396,8 @@
   
   <entry>
     <title>type的底层数据结构</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsoo005dggtahrnj44eu/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsoo005dggtahrnj44eu/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8ba005pygtaeba8339w/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8ba005pygtaeba8339w/</id>
     <published>2020-02-25T09:07:11.000Z</published>
     <updated>2020-04-15T13:26:02.056Z</updated>
     
@@ -422,8 +422,8 @@
   
   <entry>
     <title>修改分词器以及自定义分词器</title>
-    <link href="https://blog.collmall.com/2020/ck91gcson005aggta5a4qeg1r/"/>
-    <id>https://blog.collmall.com/2020/ck91gcson005aggta5a4qeg1r/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8bb005sygtacrt557pv/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8bb005sygtacrt557pv/</id>
     <published>2020-02-24T09:07:11.000Z</published>
     <updated>2020-04-15T13:25:32.239Z</updated>
     
@@ -448,8 +448,8 @@
   
   <entry>
     <title>创建、修改以及删除索引</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsom0057ggta79y0exka/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsom0057ggta79y0exka/</id>
+    <link href="https://blog.collmall.com/2020/ck91gq8b9005mygta6m3t8a0s/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8b9005mygta6m3t8a0s/</id>
     <published>2020-02-23T09:07:11.000Z</published>
     <updated>2020-04-15T13:24:59.809Z</updated>
     
@@ -473,13 +473,13 @@
   </entry>
   
   <entry>
-    <title>bouncing results问题解决方案</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsol0051ggta4tpl07vy/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsol0051ggta4tpl07vy/</id>
+    <title>scoll滚动搜索</title>
+    <link href="https://blog.collmall.com/2020/ck91gq8b3005jygta7mlyao5t/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8b3005jygta7mlyao5t/</id>
     <published>2020-02-21T09:07:11.000Z</published>
-    <updated>2020-04-15T13:24:11.120Z</updated>
+    <updated>2020-04-15T13:24:34.614Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="bouncing-results问题解决方案"><a href="#bouncing-results问题解决方案" class="headerlink" title="bouncing results问题解决方案"></a>bouncing results问题解决方案</h4><h5 id="1、preference"><a href="#1、preference" class="headerlink" title="1、preference"></a>1、preference</h5><p>决定了哪些shard会被用来执行搜索操作</p><p>_primary, _primary_first, _local, _only_node:xyz, _prefer_node:xyz, _shards:2,3</p><p>bouncing results问题，两个document排序，field值相同；不同的shard上，可能排序不同；每次请求轮询打到不同的replica shard上；每次页面上看到的搜索结果的排序都不一样。这就是bouncing result，也就是跳跃的结果。</p><p>搜索的时候，是轮询将搜索请求发送到每一个replica shard（primary shard），但是在不同的shard上，可能document的排序不同</p><p>解决方案就是将preference设置为一个字符串，比如说user_id，让每个user每次搜索的时候，都使用同一个replica shard去执行，就不会看到bouncing results了</p><h5 id="2、timeout-主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长"><a href="#2、timeout-主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长" class="headerlink" title="2、timeout:  主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长"></a>2、timeout:  主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长</h5><h5 id="3、routing，document文档路由，-id路由，routing-user-id，这样的话可以让同一个user对应的数据到一个shard上去"><a href="#3、routing，document文档路由，-id路由，routing-user-id，这样的话可以让同一个user对应的数据到一个shard上去" class="headerlink" title="3、routing，document文档路由，_id路由，routing=user_id，这样的话可以让同一个user对应的数据到一个shard上去"></a>3、routing，document文档路由，_id路由，routing=user_id，这样的话可以让同一个user对应的数据到一个shard上去</h5><h5 id="4、search-type"><a href="#4、search-type" class="headerlink" title="4、search_type"></a>4、search_type</h5><p>default：query_then_fetch<br>dfs_query_then_fetch，可以提升revelance sort精准度</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="scoll滚动搜索"><a href="#scoll滚动搜索" class="headerlink" title="scoll滚动搜索"></a>scoll滚动搜索</h4><p>eg : 如果一次性要查出来比如10万条数据，那么性能会很差，此时一般会采取用scoll滚动查询，一批一批的查，直到所有数据都查询完处理完</p><p>使用scoll滚动搜索，可以先搜索一批数据，然后下次再搜索一批数据，以此类推，直到搜索出全部的数据来<br>scoll搜索会在第一次搜索的时候，保存一个当时的视图快照，之后只会基于该旧的视图快照提供数据搜索，如果这个期间数据变更，是不会让用户看到的<br>采用基于_doc进行排序的方式，性能较高<br>每次发送scroll请求，我们还需要指定一个scoll参数，指定一个时间窗口，每次搜索请求只要在这个时间窗口内能完成就可以了</p><p>GET /test_index/test_type/_search?scroll=1m<br>{<br>  “query”: {<br>​    “match_all”: {}<br>  },<br>  “sort”: [ “_doc” ],<br>  “size”: 3<br>}</p><p>结果示例:</p><p>{<br>  “_scroll_id”: “DnF1ZXJ5VGhlbkZldGNoBQAAAAAAACxeFjRvbnNUWVZaVGpHdklqOV9zcFd6MncAAAAAAAAsYBY0b25zVFlWWlRqR3ZJajlfc3BXejJ3AAAAAAAALF8WNG9uc1RZVlpUakd2SWo5X3NwV3oydwAAAAAAACxhFjRvbnNUWVZaVGpHdklqOV9zcFd6MncAAAAAAAAsYhY0b25zVFlWWlRqR3ZJajlfc3BXejJ3”,<br>  “took”: 5,<br>  “timed_out”: false,<br>  “_shards”: {<br>​    “total”: 5,<br>​    “successful”: 5,<br>​    “failed”: 0<br>  },<br>  “hits”: {<br>​    “total”: 10,<br>​    “max_score”: null,<br>​    “hits”: [<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “8”,<br>​        “_score”: null,<br>​        “_source”: {<br>​          “test_field”: “test client 2”<br>​        },<br>​        “sort”: [<br>​          0<br>​        ]<br>​      },<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “6”,<br>​        “_score”: null,<br>​        “_source”: {<br>​          “test_field”: “tes test”<br>​        },<br>​        “sort”: [<br>​          0<br>​        ]<br>​      },<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “AVp4RN0bhjxldOOnBxaE”,<br>​        “_score”: null,<br>​        “_source”: {<br>​          “test_content”: “my test”<br>​        },<br>​        “sort”: [<br>​          0<br>​        ]<br>​      }<br>​    ]<br>  }<br>}</p><p>获得的结果会有一个scoll_id，下一次再发送scoll请求的时候，必须带上上一个的scoll_id</p><p>GET /_search/scroll<br>{<br>​    “scroll”: “1m”,<br>​    “scroll_id” : “DnF1ZXJ5VGhlbkZldGNoBQAAAAAAACxeFjRvbnNUWVZaVGpHdklqOV9zcFd6MncAAAAAAAAsYBY0b25zVFlWWlRqR3ZJajlfc3BXejJ3AAAAAAAALF8WNG9uc1RZVlpUakd2SWo5X3NwV3oydwAAAAAAACxhFjRvbnNUWVZaVGpHdklqOV9zcFd6MncAAAAAAAAsYhY0b25zVFlWWlRqR3ZJajlfc3BXejJ3”<br>}</p><p>11,4,7<br>3,2,1<br>20</p><p>scoll，看起来挺像分页的，但是其实使用场景不一样。分页主要是用来一页一页搜索，给用户看的；scoll主要是用来一批一批检索数据，让系统进行处理的</p>]]></content>
     
     <summary type="html">
     
@@ -499,13 +499,13 @@
   </entry>
   
   <entry>
-    <title>scoll滚动搜索</title>
-    <link href="https://blog.collmall.com/2020/ck91gcsom0054ggta72ri41jk/"/>
-    <id>https://blog.collmall.com/2020/ck91gcsom0054ggta72ri41jk/</id>
+    <title>bouncing results问题解决方案</title>
+    <link href="https://blog.collmall.com/2020/ck91gq8b2005gygtacpnr6djk/"/>
+    <id>https://blog.collmall.com/2020/ck91gq8b2005gygtacpnr6djk/</id>
     <published>2020-02-21T09:07:11.000Z</published>
-    <updated>2020-04-15T13:24:34.614Z</updated>
+    <updated>2020-04-15T13:24:11.120Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="scoll滚动搜索"><a href="#scoll滚动搜索" class="headerlink" title="scoll滚动搜索"></a>scoll滚动搜索</h4><p>eg : 如果一次性要查出来比如10万条数据，那么性能会很差，此时一般会采取用scoll滚动查询，一批一批的查，直到所有数据都查询完处理完</p><p>使用scoll滚动搜索，可以先搜索一批数据，然后下次再搜索一批数据，以此类推，直到搜索出全部的数据来<br>scoll搜索会在第一次搜索的时候，保存一个当时的视图快照，之后只会基于该旧的视图快照提供数据搜索，如果这个期间数据变更，是不会让用户看到的<br>采用基于_doc进行排序的方式，性能较高<br>每次发送scroll请求，我们还需要指定一个scoll参数，指定一个时间窗口，每次搜索请求只要在这个时间窗口内能完成就可以了</p><p>GET /test_index/test_type/_search?scroll=1m<br>{<br>  “query”: {<br>​    “match_all”: {}<br>  },<br>  “sort”: [ “_doc” ],<br>  “size”: 3<br>}</p><p>结果示例:</p><p>{<br>  “_scroll_id”: “DnF1ZXJ5VGhlbkZldGNoBQAAAAAAACxeFjRvbnNUWVZaVGpHdklqOV9zcFd6MncAAAAAAAAsYBY0b25zVFlWWlRqR3ZJajlfc3BXejJ3AAAAAAAALF8WNG9uc1RZVlpUakd2SWo5X3NwV3oydwAAAAAAACxhFjRvbnNUWVZaVGpHdklqOV9zcFd6MncAAAAAAAAsYhY0b25zVFlWWlRqR3ZJajlfc3BXejJ3”,<br>  “took”: 5,<br>  “timed_out”: false,<br>  “_shards”: {<br>​    “total”: 5,<br>​    “successful”: 5,<br>​    “failed”: 0<br>  },<br>  “hits”: {<br>​    “total”: 10,<br>​    “max_score”: null,<br>​    “hits”: [<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “8”,<br>​        “_score”: null,<br>​        “_source”: {<br>​          “test_field”: “test client 2”<br>​        },<br>​        “sort”: [<br>​          0<br>​        ]<br>​      },<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “6”,<br>​        “_score”: null,<br>​        “_source”: {<br>​          “test_field”: “tes test”<br>​        },<br>​        “sort”: [<br>​          0<br>​        ]<br>​      },<br>​      {<br>​        “_index”: “test_index”,<br>​        “_type”: “test_type”,<br>​        “_id”: “AVp4RN0bhjxldOOnBxaE”,<br>​        “_score”: null,<br>​        “_source”: {<br>​          “test_content”: “my test”<br>​        },<br>​        “sort”: [<br>​          0<br>​        ]<br>​      }<br>​    ]<br>  }<br>}</p><p>获得的结果会有一个scoll_id，下一次再发送scoll请求的时候，必须带上上一个的scoll_id</p><p>GET /_search/scroll<br>{<br>​    “scroll”: “1m”,<br>​    “scroll_id” : “DnF1ZXJ5VGhlbkZldGNoBQAAAAAAACxeFjRvbnNUWVZaVGpHdklqOV9zcFd6MncAAAAAAAAsYBY0b25zVFlWWlRqR3ZJajlfc3BXejJ3AAAAAAAALF8WNG9uc1RZVlpUakd2SWo5X3NwV3oydwAAAAAAACxhFjRvbnNUWVZaVGpHdklqOV9zcFd6MncAAAAAAAAsYhY0b25zVFlWWlRqR3ZJajlfc3BXejJ3”<br>}</p><p>11,4,7<br>3,2,1<br>20</p><p>scoll，看起来挺像分页的，但是其实使用场景不一样。分页主要是用来一页一页搜索，给用户看的；scoll主要是用来一批一批检索数据，让系统进行处理的</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="bouncing-results问题解决方案"><a href="#bouncing-results问题解决方案" class="headerlink" title="bouncing results问题解决方案"></a>bouncing results问题解决方案</h4><h5 id="1、preference"><a href="#1、preference" class="headerlink" title="1、preference"></a>1、preference</h5><p>决定了哪些shard会被用来执行搜索操作</p><p>_primary, _primary_first, _local, _only_node:xyz, _prefer_node:xyz, _shards:2,3</p><p>bouncing results问题，两个document排序，field值相同；不同的shard上，可能排序不同；每次请求轮询打到不同的replica shard上；每次页面上看到的搜索结果的排序都不一样。这就是bouncing result，也就是跳跃的结果。</p><p>搜索的时候，是轮询将搜索请求发送到每一个replica shard（primary shard），但是在不同的shard上，可能document的排序不同</p><p>解决方案就是将preference设置为一个字符串，比如说user_id，让每个user每次搜索的时候，都使用同一个replica shard去执行，就不会看到bouncing results了</p><h5 id="2、timeout-主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长"><a href="#2、timeout-主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长" class="headerlink" title="2、timeout:  主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长"></a>2、timeout:  主要就是限定在一定时间内，将部分获取到的数据直接返回，避免查询耗时过长</h5><h5 id="3、routing，document文档路由，-id路由，routing-user-id，这样的话可以让同一个user对应的数据到一个shard上去"><a href="#3、routing，document文档路由，-id路由，routing-user-id，这样的话可以让同一个user对应的数据到一个shard上去" class="headerlink" title="3、routing，document文档路由，_id路由，routing=user_id，这样的话可以让同一个user对应的数据到一个shard上去"></a>3、routing，document文档路由，_id路由，routing=user_id，这样的话可以让同一个user对应的数据到一个shard上去</h5><h5 id="4、search-type"><a href="#4、search-type" class="headerlink" title="4、search_type"></a>4、search_type</h5><p>default：query_then_fetch<br>dfs_query_then_fetch，可以提升revelance sort精准度</p>]]></content>
     
     <summary type="html">
     
