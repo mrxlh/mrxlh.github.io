@@ -1,3 +1,11 @@
+---
+title: distributed document store （分布式文档存储）
+date: 2020-01-12 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 ###  distributed document store （分布式文档存储）
 
 Elasticsearch其实最核心的功能，就是一个分布式的文档数据存储系统。ES是分布式的。文档数据存储系统。文档数据，存储系统。

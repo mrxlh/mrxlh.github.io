@@ -1,3 +1,11 @@
+---
+title: mapping root object深入剖析
+date: 2020-02-26 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 #### mapping root object深入剖析
 
 ###### 1、root object

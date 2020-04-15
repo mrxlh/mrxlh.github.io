@@ -1,3 +1,11 @@
+---
+title: 初步解析document的核心元数据以及图解剖析index创建反例
+date: 2019-12-31 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 ## 初步解析document的核心元数据以及图解剖析index创建反例
 
 1、_index元数据

@@ -1,3 +1,10 @@
+---
+title: query string search语法以及_all metadata原理
+date: 2020-01-20 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 #### query string search语法以及_all metadata原理
 
 ##### 1.  query string基础语法

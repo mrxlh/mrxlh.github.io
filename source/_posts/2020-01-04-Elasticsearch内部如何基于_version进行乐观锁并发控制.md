@@ -1,3 +1,10 @@
+---
+title: Elasticsearch内部如何基于_version进行乐观锁并发控制
+date: 2020-01-04 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ## Elasticsearch内部如何基于_version进行乐观锁并发控制
 
 ### eg: _version元数据

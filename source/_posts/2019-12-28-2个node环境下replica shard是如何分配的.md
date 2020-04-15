@@ -1,3 +1,10 @@
+---
+title: 2个node环境下replica shard是如何分配的
+date: 2019-12-28 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ## 2个node环境下replica shard是如何分配的
 
 （1）replica shard分配：3个primary shard，3个replica shard，1 node

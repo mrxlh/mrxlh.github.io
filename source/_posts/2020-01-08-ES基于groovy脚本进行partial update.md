@@ -1,3 +1,11 @@
+---
+title: es 基于groovy脚本进行partial update
+date: 2020-01-08 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 ###  es 基于groovy脚本进行partial update
 
 ![](https://img-blog.csdnimg.cn/2020020322454336.png)

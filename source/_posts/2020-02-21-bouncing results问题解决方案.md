@@ -1,3 +1,11 @@
+---
+title: bouncing results问题解决方案
+date: 2020-02-21 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 #### bouncing results问题解决方案
 
 ##### 1、preference

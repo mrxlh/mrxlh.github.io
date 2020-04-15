@@ -1,3 +1,11 @@
+---
+title: query string的分词以及mapping引入案例遗留问题
+date: 2020-02-03 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 ####  query string的分词以及mapping引入案例遗留问题
 
 ###### 1、query string分词

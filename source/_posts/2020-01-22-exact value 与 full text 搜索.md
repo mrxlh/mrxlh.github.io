@@ -1,3 +1,10 @@
+---
+title: exact value 与 full text 搜索
+date: 2020-01-22 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ####  exact value 与 full text 搜索
 
 ##### 1. exact value 

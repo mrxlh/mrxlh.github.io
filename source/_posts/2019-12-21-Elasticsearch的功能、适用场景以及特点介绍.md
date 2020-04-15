@@ -1,3 +1,11 @@
+---
+title: Elasticsearch的功能、适用场景以及特点介绍
+date: 2019-12-21 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 ## Elasticsearch的功能、适用场景以及特点介绍
 
 1. Elasticsearch 功能

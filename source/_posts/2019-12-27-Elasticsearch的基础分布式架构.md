@@ -1,3 +1,10 @@
+---
+title: Elasticsearch基础的分部署架构
+date: 2019-12-27 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ## Elasticsearch基础的分部署架构
 
 1、Elasticsearch对复杂分布式机制的透明隐藏特性

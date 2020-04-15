@@ -1,3 +1,10 @@
+---
+title: ES document数据路由原理
+date: 2020-01-13 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ### ES document数据路由原理
 
 #### 1. document如何路由到shard上的

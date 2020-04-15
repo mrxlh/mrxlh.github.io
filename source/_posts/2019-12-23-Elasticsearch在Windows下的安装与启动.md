@@ -1,3 +1,11 @@
+---
+title: elasticsearch 在Windows下的安装与启动
+date: 2019-12-23 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 elasticsearch 在Windows下的安装与启动
 
 1、安装JDK，至少1.8.0_73以上版本，java -version

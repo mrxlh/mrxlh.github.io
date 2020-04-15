@@ -1,3 +1,10 @@
+---
+title: bulk api json格式与底层性能优化
+date: 2020-01-16 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ####  bulk api json格式与底层性能优化
 
 ##### 1. bulk中的每个操作都可能要转发到不同的node的shard去执行

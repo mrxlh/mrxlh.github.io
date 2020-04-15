@@ -1,3 +1,11 @@
+---
+title: 手动建立和修改mapping以及定制string类型数据是否分词
+date: 2020-02-06 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 ##### 手动建立和修改mapping以及定制string类型数据是否分词
 
 ###### 1、如何建立索引

@@ -1,3 +1,10 @@
+---
+title: Elasticsearch的 6种搜索方式
+date: 2019-12-25 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ## Elasticsearch的 6种搜索方式
 
 1、query string search

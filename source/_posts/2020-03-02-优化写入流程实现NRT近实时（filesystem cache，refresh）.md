@@ -1,3 +1,11 @@
+---
+title: 优化写入流程实现NRT近实时（filesystem cache，refresh）
+date: 2020-03-02 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 #### 优化写入流程实现NRT近实时（filesystem cache，refresh）
 
 现有流程的问题，每次都必须等待fsync将segment刷入磁盘，才能将segment打开供search使用，这样的话，从一个document写入，到它可以被搜索，可能会超过1分钟！！！这就不是近实时的搜索了！！！主要瓶颈在于fsync实际发生磁盘IO写数据进磁盘，是很耗时的。

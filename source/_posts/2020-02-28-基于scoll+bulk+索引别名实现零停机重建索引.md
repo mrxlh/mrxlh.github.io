@@ -1,3 +1,11 @@
+---
+title: 基于scoll+bulk+索引别名实现零停机重建索引
+date: 2020-02-28 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 #### 基于scoll+bulk+索引别名实现零停机重建索引
 
 ###### 1、重建索引

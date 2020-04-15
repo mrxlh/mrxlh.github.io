@@ -1,3 +1,10 @@
+---
+title: 图解Elasticsearch容错机制：master选举，replica容错，数据恢复
+date: 2019-12-30 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ## 图解Elasticsearch容错机制：master选举，replica容错，数据恢复
 
 （1）9 shard，3 node

@@ -1,3 +1,10 @@
+---
+title: _document的全量替换、强制创建以及图解lazy delete机制
+date: 2020-01-02 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ## _document的全量替换、强制创建以及图解lazy delete机制
 
 #### 1.document的全量替换

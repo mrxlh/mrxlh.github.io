@@ -1,3 +1,10 @@
+---
+title: Elasticsearch  mget 的批量查询
+date: 2020-01-10 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ###   Elasticsearch  mget 的批量查询
 
 ####  1. 批量查询好处

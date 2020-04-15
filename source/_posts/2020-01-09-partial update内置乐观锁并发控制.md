@@ -1,3 +1,11 @@
+---
+title: partial update内置乐观锁并发控制
+date: 2020-01-09 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+---
+
 ### partial update内置乐观锁并发控制
 
 #### 1. partial update内置乐观锁并发控制

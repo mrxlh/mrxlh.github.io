@@ -1,3 +1,10 @@
+---
+title: mapping的核心数据类型以及dynamic mapping
+date: 2020-02-06 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 #####  mapping的核心数据类型以及dynamic mapping
 
 ###### 1、核心的数据类型

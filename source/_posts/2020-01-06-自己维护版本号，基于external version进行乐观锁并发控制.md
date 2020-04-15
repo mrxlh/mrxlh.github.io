@@ -1,3 +1,12 @@
+---
+title: 自己维护版本号，基于external version进行乐观锁并发控制
+date: 2020-01-06 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+
+
+---
+
 ###  自己维护版本号，基于external version进行乐观锁并发控制
 
 #### 1.external version

@@ -1,3 +1,10 @@
+---
+title: Elasticsearch的核心概念
+date: 2019-12-01 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 Elasticsearch的核心概念
 
 1.lucene和elasticsearch的前世今生

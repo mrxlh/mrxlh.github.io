@@ -1,3 +1,10 @@
+---
+title: document id的手动指定与自动生成两种方式解析
+date: 2020-01-01 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ## document id的手动指定与自动生成两种方式解析
 
 ### 1.手动指定document id

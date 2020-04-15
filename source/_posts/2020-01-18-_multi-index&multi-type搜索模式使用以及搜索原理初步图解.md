@@ -1,3 +1,10 @@
+---
+title: _multi-index&multi-type搜索模式使用以及搜索原理初步图解
+date: 2020-01-18 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ####  _multi-index&multi-type搜索模式使用以及搜索原理初步图解
 
 ##### 1. multi-index和multi-type搜索模式

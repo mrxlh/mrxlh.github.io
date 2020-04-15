@@ -1,3 +1,10 @@
+---
+title: ES 的 partial update
+date: 2020-01-06 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 ### ES 的 partial update
 
 #### 1. PUT /index/type/id

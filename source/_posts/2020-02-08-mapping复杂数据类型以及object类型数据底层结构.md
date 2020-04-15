@@ -1,3 +1,10 @@
+---
+title: mapping复杂数据类型以及object类型数据底层结构
+date: 2020-02-08 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 #####  mapping复杂数据类型以及object类型数据底层结构
 
 ######  1、multivalue field

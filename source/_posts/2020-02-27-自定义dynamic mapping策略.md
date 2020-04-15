@@ -1,3 +1,10 @@
+---
+title: 自定义dynamic mapping策略
+date: 2020-02-27 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 #### 自定义dynamic mapping策略
 
 ###### 1、定制dynamic策略

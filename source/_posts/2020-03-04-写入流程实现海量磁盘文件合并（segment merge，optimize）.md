@@ -1,3 +1,10 @@
+---
+title: 写入流程实现海量磁盘文件合并（segment merge，optimize）
+date: 2020-03-04 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 #### 写入流程实现海量磁盘文件合并（segment merge，optimize）
 
 每秒一个segment file，文件过多，而且每次search都要搜索所有的segment，很耗时

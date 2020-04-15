@@ -1,3 +1,10 @@
+---
+title: 实现durability可靠存储（translog，flush）
+date: 2020-03-03 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 #### 实现durability可靠存储（translog，flush）
 
 再次优化的写入流程

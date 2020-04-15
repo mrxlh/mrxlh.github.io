@@ -1,3 +1,10 @@
+---
+title: 剖析document写入原理（buffer，segment，commit）
+date: 2020-03-01 17:07:11
+tags: ['Elasticsearch']
+categories: Elasticsearch
+---
+
 #### 剖析document写入原理（buffer，segment，commit）
 
 （1）数据写入buffer
